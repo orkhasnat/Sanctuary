@@ -5,8 +5,12 @@ public class Kitchen extends Room
 	int stove;
 	Boolean sink, cupboard, ventilator, gas;
 
-	Kitchen()
+	Kitchen(int FlatID)
 	{
+		super();
+		id += 400000;
+		name = "Kitchen";
+
 		Scanner scan = new Scanner(System.in);
 		int temp;
 
@@ -36,6 +40,9 @@ public class Kitchen extends Room
 		System.out.println("2. No.");
 		temp = scan.nextInt();
 		gas = (temp%2 != 0);
+
+		// INSERT INTO Kitchen (RoomID, Name, Area, Tiles, Type, FlatID)
+		// VALUES (id, name, area, tiles, 4, FlatID);
 	}
 
 	double value()

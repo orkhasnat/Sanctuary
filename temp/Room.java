@@ -2,10 +2,14 @@ import java.util.Scanner;
 
 public class Room
 {
+	int id;
+	String name;
 	double area, tiles;
 
 	Room()
 	{
+		int id = Global.random(0, 99999);
+
 		Scanner scan = new Scanner(System.in);
 		int temp;
 

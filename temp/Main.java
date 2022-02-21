@@ -17,7 +17,7 @@ public class Main
 			choice %= 2;
 
 			System.out.println("");
-			if(choice == 1) f = new Flat();
+			if(choice == 1) f = new Flat("someone");
 		} while(choice == 1);
 	}
 }

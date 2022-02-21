@@ -4,8 +4,12 @@ public class Bathroom extends Room
 {
 	Boolean shower, sink, tseat, tpan, spraywasher, geaser, bathtub;
 
-	Bathroom()
+	Bathroom(int FlatID)
 	{
+		super();
+		id += 500000;
+		name = "Bathroom";
+
 		Scanner scan = new Scanner(System.in);
 		int temp;
 
@@ -50,6 +54,9 @@ public class Bathroom extends Room
 		System.out.println("2. No.");
 		temp = scan.nextInt();
 		bathtub = (temp%2 != 0);
+
+		// INSERT INTO Bathroom (RoomID, Name, Area, Tiles, Type, FlatID)
+		// VALUES (id, name, area, tiles, 5, FlatID);
 	}
 
 	double value()

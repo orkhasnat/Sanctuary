@@ -4,8 +4,12 @@ public class LivingRoom extends Room
 {
 	Boolean lightsource;
 
-	LivingRoom()
+	LivingRoom(int FlatID)
 	{
+		super();
+		id += 300000;
+		name = "Living Room";
+
 		Scanner scan = new Scanner(System.in);
 		int temp;
 
@@ -14,6 +18,9 @@ public class LivingRoom extends Room
 		System.out.println("2. No.");
 		temp = scan.nextInt();
 		lightsource = (temp%2 != 0);
+
+		// INSERT INTO LivingRoom (RoomID, Name, Area, Tiles, Type, FlatID)
+		// VALUES (id, name, area, tiles, 3, FlatID);
 	}
 
 	double value()
