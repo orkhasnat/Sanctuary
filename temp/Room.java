@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Room
+abstract class Room
 {
 	int id;
 	String name;
@@ -38,5 +38,13 @@ public class Room
 	double value()
 	{
 		return area*tiles;
+	}
+
+	void display()
+	{
+		System.out.println("Name: " + name);
+		// Display Flat Info
+		System.out.println("Area " + area);
+		System.out.print("Floor: "); if(tiles == 1) System.out.println("Plain"); else if(tiles == 1.05) System.out.println("Mosaic"); else System.out.println("Tiles");
 	}
 }

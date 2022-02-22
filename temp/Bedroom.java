@@ -25,8 +25,8 @@ public class Bedroom extends Room
 		temp = scan.nextInt();
 		almirah = (temp%2 != 0);
 
-		// INSERT INTO Bedroom (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 1, FlatID);
+		// INSERT INTO Bedroom (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 1, area, tiles, FlatID);
 	}
 
 	double value()
@@ -36,5 +36,13 @@ public class Bedroom extends Room
 		if(almirah) temp *= 1.02;
 
         return temp;
+	}
+
+	void display()
+	{
+		super.display();
+
+		System.out.print("Open Light Source:"); if(lightsource) System.out.println('o'); else System.out.println('x');
+		System.out.print("Attached Almirah: "); if(almirah) System.out.println('o'); else System.out.println('x');
 	}
 }

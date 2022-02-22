@@ -41,8 +41,8 @@ public class Kitchen extends Room
 		temp = scan.nextInt();
 		gas = (temp%2 != 0);
 
-		// INSERT INTO Kitchen (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 4, FlatID);
+		// INSERT INTO Kitchen (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 4, area, tiles, FlatID);
 	}
 
 	double value()
@@ -54,5 +54,16 @@ public class Kitchen extends Room
 		if(!gas) temp *= 0.1;
 
 		return temp;
+	}
+
+	void display()
+	{
+		super.display();
+
+		System.out.println("Number of Stove: "+stove);
+		System.out.print("Sink:"); if(sink) System.out.println('o'); else System.out.println('x');
+		System.out.print("Cupboard: "); if(cupboard) System.out.println('o'); else System.out.println('x');
+		System.out.print("Ventilator: "); if(ventilator) System.out.println('o'); else System.out.println('x');
+		System.out.print("Gas Supply: "); if(gas) System.out.println('o'); else System.out.println('x');
 	}
 }

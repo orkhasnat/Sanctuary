@@ -55,22 +55,34 @@ public class Bathroom extends Room
 		temp = scan.nextInt();
 		bathtub = (temp%2 != 0);
 
-		// INSERT INTO Bathroom (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 5, FlatID);
+		// INSERT INTO Bathroom (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 5, area, tiles, FlatID);
 	}
 
 	double value()
 	{
-		double temp = area*7;
-		if(shower) temp += 200;
-		if(sink) temp += 200;
-		if(tseat) temp += 500;
-		if(tpan) temp += 100;
-		if(spraywasher) temp += 100;
-		if(geaser) temp += 400;
-		if(bathtub) temp += 400;
-        temp *= tiles;
+		double temp = super.value();
+		if(shower) temp *= 1.02;
+		if(sink) temp *= 1.02;
+		if(tseat) temp *= 1.05;
+		if(tpan) temp *= 1.01;
+		if(spraywasher) temp *= 1.01;
+		if(geaser) temp *= 1.04;
+		if(bathtub) temp *= 1.07;
 
-        return temp/7;
+        return temp;
+	}
+
+	void display()
+	{
+		super.display();
+
+		System.out.print("Shower:"); if(shower) System.out.println('o'); else System.out.println('x');
+		System.out.print("Sink: "); if(sink) System.out.println('o'); else System.out.println('x');
+		System.out.print("Toilet Seat: "); if(tseat) System.out.println('o'); else System.out.println('x');
+		System.out.print("Toilet Pan: "); if(tpan) System.out.println('o'); else System.out.println('x');
+		System.out.print("Spraywasher:"); if(spraywasher) System.out.println('o'); else System.out.println('x');
+		System.out.print("Geaser: "); if(geaser) System.out.println('o'); else System.out.println('x');
+		System.out.print("Bathtub: "); if(bathtub) System.out.println('o'); else System.out.println('x');
 	}
 }

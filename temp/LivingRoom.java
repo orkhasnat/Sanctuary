@@ -19,8 +19,8 @@ public class LivingRoom extends Room
 		temp = scan.nextInt();
 		lightsource = (temp%2 != 0);
 
-		// INSERT INTO LivingRoom (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 3, FlatID);
+		// INSERT INTO LivingRoom (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 3, area, tiles, FlatID);
 	}
 
 	double value()

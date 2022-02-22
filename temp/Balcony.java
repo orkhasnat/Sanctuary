@@ -6,7 +6,7 @@ public class Balcony extends Room
 		id += 600000;
 		name = "Balcony";
 
-		// INSERT INTO Balcony (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 6, FlatID);
+		// INSERT INTO Balcony (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 6, area, tiles, FlatID);
 	}
 }

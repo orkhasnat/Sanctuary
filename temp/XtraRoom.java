@@ -6,7 +6,7 @@ public class XtraRoom extends Room
 		id += 800000;
 		name = "Extra Room";
 
-		// INSERT INTO XtraRoom (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 8, FlatID);
+		// INSERT INTO XtraRoom (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 8, area, tiles, FlatID);
 	}
 }

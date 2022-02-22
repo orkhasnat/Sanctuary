@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.lang.Math;
 
 public class Flat
 {
@@ -8,9 +7,8 @@ public class Flat
 	String name;
 	int floor;
 
-	Location location = new Location();
-	Boolean generator = false, lift = false;
-	double water = 24, loadshedding = 10;
+	Location location = new Location(23.94538493888004, 90.38274718424901);
+	Boolean lift = false, generator = false;
 
 	ArrayList<Room> rooms = new ArrayList<>();
 	int rent;
@@ -18,39 +16,30 @@ public class Flat
 	static Boolean initialized = false;
 	static double[] coff = new double[Global.FACTORS];
 
-	void init()
-	{
-		if(initialized) return;
-		initialized = true;
-
-		for(int i=0; i<Global.FACTORS; i++) coff[i]=1;
-	}
-
 	double[] value = new double[Global.FACTORS];
 
 	Flat(String Owner)
 	{
 		Scanner scan = new Scanner(System.in);
 		int i, temp;
-		for(i=0; i<Global.FACTORS; i++) value[i]=0;
-		init(); refresh();
 
 		System.out.println("Flat Information");
 		System.out.println("---------------");
 
 		int id = Global.random(0, 99999);
 		id += 1000000;
-
 		System.out.print("Name: ");
 		name = scan.nextLine();
+
+		System.out.println("");
+		System.out.println("Flat Location");
+		System.out.println("---------------");
+		location.update();
 		System.out.print("Floor (starts from 0): ");
 		floor = scan.nextInt();
-		getLocation();
 
 		updateLiftInfo();
 		updateGeneratorInfo();
-		updateWaterInfo();
-		updateLSInfo();
         
         // INSERT INTO Flat (FlatID, Name, X, Y, Floor, Owner, Lift, Generator, avgWaterHours, avgLSMinutes)
 		// VALUES (id, name, location.x, location.y, floor, Owner, lift, generator, water, loadshedding);
@@ -155,19 +144,6 @@ public class Flat
 		}
 	}
 
-	void getLocation()
-	{
-		Scanner scan = new Scanner(System.in);
-
-        System.out.println("");
-        System.out.println("Flat Location");
-        System.out.println("---------------");
-        System.out.print("Latitude:\t");
-        location.x = scan.nextDouble();
-        System.out.print("Longitude:\t");
-        location.y = scan.nextDouble();
-	}
-
 	void updateLiftInfo()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -194,38 +170,15 @@ public class Flat
 		generator = (temp%2 != 0);
 	}
 
-	void updateWaterInfo()
-	{
-		Scanner scan = new Scanner(System.in);
-		
-        do
-        {
-            System.out.println("");
-            System.out.print("Average hours of water supply in one day: ");
-            water = scan.nextDouble();
-            if(water>24) System.out.println("Invalid!");
-        } while(water>24);
-	}
-	
-	void updateLSInfo()
-	{
-		Scanner scan = new Scanner(System.in);
-		
-        do
-        {
-            System.out.println("");
-            System.out.print("Average minutes of load shedding in one day: ");
-            loadshedding = scan.nextInt();
-            if(loadshedding>1440) System.out.println("Invalid!");
-        } while(loadshedding>1440);
-	}
-
 	void setRent()
 	{
 		Scanner scan = new Scanner(System.in);
 		int i;
 		Boolean flag = false;
 		double temp;
+
+		for(i=0; i<Global.FACTORS; i++) value[i]=0;
+		init(); refresh();
 
 		System.out.println("");
 		System.out.println("Rent Information");
@@ -235,7 +188,6 @@ public class Flat
 		{
 			int t = room.id/100000-1;
 			value[t]+=room.value();
-			System.out.println(room.name+"\t"+t);
 		}
 
 		if(generator) value[8] = 1;
@@ -244,13 +196,9 @@ public class Flat
 		if(!lift && floor>3) value[9] = -1;
 		else value[9] = 0;
 
-		value[10] = water-24;
-		value[11] = -loadshedding;
-
 		temp=0;
 		for(i=0; i<Global.FACTORS; i++)
 		{
-			System.out.println(value[i]);
 			temp += value[i]*coff[i];
 			if(coff[i] != 1) flag=true;
 		}
@@ -260,7 +208,6 @@ public class Flat
 
 		System.out.print("Rent:\t\t\t");
 		rent = scan.nextInt();
-		if(rent>0) save();
 		System.out.println("");
 
 		// INSERT INTO Rent_Table (FlatID, Value, Rent)
@@ -272,6 +219,14 @@ public class Flat
 
 	}
 
+	void init()
+	{
+		if(initialized) return;
+		initialized = true;
+
+		for(int i=0; i<Global.FACTORS; i++) coff[i]=1;
+	}
+
 	void refresh()
 	{
 		
@@ -280,5 +235,18 @@ public class Flat
 	void findOutliers()
 	{
 
+	}
+
+	void display()
+	{
+		System.out.println("Name: " + name);
+		// Display Owner Info
+		System.out.println("Rent: " + rent);
+
+		// <a href="https://www.google.com/maps/search/?api=1&query="+location.x+"%2C"+location.y>Location</a><br>
+		System.out.println("Floor: " + floor);
+		
+		System.out.print("Lift:"); if(lift) System.out.println('o'); else System.out.println('x');
+		System.out.print("Generator:"); if(generator) System.out.println('o'); else System.out.println('x');
 	}
 }

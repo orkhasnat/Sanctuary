@@ -6,7 +6,7 @@ public class DiningRoom extends Room
 		id += 200000;
 		name = "Dining Room";
 
-		// INSERT INTO DiningRoom (RoomID, Name, Area, Tiles, Type, FlatID)
-		// VALUES (id, name, area, tiles, 2, FlatID);
+		// INSERT INTO DiningRoom (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 2, area, tiles, FlatID);
 	}
 }
