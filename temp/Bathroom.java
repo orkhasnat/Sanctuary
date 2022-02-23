@@ -2,61 +2,30 @@ import java.util.Scanner;
 
 public class Bathroom extends Room
 {
-	Boolean shower, sink, tseat, tpan, spraywasher, geaser, bathtub;
+	boolean shower, sink, tseat, tpan, spraywasher, geaser, bathtub;
 
 	Bathroom(int FlatID)
 	{
-		super();
+		id = Global.random(0, 99999);
 		id += 500000;
 		name = "Bathroom";
+		updateName();
+		getArea();
+		updateTiles();
 
 		Scanner scan = new Scanner(System.in);
 		int temp;
 
-		System.out.println("Shower:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		shower = (temp%2 != 0);
+		shower = getAns("Shower:");
+		sink = getAns("Sink:");
+		tseat = getAns("Toilet Seat:");
+		tpan = getAns("Toilet Pan:");
+		spraywasher = getAns("Spray Washer:");
+		geaser = getAns("Geaser:");
+		bathtub = getAns("Bathtub:");
 
-		System.out.println("Sink:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		sink = (temp%2 != 0);
-
-		System.out.println("Toilet Seat:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		tseat = (temp%2 != 0);
-
-		System.out.println("Toilet Pan:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		tpan = (temp%2 != 0);
-
-		System.out.println("Spray Washer:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		spraywasher = (temp%2 != 0);
-
-		System.out.println("Geaser:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		geaser = (temp%2 != 0);
-
-		System.out.println("Bathtub:");
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
-		bathtub = (temp%2 != 0);
-
-		// INSERT INTO Bathroom (RoomID, Name, Type, Area, Tiles, FlatID)
-		// VALUES (id, name, 5, area, tiles, FlatID);
+		// INSERT INTO Bathroom (RoomID, Name, Type, Area, Tiles, FlatID, Shower, Sink, Tseat, Tpan, SprayWasher, Geaser, Bathtub)
+		// VALUES (id, name, 5, area, tiles, FlatID, shower, sink, tseat, tpan, spraywasher, geaser, bathtub);
 	}
 
 	double value()
@@ -84,5 +53,119 @@ public class Bathroom extends Room
 		System.out.print("Spraywasher:"); if(spraywasher) System.out.println('o'); else System.out.println('x');
 		System.out.print("Geaser: "); if(geaser) System.out.println('o'); else System.out.println('x');
 		System.out.print("Bathtub: "); if(bathtub) System.out.println('o'); else System.out.println('x');
+	}
+
+	void edit()
+	{
+		Scanner scan = new Scanner(System.in);
+		int choice;
+
+		System.out.println("");
+		System.out.println("Edit Room Information");
+		System.out.println("---------------");
+		System.out.println("1. Name.");
+		System.out.println("2. Area.");
+		System.out.println("3. Floor.");
+		System.out.println("4. Shower.");
+		System.out.println("5. Sink.");
+		System.out.println("6. Toilet Seat.");
+		System.out.println("7. Toilet Pan.");
+		System.out.println("8. Spray Washer.");
+		System.out.println("9. Geaser.");
+		System.out.println("10. Bathtub.");
+		System.out.println("0. Back.");
+		System.out.print("Enter Choice: ");
+		choice = scan.nextInt();
+		choice %= 11;
+		
+		if(choice == 1)
+		{
+			updateName();
+
+			// UPDATE Bathroom
+			// SET Name = name
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 2)
+		{
+			getArea();
+
+			// UPDATE Bathroom
+			// SET Area = area
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 3)
+		{
+			updateTiles();
+
+			// UPDATE Bathroom
+			// SET Tiles = tiles
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 4)
+		{
+			shower = getAns("Shower:");
+
+			// UPDATE Bathroom
+			// SET Shower = shower
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 5)
+		{
+			sink = getAns("Sink:");
+
+			// UPDATE Bathroom
+			// SET Sink = sink
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 6)
+		{
+			tseat = getAns("Toilet Seat:");
+
+			// UPDATE Bathroom
+			// SET Tseat = tseat
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 7)
+		{
+			tpan = getAns("Toilet Pan:");
+
+			// UPDATE Bathroom
+			// SET Tpan = tpan
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 8)
+		{
+			spraywasher = getAns("Spray Washer:");
+
+			// UPDATE Bathroom
+			// SET SprayWasher = spraywasher
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 9)
+		{
+			geaser = getAns("Geaser:");
+
+			// UPDATE Bathroom
+			// SET Geaser = geaser
+			// WHERE RoomID = id;
+		}
+		
+		else if(choice == 10)
+		{
+			bathtub = getAns("Bathtub:");
+
+			// UPDATE Bathroom
+			// SET Bathtub = bathtub
+			// WHERE RoomID = id;
+		}
 	}
 }

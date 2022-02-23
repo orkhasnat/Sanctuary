@@ -6,8 +6,8 @@ public class Location
 
 	Location(double _x, double _y)
 	{
-		x=_x;
-		y=_y;
+		x = _x;
+		y = _y;
 	}
 
 	void update()
