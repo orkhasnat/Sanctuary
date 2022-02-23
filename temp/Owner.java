@@ -23,8 +23,8 @@ public class Owner
 		updateNID();
 		updatePhone();
 		updateEmail();
-        
-        // INSERT INTO Owner (Name, Username, Password, NID, Phone, Email)
+
+		// INSERT INTO Owner (Name, Username, Password, NID, Phone, Email)
 		// VALUES (name, username, password, nid, phone, email);
 	}
 
@@ -133,14 +133,14 @@ public class Owner
 	void addFlat()
 	{
 		System.out.println("");
-		flats.add(new Flat(username));
+		Flat f = new Flat(username);
+		flats.add(f);
+		Global.AllFlats.put(f.id, f);
 	}
 
 	void flatlist()
 	{
 		int i = 0;
-
-		for(Flat flat: flats) if(!Global.AllFlats.containsKey(flat.id)) flats.remove(flat);
 
 		System.out.println("");
 		for(Flat flat: flats)
@@ -195,7 +195,7 @@ public class Owner
 		{
 			System.out.println("");
 			System.out.println("1. Display Flats.");
-			System.out.println("2. Done.");
+			System.out.println("2. Back.");
 			System.out.print("Enter Choice: ");
 			choice = scan.nextInt();
 			choice %= 2;
@@ -255,7 +255,7 @@ public class Owner
 		System.out.println("4. NID.");
 		System.out.println("5. Add Flat.");
 		System.out.println("6. Change Password.");
-		System.out.println("0. Back.");
+		System.out.println("7. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 7;
@@ -324,10 +324,10 @@ public class Owner
 		// WHERE Username = username;
 	}
 
-	static boolean signin(Owner p)
+	static Owner signin()
 	{
 		Scanner scan = new Scanner(System.in);
-		Owner q;
+		Owner p = null, q;
 		String user, pass;
 
 		System.out.println("");
@@ -337,11 +337,11 @@ public class Owner
 		pass = scan.next();
 
 		if(Global.AllOwners.containsKey(user)) q = Global.AllOwners.get(user);
-		else return false;
+		else return null;
 
 		if(q.password.equals(Global.encodePassword(pass))) p = q;
-		else return false;
+		else return null;
 
-		return true;
+		return p;
 	}
 }

@@ -26,7 +26,7 @@ public class Flat
 		System.out.println("Flat Information");
 		System.out.println("---------------");
 
-		int id = Global.random(0, 99999);
+		id = Global.random(0, 99999);
 		id += 1000000;
 		updateName();
 		updateLocation();
@@ -34,7 +34,7 @@ public class Flat
 
 		updateLiftInfo();
 		updateGeneratorInfo();
-        
+
         // INSERT INTO Flat (FlatID, Name, X, Y, Level, Owner, Lift, Generator)
 		// VALUES (id, name, location.x, location.y, level, Owner, lift, generator);
 
@@ -51,7 +51,7 @@ public class Flat
 			if(choice == 1) addRoom();
 		} while(choice != 0);
 
-        setRent();
+		setRent();
 
 		// INSERT INTO Rent_Table (FlatID, Value, Rent)
 		// VALUES (id, value, rent);
@@ -90,7 +90,7 @@ public class Flat
 		Scanner scan = new Scanner(System.in);
 		int temp;
 
-        System.out.println("");
+		System.out.println("");
 		System.out.println("Lift:");
 		System.out.println("1. Yes.");
 		System.out.println("2. No.");
@@ -103,7 +103,7 @@ public class Flat
 		Scanner scan = new Scanner(System.in);
 		int temp;
 		
-        System.out.println("");
+		System.out.println("");
 		System.out.println("Generator:");
 		System.out.println("1. Yes.");
 		System.out.println("2. No.");
@@ -126,7 +126,7 @@ public class Flat
 		System.out.println("6. Balcony.");
 		System.out.println("7. Store Room.");
 		System.out.println("8. Extra Room.");
-		System.out.println("0. Back.");
+		System.out.println("9. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 9;
@@ -224,8 +224,6 @@ public class Flat
 	{
 		int i = 0;
 
-		for(Room room: rooms) if(!Global.AllFlats.containsKey(room.id)) rooms.remove(room);
-
 		System.out.println("");
 		for(Room room: rooms)
 		{
@@ -305,6 +303,7 @@ public class Flat
 
 	void info()
 	{
+		System.out.println("");
 		System.out.println("Name: " + name);
 		// Display Owner Info
 		System.out.println("Rent: " + rent);
@@ -326,7 +325,7 @@ public class Flat
 		{
 			System.out.println("");
 			System.out.println("1. Display Rooms.");
-			System.out.println("2. Done.");
+			System.out.println("2. Back.");
 			System.out.print("Enter Choice: ");
 			choice = scan.nextInt();
 			choice %= 2;
@@ -389,7 +388,7 @@ public class Flat
 		System.out.println("5. Lift.");
 		System.out.println("6. Generator.");
 		System.out.println("7. Rent");
-		System.out.println("0. Back.");
+		System.out.println("8. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 8;

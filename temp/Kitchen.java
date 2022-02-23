@@ -67,7 +67,7 @@ public class Kitchen extends Room
 		System.out.println("6. Cupboard.");
 		System.out.println("7. Ventilator.");
 		System.out.println("8. Gas Supply.");
-		System.out.println("0. Back.");
+		System.out.println("9. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 9;

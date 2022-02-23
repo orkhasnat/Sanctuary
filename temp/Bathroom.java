@@ -39,7 +39,7 @@ public class Bathroom extends Room
 		if(geaser) temp *= 1.04;
 		if(bathtub) temp *= 1.07;
 
-        return temp;
+		return temp;
 	}
 
 	void display()
@@ -73,7 +73,7 @@ public class Bathroom extends Room
 		System.out.println("8. Spray Washer.");
 		System.out.println("9. Geaser.");
 		System.out.println("10. Bathtub.");
-		System.out.println("0. Back.");
+		System.out.println("11. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 11;

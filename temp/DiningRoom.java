@@ -26,7 +26,7 @@ public class DiningRoom extends Room
 		System.out.println("1. Name.");
 		System.out.println("2. Area.");
 		System.out.println("3. Floor.");
-		System.out.println("0. Back.");
+		System.out.println("4. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 4;

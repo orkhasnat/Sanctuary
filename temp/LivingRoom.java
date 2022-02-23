@@ -42,7 +42,7 @@ public class LivingRoom extends Room
 		System.out.println("2. Area.");
 		System.out.println("3. Floor.");
 		System.out.println("4. Open Light Source.");
-		System.out.println("0. Back.");
+		System.out.println("5. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 5;

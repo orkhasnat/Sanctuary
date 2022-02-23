@@ -29,7 +29,7 @@ public class Bedroom extends Room
 		if(lightsource) temp *= 1.1;
 		if(almirah) temp *= 1.02;
 
-        return temp;
+		return temp;
 	}
 
 	void display()
@@ -53,7 +53,7 @@ public class Bedroom extends Room
 		System.out.println("3. Floor.");
 		System.out.println("4. Open Light Source.");
 		System.out.println("5. Attached Almirah.");
-		System.out.println("0. Back.");
+		System.out.println("6. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 6;

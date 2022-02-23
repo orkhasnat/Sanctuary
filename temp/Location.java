@@ -14,9 +14,9 @@ public class Location
 	{
 		Scanner scan = new Scanner(System.in);
 
-        System.out.print("Latitude:\t");
-        x = scan.nextDouble();
-        System.out.print("Longitude:\t");
-        y = scan.nextDouble();
+		System.out.print("Latitude:\t");
+		x = scan.nextDouble();
+		System.out.print("Longitude:\t");
+		y = scan.nextDouble();
 	}
 }

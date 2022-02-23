@@ -49,6 +49,7 @@ abstract class Room
 
 	void display()
 	{
+		System.out.println("");
 		System.out.println("Name: " + name);
 		// Display Flat Info
 		System.out.println("Area " + area);
@@ -66,7 +67,7 @@ abstract class Room
 			System.out.println("");
 			System.out.println("1. Edit Room.");
 			System.out.println("2. Delete Room.");
-			System.out.println("3. Done.");
+			System.out.println("3. Back.");
 			System.out.print("Enter Choice: ");
 			choice = scan.nextInt();
 			choice %= 3;

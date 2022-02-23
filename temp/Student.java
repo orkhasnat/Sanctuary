@@ -4,7 +4,7 @@ public class Student
 {
 	String name, password, phone, email;
 	long id, nid;
-	int flatID = 0;
+	int FlatID = 0;
 
 	Student()
 	{
@@ -18,7 +18,7 @@ public class Student
 		updateNID();
 		updatePhone();
 		updateEmail();
-        
+
         // INSERT INTO Student (Name, StudentID, Password, NID, Phone, Email)
 		// VALUES (name, id, password, nid, phone, email);
 	}
@@ -163,9 +163,9 @@ public class Student
 			{
 				Flat f;
 				
-				if(Global.AllFlats.containsKey(flatID))
+				if(Global.AllFlats.containsKey(FlatID))
 				{
-					f = Global.AllFlats.get(flatID);
+					f = Global.AllFlats.get(FlatID);
 					f.display();
 				}
 
@@ -177,8 +177,12 @@ public class Student
 					System.out.print("Flat ID: ");
 					temp = scan.nextInt();
 
-					f = Global.AllFlats.get(temp);
-					f.display(id);
+					if(Global.AllFlats.containsKey(temp))
+					{
+						f = Global.AllFlats.get(temp);
+						f.display();
+					}
+					else Global.notify("FLAT NOT FOUND!");
 				}
 			}
 		} while(choice != 0);
@@ -197,7 +201,7 @@ public class Student
 		System.out.println("3. E-mail Address.");
 		System.out.println("4. NID.");
 		System.out.println("5. Change Password.");
-		System.out.println("0. Back.");
+		System.out.println("6. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 6;
@@ -264,10 +268,10 @@ public class Student
 		// WHERE StudentID = id;
 	}
 
-	static boolean signin(Student p)
+	static Student signin()
 	{
 		Scanner scan = new Scanner(System.in);
-		Student q;
+		Student p = null, q;
 		long user;
 		String pass;
 
@@ -278,11 +282,11 @@ public class Student
 		pass = scan.next();
 
 		if(Global.AllStudents.containsKey(user)) q = Global.AllStudents.get(user);
-		else return false;
+		else return null;
 
 		if(q.password.equals(Global.encodePassword(pass))) p = q;
-		else return false;
+		else return null;
 
-		return true;
+		return p;
 	}
 }
