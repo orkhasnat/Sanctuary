@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Global
 {
 	static final int FACTORS = 10;
-	static final char[] SYMBOLS = ("_.#").toCharArray();
+	static final char[] SYMBOLS = ("_#").toCharArray();
 
 	static HashMap<String, Owner> AllOwners = new HashMap<>();
 	static HashMap<Long, Student> AllStudents = new HashMap<>();

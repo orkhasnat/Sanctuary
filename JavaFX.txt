@@ -1,0 +1,7 @@
+https://openjfx.io/
+https://openjfx.io/javadoc/17/
+https://openjfx.io/javadoc/17/javafx.fxml/javafx/fxml/doc-files/introduction_to_fxml.html
+https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/doc-files/cssref.html
+https://openjfx.io/openjfx-docs/#introduction
+https://docs.oracle.com/javase/8/javafx/get-started-tutorial/jfx-overview.htm#JFXST784
+https://www.tutorialspoint.com/javafx/index.htm
