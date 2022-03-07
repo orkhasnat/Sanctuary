@@ -1,6 +1,8 @@
 import javafx.application.*;
+import javafx.event.*;
 import javafx.stage.*;
 import javafx.scene.*;
+import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
@@ -10,7 +12,7 @@ public class Main extends Application
 {
 	public static void main(String[] args)
 	{
-		launch(args);
+		launch();
 	}
 
 	@Override
@@ -24,6 +26,7 @@ public class Main extends Application
 		stage.setScene(scene);
 
 		ImageView bg = new ImageView(new Image("img/home.jpg"));
+		bg.setPreserveRatio(true);
 		bg.setFitWidth(scene.getWidth());
 		bg.setFitHeight(scene.getHeight());
 		root.getChildren().add(bg);
@@ -42,13 +45,27 @@ public class Main extends Application
 		Circle circle = new Circle(350, 100, 50, Color.PURPLE);
 		root.getChildren().add(circle);
 
+		Polygon triangle = new Polygon(50, 400, 50, 500, 150, 500);
+		triangle.setFill(Color.BLUE);
+		root.getChildren().add(triangle);
+
 		ImageView img = new ImageView(new Image("https://smaller-pictures.appspot.com/images/dreamstime_xxl_65780868_small.jpg"));
+		img.setPreserveRatio(true);
 		img.setX(150);
 		img.setY(100);
-		img.setPreserveRatio(true);
 		img.setFitWidth(100);
-		// img.setFitHeight(100);
 		root.getChildren().add(img);
+
+		Button[] btn = new Button[2];
+		btn[0] = new Button("Log In");
+		btn[1] = new Button("Register");
+		for(int i=0; i<2; i++)
+		{
+			btn[i].setLayoutX(250);
+			btn[i].setLayoutY(550+50*i);
+
+			root.getChildren().add(btn[i]);
+		}
 
 		stage.show();
 	}
