@@ -7,11 +7,14 @@ import javafx.scene.image.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
+import java.nio.charset.StandardCharsets;
 
 public class Main extends Application
 {
 	public static void main(String[] args)
 	{
+		String str = "IAmHere!";
+		System.out.println(Global.hash(str));
 		launch();
 	}
 

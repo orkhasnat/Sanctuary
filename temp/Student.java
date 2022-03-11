@@ -1,8 +1,10 @@
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Student
 {
-	String name, password, phone, email;
+	String name, password, plc, phone, email;
 	long id, nid;
 	int FlatID = 0;
 
@@ -19,8 +21,8 @@ public class Student
 		updatePhone();
 		updateEmail();
 
-        // INSERT INTO Student (Name, StudentID, Password, NID, Phone, Email)
-		// VALUES (name, id, password, nid, phone, email);
+        // INSERT INTO Student (Name, StudentID, Password, PasswordLastChanged, NID, Phone, Email)
+		// VALUES (name, id, password, plc, nid, phone, email);
 	}
 
 	void updateName()
@@ -60,7 +62,7 @@ public class Student
 		System.out.print("Enter Password: ");
 		pass = scan.next();
 		
-		if(!Global.checkIdentifier(pass))
+		if(!Global.checkIdentifier(pass) || pass.length() < 6 || pass.length() > 2000)
 		{
 			Global.notify("INVALID PASSWORD!");
 			return false;
@@ -76,7 +78,16 @@ public class Student
 			return false;
 		}
 
-		password = pass;
+		try
+		{
+			plc = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS"));
+			password = Global.hash(pass+id+plc+"Home is Where the Start Is!");
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+
 		return true;
 	}
 
@@ -150,9 +161,18 @@ public class Student
 				String pass;
 				System.out.println("");
 				System.out.print("Password: ");
-				pass = scan.next();
+				
+				try
+				{
+					pass = scan.next();
+					pass = Global.hash(pass+id+plc+"Home is Where the Start Is!");
+				}
+				catch(Exception e)
+				{
+					pass="";
+				}
 
-				if(password.equals(Global.encodePassword(pass)))
+				if(password.equals(pass))
 				{
 					delete();
 					return;
@@ -247,14 +267,23 @@ public class Student
 			String pass;
 			System.out.println("");
 			System.out.print("Password: ");
-			pass = scan.next();
+			
+			try
+			{
+				pass = scan.next();
+				pass = Global.hash(pass+id+plc+"Home is Where the Start Is!");
+			}
+			catch(Exception e)
+			{
+				pass="";
+			}
 
-			if(password.equals(Global.encodePassword(pass)))
+			if(password.equals(pass))
 			{
 				setPassword();
 
 				// UPDATE Student
-				// SET Password = password
+				// SET Password = password, PasswordLastChanged = plc
 				// WHERE StudentID = id;
 			}
 		}
@@ -284,7 +313,16 @@ public class Student
 		if(Global.AllStudents.containsKey(user)) q = Global.AllStudents.get(user);
 		else return null;
 
-		if(q.password.equals(Global.encodePassword(pass))) p = q;
+		try
+		{
+			pass = Global.hash(pass+Long.toString(user)+q.plc+"Home is Where the Start Is!");
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+
+		if(q.password.equals(pass)) p = q;
 		else return null;
 
 		return p;

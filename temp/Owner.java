@@ -1,9 +1,11 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Owner
 {
-	String name, username, password, phone, email;
+	String name, username, password, plc, phone, email;
 	long nid;
 
 	ArrayList<Flat> flats = new ArrayList<>();
@@ -24,8 +26,8 @@ public class Owner
 		updatePhone();
 		updateEmail();
 
-		// INSERT INTO Owner (Name, Username, Password, NID, Phone, Email)
-		// VALUES (name, username, password, nid, phone, email);
+		// INSERT INTO Owner (Name, Username, Password, PasswordLastChanged, NID, Phone, Email)
+		// VALUES (name, username, password, plc, nid, phone, email);
 	}
 
 	void updateName()
@@ -71,7 +73,7 @@ public class Owner
 		System.out.print("Enter Password: ");
 		pass = scan.next();
 		
-		if(!Global.checkIdentifier(pass))
+		if(!Global.checkIdentifier(pass) || pass.length() < 6 || pass.length() > 2000)
 		{
 			Global.notify("INVALID PASSWORD!");
 			return false;
@@ -87,7 +89,16 @@ public class Owner
 			return false;
 		}
 
-		password = Global.encodePassword(pass);
+		try
+		{
+			plc = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS"));
+			password = Global.hash(pass+username+plc+"Home is Where the Start Is!");
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+
 		return true;
 	}
 
@@ -228,9 +239,18 @@ public class Owner
 				String pass;
 				System.out.println("");
 				System.out.print("Password: ");
-				pass = scan.next();
+				
+				try
+				{
+					pass = scan.next();
+					pass = Global.hash(pass+username+plc+"Home is Where the Start Is!");
+				}
+				catch(Exception e)
+				{
+					pass="";
+				}
 
-				if(password.equals(Global.encodePassword(pass)))
+				if(password.equals(pass))
 				{
 					delete();
 					return;
@@ -303,14 +323,23 @@ public class Owner
 			String pass;
 			System.out.println("");
 			System.out.print("Password: ");
-			pass = scan.next();
+			
+			try
+			{
+				pass = scan.next();
+				pass = Global.hash(pass+username+plc+"Home is Where the Start Is!");
+			}
+			catch(Exception e)
+			{
+				pass="";
+			}
 
-			if(password.equals(Global.encodePassword(pass)))
+			if(password.equals(pass))
 			{
 				setPassword();
 
 				// UPDATE Owner
-				// SET Password = password
+				// SET Password = password, PasswordLastChanged = plc
 				// WHERE Username = username;
 			}
 		}
@@ -339,7 +368,16 @@ public class Owner
 		if(Global.AllOwners.containsKey(user)) q = Global.AllOwners.get(user);
 		else return null;
 
-		if(q.password.equals(Global.encodePassword(pass))) p = q;
+		try
+		{
+			pass = Global.hash(pass+user+q.plc+"Home is Where the Start Is!");
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+
+		if(q.password.equals(pass)) p = q;
 		else return null;
 
 		return p;
