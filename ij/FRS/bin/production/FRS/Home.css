@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "Raleway";
+    src: url('font/Raleway.ttf') format('ttf');
+}
+
+.root{
+    -fx-background-color: '#004D40';
+    -fx-background-image: url('img/hom.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: right;
+}
+
+#homeblock{
+    -fx-fill: '#00ACC1';
+}
+
+.button{
+    -fx-background-color: '#E64A19';
+    -fx-text-fill: 'white';
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-font-size: 20px;
+}
+
+#active{
+    -fx-background-color: '#FFAA33';
+    -fx-text-fill: 'white';
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-font-size: 20px;
+}
+
+#inactive{
+    -fx-background-color: '#888888';
+    -fx-text-fill: 'white';
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-font-size: 20px;
+}
