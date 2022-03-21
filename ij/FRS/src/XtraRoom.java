@@ -8,19 +8,19 @@ public class XtraRoom extends Room
 		id += 800000;
 		name = "Extra Room";
 		updateName();
-		getArea();
+		setArea();
 		updateTiles();
 
 		// INSERT INTO XtraRoom (RoomID, Name, Type, Area, Tiles, FlatID)
 		// VALUES (id, name, 8, area, tiles, FlatID);
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Room Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -42,7 +42,7 @@ public class XtraRoom extends Room
 		
 		else if(choice == 2)
 		{
-			getArea();
+			setArea();
 
 			// UPDATE XtraRoom
 			// SET Area = area

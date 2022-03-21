@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Student
 {
-	String name, password, plc, phone, email;
+	String name, password, plc, phone, email, bloodgroup;
 	long id, nid;
 	int FlatID = 0;
 
@@ -20,9 +20,10 @@ public class Student
 		updateNID();
 		updatePhone();
 		updateEmail();
+		updateBloodGroup();
 
-        // INSERT INTO Student (Name, StudentID, Password, PasswordLastChanged, NID, Phone, Email)
-		// VALUES (name, id, password, plc, nid, phone, email);
+        // INSERT INTO Student (Name, StudentID, Password, PasswordLastChanged, NID, Phone, Email, BloodGroup)
+		// VALUES (name, id, password, plc, nid, phone, email, bloodgroup);
 	}
 
 	void updateName()
@@ -117,6 +118,24 @@ public class Student
 		email = temp;
 	}
 
+	void updateBloodGroup()
+	{
+		Scanner scan = new Scanner(System.in);
+		int i, choice;
+
+		String[] bg={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+
+		System.out.println("");
+		System.out.println("Blood Group");
+		System.out.println("---------------");
+		for(i=1; i<=9; i++) System.out.println(i + ". " + bg[i%9]);
+		System.out.print("Enter Choice: ");
+		choice = scan.nextInt();
+		choice %= 9;
+
+		bloodgroup = bg[choice];
+	}
+
 	void updateNID()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -135,6 +154,7 @@ public class Student
 		System.out.println("Name: " + name);
 		System.out.println("Phone Number: " + phone);
 		System.out.println("E-mail Address: " + email);
+		System.out.println("Blood Group: " + bloodgroup);
 	}
 
 	void view()
@@ -220,11 +240,12 @@ public class Student
 		System.out.println("2. Phone Number.");
 		System.out.println("3. E-mail Address.");
 		System.out.println("4. NID.");
-		System.out.println("5. Change Password.");
-		System.out.println("6. Back.");
+		System.out.println("5. Blood Group.");
+		System.out.println("6. Change Password.");
+		System.out.println("7. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
-		choice %= 6;
+		choice %= 7;
 		
 		if(choice == 1)
 		{
@@ -263,6 +284,15 @@ public class Student
 		}
 
 		else if(choice == 5)
+		{
+			updateBloodGroup();
+
+			// UPDATE Student
+			// SET BloodGroup = bloodgroup
+			// WHERE StudentID = id;
+		}
+
+		else if(choice == 6)
 		{
 			String pass;
 			System.out.println("");

@@ -8,19 +8,19 @@ public class DiningRoom extends Room
 		id += 200000;
 		name = "Dining Room";
 		updateName();
-		getArea();
+		setArea();
 		updateTiles();
 
 		// INSERT INTO DiningRoom (RoomID, Name, Type, Area, Tiles, FlatID)
 		// VALUES (id, name, 2, area, tiles, FlatID);
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Room Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -42,7 +42,7 @@ public class DiningRoom extends Room
 		
 		else if(choice == 2)
 		{
-			getArea();
+			setArea();
 
 			// UPDATE DiningRoom
 			// SET Area = area

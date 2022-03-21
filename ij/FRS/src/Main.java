@@ -40,7 +40,7 @@ public class Main extends Application
 
         do
         {
-            System.out.println("");
+            System.out.println();
             System.out.println("1. Log In.");
             System.out.println("2. Register.");
             System.out.println("3. Launch.");
@@ -53,6 +53,8 @@ public class Main extends Application
             else if(choice == 2) reg();
             else if(choice == 3) launch(args);
         } while(choice != 0);
+
+        System.exit(0);
     }
 
     @FXML void studentmode(ActionEvent event) throws Exception
@@ -128,7 +130,7 @@ public class Main extends Application
         System.out.println("Student ID: "+user);
         System.out.println("Password: "+Global.hash(pass+/*user+q.plc+*/"Home is Where the Start Is!"));
 
-        Student p = Student.signin(Long.parseLong(user), pass);
+        Student p = Student.login(Long.parseLong(user), pass);
         if(p != null) { stage.close(); p.view(); }
         else Global.notify("LOG IN FAILED!");
     }
@@ -138,7 +140,7 @@ public class Main extends Application
         Scanner scan = new Scanner(System.in);
         int choice;
 
-        System.out.println("");
+        System.out.println();
         System.out.println("1. As Student.");
         System.out.println("2. As Owner.");
         System.out.println("3. Back.");
@@ -166,7 +168,7 @@ public class Main extends Application
         Scanner scan = new Scanner(System.in);
         int choice;
 
-        System.out.println("");
+        System.out.println();
         System.out.println("1. As Student.");
         System.out.println("2. As Owner.");
         System.out.println("3. Back.");
@@ -176,7 +178,7 @@ public class Main extends Application
 
         if(choice == 1)
         {
-            System.out.println("");
+            System.out.println();
             Student p = new Student();
             Global.AllStudents.put(p.id, p);
             p.view();
@@ -184,7 +186,7 @@ public class Main extends Application
 
         else if(choice == 2)
         {
-            System.out.println("");
+            System.out.println();
             Owner p = new Owner();
             Global.AllOwners.put(p.username, p);
             p.view();
@@ -196,7 +198,7 @@ public class Main extends Application
         Scanner scan = new Scanner(System.in);
         int choice;
 
-        System.out.println("");
+        System.out.println();
         System.out.println("1. Search Flat.");
         System.out.println("2. Search Owner.");
         System.out.println("3. Back.");
@@ -209,7 +211,7 @@ public class Main extends Application
             Owner p;
             String user;
 
-            System.out.println("");
+            System.out.println();
             System.out.print("Username: ");
             user = scan.next();
 
@@ -228,7 +230,7 @@ public class Main extends Application
 
             int temp;
 
-            System.out.println("");
+            System.out.println();
             System.out.print("Flat ID: ");
             temp = scan.nextInt();
 

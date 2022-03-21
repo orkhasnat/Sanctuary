@@ -2,11 +2,10 @@ import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Student
+public class Student extends User
 {
-	String name, password, plc, phone, email;
-	long id, nid;
-	int FlatID = 0;
+	long id;
+	private int FlatID = 0;
 
 	Student()
 	{
@@ -20,26 +19,18 @@ public class Student
 		updateNID();
 		updatePhone();
 		updateEmail();
+		updateBloodGroup();
 
-        // INSERT INTO Student (Name, StudentID, Password, PasswordLastChanged, NID, Phone, Email)
-		// VALUES (name, id, password, plc, nid, phone, email);
+        // INSERT INTO Student (Name, StudentID, Password, PasswordLastChanged, NID, Phone, Email, BloodGroup)
+		// VALUES (name, id, password, plc, nid, phone, email, bloodgroup);
 	}
 
-	void updateName()
-	{
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("");
-		System.out.print("Name: ");
-		name = scan.nextLine();
-	}
-
-	boolean setIUT_ID()
+	private boolean setIUT_ID()
 	{
 		Scanner scan = new Scanner(System.in);
 		long temp;
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("IUT ID: ");
 		temp = scan.nextLong();
 		
@@ -53,12 +44,12 @@ public class Student
 		return true;
 	}
 
-	boolean setPassword()
+	protected boolean setPassword()
 	{
 		Scanner scan = new Scanner(System.in);
 		String pass, temp;
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Enter Password: ");
 		pass = scan.next();
 		
@@ -68,7 +59,7 @@ public class Student
 			return false;
 		}
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Re-enter Password: ");
 		temp = scan.next();
 		
@@ -91,50 +82,12 @@ public class Student
 		return true;
 	}
 
-	void updatePhone()
-	{
-		Scanner scan = new Scanner(System.in);
-		String temp;
-
-		System.out.println("");
-		System.out.print("Phone Number: ");
-		temp = scan.next();
-
-		// Check if phone number is valid and if it already exists in database
-		phone = temp;
-	}
-
-	void updateEmail()
-	{
-		Scanner scan = new Scanner(System.in);
-		String temp;
-
-		System.out.println("");
-		System.out.print("E-mail Address: ");
-		temp = scan.next();
-
-		// Check if email is valid and if it already exists in database
-		email = temp;
-	}
-
-	void updateNID()
-	{
-		Scanner scan = new Scanner(System.in);
-		long temp;
-
-		System.out.println("");
-		System.out.print("NID Number: ");
-		temp = scan.nextLong();
-
-		// Check if nid number is valid and if it already exists in database
-		nid = temp;
-	}
-
 	void display()
 	{
 		System.out.println("Name: " + name);
 		System.out.println("Phone Number: " + phone);
 		System.out.println("E-mail Address: " + email);
+		System.out.println("Blood Group: " + bloodgroup);
 	}
 
 	void view()
@@ -145,7 +98,7 @@ public class Student
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Edit Profile.");
 			System.out.println("2. Delete Profile.");
 			System.out.println("3. My Flat/ Display a Flat.");
@@ -159,7 +112,7 @@ public class Student
 			else if(choice == 2)
 			{
 				String pass;
-				System.out.println("");
+				System.out.println();
 				System.out.print("Password: ");
 				
 				try
@@ -193,7 +146,7 @@ public class Student
 				{
 					int temp;
 
-					System.out.println("");
+					System.out.println();
 					System.out.print("Flat ID: ");
 					temp = scan.nextInt();
 
@@ -208,23 +161,24 @@ public class Student
 		} while(choice != 0);
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Profile");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
 		System.out.println("2. Phone Number.");
 		System.out.println("3. E-mail Address.");
 		System.out.println("4. NID.");
-		System.out.println("5. Change Password.");
-		System.out.println("6. Back.");
+		System.out.println("5. Blood Group.");
+		System.out.println("6. Change Password.");
+		System.out.println("7. Back.");
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
-		choice %= 6;
+		choice %= 7;
 		
 		if(choice == 1)
 		{
@@ -264,8 +218,17 @@ public class Student
 
 		else if(choice == 5)
 		{
+			updateBloodGroup();
+
+			// UPDATE Student
+			// SET BloodGroup = bloodgroup
+			// WHERE StudentID = id;
+		}
+
+		else if(choice == 6)
+		{
 			String pass;
-			System.out.println("");
+			System.out.println();
 			System.out.print("Password: ");
 			
 			try
@@ -289,7 +252,7 @@ public class Student
 		}
 	}
 
-	void delete()
+	protected void delete()
 	{
 		Global.AllStudents.remove(id);
 
@@ -300,11 +263,11 @@ public class Student
 	static Student signin()
 	{
 		Scanner scan = new Scanner(System.in);
-		Student p = null, q;
+		Student p, q;
 		long user;
 		String pass;
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("ID: ");
 		user = scan.nextLong();
 		System.out.print("Password: ");
@@ -328,10 +291,9 @@ public class Student
 		return p;
 	}
 
-	static Student signin(long user, String pass)
+	static Student login(long user, String pass)
 	{
-		Scanner scan = new Scanner(System.in);
-		Student p = null, q;
+		Student p, q;
 
 		if(Global.AllStudents.containsKey(user)) q = Global.AllStudents.get(user);
 		else return null;

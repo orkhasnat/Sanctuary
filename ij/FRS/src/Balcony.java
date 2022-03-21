@@ -8,19 +8,19 @@ public class Balcony extends Room
 		id += 600000;
 		name = "Balcony";
 		updateName();
-		getArea();
+		setArea();
 		updateTiles();
 
 		// INSERT INTO Balcony (RoomID, Name, Type, Area, Tiles, FlatID)
 		// VALUES (id, name, 6, area, tiles, FlatID);
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Room Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -42,7 +42,7 @@ public class Balcony extends Room
 		
 		else if(choice == 2)
 		{
-			getArea();
+			setArea();
 
 			// UPDATE Balcony
 			// SET Area = area

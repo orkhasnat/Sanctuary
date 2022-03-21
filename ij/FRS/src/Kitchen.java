@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Kitchen extends Room
 {
-	int stove;
-	boolean sink, cupboard, ventilator, gas;
+	private int stove;
+	private boolean sink, cupboard, ventilator, gas;
 
 	Kitchen(int FlatID)
 	{
@@ -11,11 +11,10 @@ public class Kitchen extends Room
 		id += 400000;
 		name = "Kitchen";
 		updateName();
-		getArea();
+		setArea();
 		updateTiles();
 
 		Scanner scan = new Scanner(System.in);
-		int temp;
 
 		System.out.print("Number of stove: ");
 		stove = scan.nextInt();
@@ -51,12 +50,12 @@ public class Kitchen extends Room
 		System.out.print("Gas Supply: "); if(gas) System.out.println('o'); else System.out.println('x');
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Room Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -83,7 +82,7 @@ public class Kitchen extends Room
 		
 		else if(choice == 2)
 		{
-			getArea();
+			setArea();
 
 			// UPDATE Kitchen
 			// SET Area = area

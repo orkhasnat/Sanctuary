@@ -5,10 +5,10 @@ public class Flat
 {
 	int id;
 	String name;
-	int level;
+	private int level;
 
-	Location location = new Location(23.94538493888004, 90.38274718424901);
-	boolean lift = false, generator = false, vacant = true;
+	private Location location = new Location(23.94538493888004, 90.38274718424901);
+	private boolean lift = false, generator = false, vacant = true;
 
 	ArrayList<Room> rooms = new ArrayList<>();
 	int rent;
@@ -18,10 +18,9 @@ public class Flat
 
 	double[] value = new double[Global.FACTORS];
 
-	Flat(String Owner)
+	Flat(String owner)
 	{
 		Scanner scan = new Scanner(System.in);
-		int i, temp;
 
 		System.out.println("Flat Information");
 		System.out.println("---------------");
@@ -36,12 +35,12 @@ public class Flat
 		updateGeneratorInfo();
 
         // INSERT INTO Flat (FlatID, Name, X, Y, Level, Owner, Lift, Generator)
-		// VALUES (id, name, location.x, location.y, level, Owner, lift, generator);
+		// VALUES (id, name, location.x, location.y, level, owner, lift, generator);
 
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Add a Room.");
 			System.out.println("2. Done.");
 			System.out.print("Enter Choice: ");
@@ -61,16 +60,14 @@ public class Flat
 	{
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Name: ");
 		name = scan.nextLine();
 	}
 
 	void updateLocation()
 	{
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("");
+		System.out.println();
 		System.out.println("Flat Location");
 		System.out.println("---------------");
 		location.update();
@@ -80,7 +77,7 @@ public class Flat
 	{
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Level (starts from 1): ");
 		level = scan.nextInt();
 	} 
@@ -90,7 +87,7 @@ public class Flat
 		Scanner scan = new Scanner(System.in);
 		int temp;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Lift:");
 		System.out.println("1. Yes.");
 		System.out.println("2. No.");
@@ -103,7 +100,7 @@ public class Flat
 		Scanner scan = new Scanner(System.in);
 		int temp;
 		
-		System.out.println("");
+		System.out.println();
 		System.out.println("Generator:");
 		System.out.println("1. Yes.");
 		System.out.println("2. No.");
@@ -117,7 +114,7 @@ public class Flat
 		int choice;
 		Room r;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("1. Bedroom.");
 		System.out.println("2. Dining Room.");
 		System.out.println("3. Living Room.");
@@ -133,7 +130,7 @@ public class Flat
 		
 		if(choice == 1)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Bedroom Information");
 			System.out.println("---------------");
 
@@ -144,7 +141,7 @@ public class Flat
 		
 		else if(choice == 2)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Dining Room Information");
 			System.out.println("---------------");
 			
@@ -155,7 +152,7 @@ public class Flat
 		
 		else if(choice == 3)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Living Room Information");
 			System.out.println("---------------");
 			
@@ -166,7 +163,7 @@ public class Flat
 		
 		else if(choice == 4)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Kitchen Information");
 			System.out.println("---------------");
 			
@@ -177,7 +174,7 @@ public class Flat
 		
 		else if(choice == 5)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Bathroom Information");
 			System.out.println("---------------");
 			
@@ -188,7 +185,7 @@ public class Flat
 		
 		else if(choice == 6)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Balcony Information");
 			System.out.println("---------------");
 			
@@ -199,7 +196,7 @@ public class Flat
 		
 		else if(choice == 7)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Store Room Information");
 			System.out.println("---------------");
 			
@@ -210,7 +207,7 @@ public class Flat
 		
 		else if(choice == 8)
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("Extra Room Information");
 			System.out.println("---------------");
 			
@@ -224,7 +221,7 @@ public class Flat
 	{
 		int i = 0;
 
-		System.out.println("");
+		System.out.println();
 		for(Room room: rooms)
 		{
 			System.out.println((i+1)+". "+room.name);
@@ -270,7 +267,7 @@ public class Flat
 		for(i = 0; i<Global.FACTORS; i++) value[i] = 0;
 		init(); refresh();
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Rent Information");
 		System.out.println("---------------");
 
@@ -293,17 +290,17 @@ public class Flat
 			if(coff[i] != 1) flag = true;
 		}
 
-		System.out.println("");
+		System.out.println();
 		if(flag) System.out.println("Standard Rent:\t\t" + temp);
 
 		System.out.print("Rent:\t\t\t");
 		rent = scan.nextInt();
-		System.out.println("");
+		System.out.println();
 	}
 
 	void info()
 	{
-		System.out.println("");
+		System.out.println();
 		System.out.println("Name: " + name);
 		// Display Owner Info
 		System.out.println("Rent: " + rent);
@@ -323,7 +320,7 @@ public class Flat
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Display Rooms.");
 			System.out.println("2. Back.");
 			System.out.print("Enter Choice: ");
@@ -352,7 +349,7 @@ public class Flat
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Edit Flat.");
 			System.out.println("2. Delete Flat.");
 			System.out.println("3. View Rooms.");
@@ -378,7 +375,7 @@ public class Flat
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Flat Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -458,11 +455,6 @@ public class Flat
 		// WHERE FlatID = id;
 
 		name = "Deleted Flat";
-	}
-
-	void save()
-	{
-
 	}
 
 	void init()

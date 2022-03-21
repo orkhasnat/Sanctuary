@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Bedroom extends Room
 {
-	boolean lightsource, almirah;
+	private boolean lightsource, almirah;
 
 	Bedroom(int FlatID)
 	{
@@ -10,11 +10,8 @@ public class Bedroom extends Room
 		id += 100000;
 		name = "Bedroom";
 		updateName();
-		getArea();
+		setArea();
 		updateTiles();
-
-		Scanner scan = new Scanner(System.in);
-		int temp;
 
 		lightsource = getAns("Open Light Source:");
 		almirah = getAns("Attached Almirah:");
@@ -40,12 +37,12 @@ public class Bedroom extends Room
 		System.out.print("Attached Almirah: "); if(almirah) System.out.println('o'); else System.out.println('x');
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Room Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -69,7 +66,7 @@ public class Bedroom extends Room
 		
 		else if(choice == 2)
 		{
-			getArea();
+			setArea();
 
 			// UPDATE Bedroom
 			// SET Area = area

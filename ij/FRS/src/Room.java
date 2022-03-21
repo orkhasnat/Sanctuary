@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 abstract class Room
 {
-	int id;
-	String name;
-	double area, tiles;
+	protected int id;
+	protected String name;
+	private double area, tiles;
 
-	void getArea()
+	protected void setArea()
 	{
 		Scanner scan = new Scanner(System.in);
 
@@ -14,7 +14,7 @@ abstract class Room
 		area = scan.nextDouble();
 	}
 
-	void updateName()
+	protected void updateName()
 	{
 		Scanner scan = new Scanner(System.in);
 
@@ -22,7 +22,7 @@ abstract class Room
 		name = scan.nextLine();
 	}
 
-	boolean getAns(String str)
+	protected boolean getAns(String str)
 	{
 		Scanner scan = new Scanner(System.in);
 		int temp;
@@ -35,7 +35,7 @@ abstract class Room
 		return (temp%2 != 0);
 	}
 
-	void updateTiles()
+	protected void updateTiles()
 	{
 		if(getAns("Tiles:")) tiles = 1.15;
 		else if(getAns("Mosaic:")) tiles = 1.05;
@@ -49,7 +49,7 @@ abstract class Room
 
 	void display()
 	{
-		System.out.println("");
+		System.out.println();
 		System.out.println("Name: " + name);
 		// Display Flat Info
 		System.out.println("Area " + area);
@@ -64,7 +64,7 @@ abstract class Room
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Edit Room.");
 			System.out.println("2. Delete Room.");
 			System.out.println("3. Back.");
@@ -82,9 +82,9 @@ abstract class Room
 		} while(choice != 0);
 	}
 
-	abstract void edit();
+	abstract protected void edit();
 
-	void delete()
+	protected void delete()
 	{
 		Global.AllRooms.remove(id);
 

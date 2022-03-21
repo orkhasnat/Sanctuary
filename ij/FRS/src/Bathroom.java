@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Bathroom extends Room
 {
-	boolean shower, sink, tseat, tpan, spraywasher, geaser, bathtub;
+	private boolean shower, sink, tseat, tpan, spraywasher, geaser, bathtub;
 
 	Bathroom(int FlatID)
 	{
@@ -10,11 +10,8 @@ public class Bathroom extends Room
 		id += 500000;
 		name = "Bathroom";
 		updateName();
-		getArea();
+		setArea();
 		updateTiles();
-
-		Scanner scan = new Scanner(System.in);
-		int temp;
 
 		shower = getAns("Shower:");
 		sink = getAns("Sink:");
@@ -55,12 +52,12 @@ public class Bathroom extends Room
 		System.out.print("Bathtub: "); if(bathtub) System.out.println('o'); else System.out.println('x');
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Room Information");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -89,7 +86,7 @@ public class Bathroom extends Room
 		
 		else if(choice == 2)
 		{
-			getArea();
+			setArea();
 
 			// UPDATE Bathroom
 			// SET Area = area

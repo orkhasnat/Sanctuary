@@ -3,18 +3,13 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Owner
+public class Owner extends User
 {
-	String name, username, password, plc, phone, email;
-	long nid;
-
+	String username;
 	ArrayList<Flat> flats = new ArrayList<>();
 
 	Owner()
 	{
-		Scanner scan = new Scanner(System.in);
-		int i, temp;
-
 		System.out.println("Owner Information");
 		System.out.println("---------------");
 
@@ -30,21 +25,12 @@ public class Owner
 		// VALUES (name, username, password, plc, nid, phone, email);
 	}
 
-	void updateName()
-	{
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("");
-		System.out.print("Name: ");
-		name = scan.nextLine();
-	}
-
-	boolean setUsername()
+	private boolean setUsername()
 	{
 		Scanner scan = new Scanner(System.in);
 		String user;
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Username: ");
 		user = scan.next();
 		
@@ -64,12 +50,12 @@ public class Owner
 		return true;
 	}
 
-	boolean setPassword()
+	protected boolean setPassword()
 	{
 		Scanner scan = new Scanner(System.in);
 		String pass, temp;
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Enter Password: ");
 		pass = scan.next();
 		
@@ -79,7 +65,7 @@ public class Owner
 			return false;
 		}
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Re-enter Password: ");
 		temp = scan.next();
 		
@@ -102,58 +88,19 @@ public class Owner
 		return true;
 	}
 
-	void updatePhone()
+	private void addFlat()
 	{
-		Scanner scan = new Scanner(System.in);
-		String temp;
-
-		System.out.println("");
-		System.out.print("Phone Number: ");
-		temp = scan.next();
-
-		// Check if phone number is valid and if it already exists in database
-		phone = temp;
-	}
-
-	void updateEmail()
-	{
-		Scanner scan = new Scanner(System.in);
-		String temp;
-
-		System.out.println("");
-		System.out.print("E-mail Address: ");
-		temp = scan.next();
-
-		// Check if email is valid and if it already exists in database
-		email = temp;
-	}
-
-	void updateNID()
-	{
-		Scanner scan = new Scanner(System.in);
-		long temp;
-
-		System.out.println("");
-		System.out.print("NID Number: ");
-		temp = scan.nextLong();
-
-		// Check if nid number is valid and if it already exists in database
-		nid = temp;
-	}
-
-	void addFlat()
-	{
-		System.out.println("");
+		System.out.println();
 		Flat f = new Flat(username);
 		flats.add(f);
 		Global.AllFlats.put(f.id, f);
 	}
 
-	void flatlist()
+	private void flatlist()
 	{
 		int i = 0;
 
-		System.out.println("");
+		System.out.println();
 		for(Flat flat: flats)
 		{
 			System.out.println((i+1)+". "+flat.name);
@@ -161,7 +108,7 @@ public class Owner
 		}
 	}
 
-	void flatdisplay()
+	private void flatdisplay()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -175,7 +122,7 @@ public class Owner
 		if(choice != 0) flats.get(choice-1).display();
 	}
 
-	void flatview()
+	private void flatview()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -189,7 +136,7 @@ public class Owner
 		if(choice != 0) flats.get(choice-1).view();
 	}
 
-	void info()
+	private void info()
 	{
 		System.out.println("Name: " + name);
 		System.out.println("Phone Number: " + phone);
@@ -204,7 +151,7 @@ public class Owner
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Display Flats.");
 			System.out.println("2. Back.");
 			System.out.print("Enter Choice: ");
@@ -223,7 +170,7 @@ public class Owner
 		int choice;
 		do
 		{
-			System.out.println("");
+			System.out.println();
 			System.out.println("1. Edit Profile.");
 			System.out.println("2. Delete Profile.");
 			System.out.println("3. My Flats.");
@@ -237,7 +184,7 @@ public class Owner
 			else if(choice == 2)
 			{
 				String pass;
-				System.out.println("");
+				System.out.println();
 				System.out.print("Password: ");
 				
 				try
@@ -261,12 +208,12 @@ public class Owner
 		} while(choice != 0);
 	}
 
-	void edit()
+	protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Edit Profile");
 		System.out.println("---------------");
 		System.out.println("1. Name.");
@@ -321,7 +268,7 @@ public class Owner
 		else if(choice == 6)
 		{
 			String pass;
-			System.out.println("");
+			System.out.println();
 			System.out.print("Password: ");
 			
 			try
@@ -345,7 +292,7 @@ public class Owner
 		}
 	}
 
-	void delete()
+	protected void delete()
 	{
 		Global.AllOwners.remove(username);
 
@@ -356,7 +303,7 @@ public class Owner
 	static Owner login()
 	{
 		Scanner scan = new Scanner(System.in);
-		Owner p = null, q;
+		Owner p, q;
 		String user, pass;
 
 		System.out.println("");
@@ -385,8 +332,7 @@ public class Owner
 
 	static Owner login(String user, String pass)
 	{
-		Scanner scan = new Scanner(System.in);
-		Owner p = null, q;
+		Owner p, q;
 
 		if(Global.AllOwners.containsKey(user)) q = Global.AllOwners.get(user);
 		else return null;
