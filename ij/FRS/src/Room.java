@@ -2,95 +2,101 @@ import java.util.Scanner;
 
 abstract class Room
 {
-	protected int id;
-	protected String name;
-	private double area, tiles;
+    protected int id;
+    protected String name;
+    private double area, tiles;
 
-	protected void setArea()
-	{
-		Scanner scan = new Scanner(System.in);
+    protected boolean setArea()
+    {
+        Scanner scan = new Scanner(System.in);
 
-		System.out.print("Area in square feet: ");
-		area = scan.nextDouble();
-	}
+        System.out.print("Area in square feet: ");
+        area = scan.nextDouble();
 
-	protected void updateName()
-	{
-		Scanner scan = new Scanner(System.in);
+        return true;
+    }
 
-		System.out.print("Name: ");
-		name = scan.nextLine();
-	}
+    protected boolean updateName()
+    {
+        Scanner scan = new Scanner(System.in);
 
-	protected boolean getAns(String str)
-	{
-		Scanner scan = new Scanner(System.in);
-		int temp;
+        System.out.print("Name: ");
+        name = scan.nextLine();
 
-		System.out.println(str);
-		System.out.println("1. Yes.");
-		System.out.println("2. No.");
-		temp = scan.nextInt();
+        return true;
+    }
 
-		return (temp%2 != 0);
-	}
+    protected boolean getAns(String str)
+    {
+        Scanner scan = new Scanner(System.in);
+        int temp;
 
-	protected void updateTiles()
-	{
-		if(getAns("Tiles:")) tiles = 1.15;
-		else if(getAns("Mosaic:")) tiles = 1.05;
-		else tiles = 1;
-	}
+        System.out.println(str);
+        System.out.println("1. Yes.");
+        System.out.println("2. No.");
+        temp = scan.nextInt();
 
-	double value()
-	{
-		return area*tiles;
-	}
+        return (temp%2 != 0);
+    }
 
-	void display()
-	{
-		System.out.println();
-		System.out.println("Name: " + name);
-		// Display Flat Info
-		System.out.println("Area " + area);
-		System.out.print("Floor: "); if(tiles == 1) System.out.println("Plain"); else if(tiles == 1.05) System.out.println("Mosaic"); else System.out.println("Tiles");
-	}
+    protected boolean updateTiles()
+    {
+        if(getAns("Tiles:")) tiles = 1.15;
+        else if(getAns("Mosaic:")) tiles = 1.05;
+        else tiles = 1;
 
-	void view()
-	{
-		display();
-		Scanner scan = new Scanner(System.in);
+        return true;
+    }
 
-		int choice;
-		do
-		{
-			System.out.println();
-			System.out.println("1. Edit Room.");
-			System.out.println("2. Delete Room.");
-			System.out.println("3. Back.");
-			System.out.print("Enter Choice: ");
-			choice = scan.nextInt();
-			choice %= 3;
+    double value()
+    {
+        return area*tiles;
+    }
 
-			if(choice == 1) edit();
+    void display()
+    {
+        System.out.println();
+        System.out.println("Name: " + name);
+        // Display Flat Info
+        System.out.println("Area " + area);
+        System.out.print("Floor: "); if(tiles == 1) System.out.println("Plain"); else if(tiles == 1.05) System.out.println("Mosaic"); else System.out.println("Tiles");
+    }
 
-			else if(choice == 2)
-			{
-				delete();
-				return;
-			}
-		} while(choice != 0);
-	}
+    void view()
+    {
+        display();
+        Scanner scan = new Scanner(System.in);
 
-	abstract protected void edit();
+        int choice;
+        do
+        {
+            System.out.println();
+            System.out.println("1. Edit Room.");
+            System.out.println("2. Delete Room.");
+            System.out.println("3. Back.");
+            System.out.print("Enter Choice: ");
+            choice = scan.nextInt();
+            choice %= 3;
 
-	protected void delete()
-	{
-		Global.AllRooms.remove(id);
+            if(choice == 1) edit();
 
-		// DELETE FROM Room -- This should delete from the respective table
-		// WHERE RoomID = id;
+            else if(choice == 2)
+            {
+                delete();
+                return;
+            }
+        } while(choice != 0);
+    }
 
-		name = "Deleted Room";
-	}
+    abstract protected void edit();
+
+    protected void delete()
+    {
+        Global.AllRooms.remove(id);
+
+        // DELETE FROM Room -- This should delete from the respective table
+        // WHERE RoomID = id;
+
+        name = "Deleted Room";
+    }
 }

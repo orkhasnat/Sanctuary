@@ -5,18 +5,20 @@ abstract class User
     protected String name, password, plc, email, bloodgroup;
     protected long nid, phone;
 
-    protected void updateName()
+    protected boolean updateName()
     {
         Scanner scan = new Scanner(System.in);
 
         System.out.println();
         System.out.print("Name: ");
         name = scan.nextLine();
+
+        return true;
     }
 
     abstract protected boolean setPassword();
 
-    protected void updatePhone()
+    protected boolean updatePhone()
     {
         Scanner scan = new Scanner(System.in);
         long temp;
@@ -27,9 +29,11 @@ abstract class User
 
         // Check if phone number is valid and if it already exists in database
         phone = temp;
+
+        return true;
     }
 
-    protected void updateEmail()
+    protected boolean updateEmail()
     {
         Scanner scan = new Scanner(System.in);
         String temp;
@@ -40,9 +44,11 @@ abstract class User
 
         // Check if email is valid and if it already exists in database
         email = temp;
+
+        return true;
     }
 
-    protected void updateNID()
+    protected boolean updateNID()
     {
         Scanner scan = new Scanner(System.in);
         long temp;
@@ -53,9 +59,11 @@ abstract class User
 
         // Check if nid number is valid and if it already exists in database
         nid = temp;
+
+        return true;
     }
 
-    protected void updateBloodGroup()
+    protected boolean updateBloodGroup()
     {
         Scanner scan = new Scanner(System.in);
         int i, choice;
@@ -71,6 +79,8 @@ abstract class User
         choice %= 9;
 
         bloodgroup = bg[choice];
+
+        return  true;
     }
 
     abstract void display();

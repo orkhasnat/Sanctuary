@@ -56,33 +56,39 @@ public class Flat
 		// VALUES (id, value, rent);
 	}
 
-	void updateName()
+	private boolean updateName()
 	{
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println();
 		System.out.print("Name: ");
 		name = scan.nextLine();
+
+		return true;
 	}
 
-	void updateLocation()
+	private boolean updateLocation()
 	{
 		System.out.println();
 		System.out.println("Flat Location");
 		System.out.println("---------------");
 		location.update();
+
+		return true;
 	}
 
-	void updateLevel()
+	private boolean updateLevel()
 	{
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println();
 		System.out.print("Level (starts from 1): ");
 		level = scan.nextInt();
-	} 
 
-	void updateLiftInfo()
+		return true;
+	}
+
+	private boolean updateLiftInfo()
 	{
 		Scanner scan = new Scanner(System.in);
 		int temp;
@@ -93,22 +99,26 @@ public class Flat
 		System.out.println("2. No.");
 		temp = scan.nextInt();
 		lift = (temp%2 != 0);
+
+		return true;
 	}
 
-	void updateGeneratorInfo()
+	private boolean updateGeneratorInfo()
 	{
 		Scanner scan = new Scanner(System.in);
 		int temp;
-		
+
 		System.out.println();
 		System.out.println("Generator:");
 		System.out.println("1. Yes.");
 		System.out.println("2. No.");
 		temp = scan.nextInt();
 		generator = (temp%2 != 0);
+
+		return true;
 	}
 
-	void addRoom()
+	private void addRoom()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -127,7 +137,7 @@ public class Flat
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 9;
-		
+
 		if(choice == 1)
 		{
 			System.out.println();
@@ -138,86 +148,86 @@ public class Flat
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 2)
 		{
 			System.out.println();
 			System.out.println("Dining Room Information");
 			System.out.println("---------------");
-			
+
 			r = new DiningRoom(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 3)
 		{
 			System.out.println();
 			System.out.println("Living Room Information");
 			System.out.println("---------------");
-			
+
 			r = new LivingRoom(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 4)
 		{
 			System.out.println();
 			System.out.println("Kitchen Information");
 			System.out.println("---------------");
-			
+
 			r = new Kitchen(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 5)
 		{
 			System.out.println();
 			System.out.println("Bathroom Information");
 			System.out.println("---------------");
-			
+
 			r = new Bathroom(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 6)
 		{
 			System.out.println();
 			System.out.println("Balcony Information");
 			System.out.println("---------------");
-			
+
 			r = new Balcony(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 7)
 		{
 			System.out.println();
 			System.out.println("Store Room Information");
 			System.out.println("---------------");
-			
+
 			r = new StoreRoom(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
-		
+
 		else if(choice == 8)
 		{
 			System.out.println();
 			System.out.println("Extra Room Information");
 			System.out.println("---------------");
-			
+
 			r = new XtraRoom(id);
 			Global.AllRooms.put(r.id, r);
 			rooms.add(r);
 		}
 	}
 
-	void roomlist()
+	private void roomlist()
 	{
 		int i = 0;
 
@@ -229,7 +239,7 @@ public class Flat
 		}
 	}
 
-	void roomdisplay()
+	private void roomdisplay()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -243,7 +253,7 @@ public class Flat
 		if(choice != 0) rooms.get(choice-1).display();
 	}
 
-	void roomview()
+	private void roomview()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -257,7 +267,7 @@ public class Flat
 		if(choice != 0) rooms.get(choice-1).view();
 	}
 
-	void setRent()
+	private boolean setRent()
 	{
 		Scanner scan = new Scanner(System.in);
 		int i;
@@ -296,9 +306,11 @@ public class Flat
 		System.out.print("Rent:\t\t\t");
 		rent = scan.nextInt();
 		System.out.println();
+
+		return true;
 	}
 
-	void info()
+	private void info()
 	{
 		System.out.println();
 		System.out.println("Name: " + name);
@@ -370,7 +382,7 @@ public class Flat
 		} while(choice != 0);
 	}
 
-	void edit()
+	private void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -389,7 +401,7 @@ public class Flat
 		System.out.print("Enter Choice: ");
 		choice = scan.nextInt();
 		choice %= 8;
-		
+
 		if(choice == 1)
 		{
 			updateName();
@@ -398,7 +410,7 @@ public class Flat
 			// SET Name = name
 			// WHERE FlatID = id;
 		}
-		
+
 		else if(choice == 2)
 		{
 			updateLocation();
@@ -407,7 +419,7 @@ public class Flat
 			// SET X = location.x, Y = location.y
 			// WHERE FlatID = id;
 		}
-		
+
 		else if(choice == 3)
 		{
 			updateLevel();
@@ -447,7 +459,7 @@ public class Flat
 		}
 	}
 
-	void delete()
+	private void delete()
 	{
 		Global.AllFlats.remove(id);
 
@@ -457,7 +469,7 @@ public class Flat
 		name = "Deleted Flat";
 	}
 
-	void init()
+	private void init()
 	{
 		if(initialized) return;
 		initialized = true;
@@ -465,9 +477,9 @@ public class Flat
 		for(int i = 0; i<Global.FACTORS; i++) coff[i] = 1;
 	}
 
-	void refresh()
+	private void refresh()
 	{
-		
+
 	}
 
 	void findOutliers()
