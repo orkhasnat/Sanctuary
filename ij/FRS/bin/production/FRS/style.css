@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "Raleway";
+    src: url('font/Raleway.ttf') format('ttf');
+}
+
+.root{
+    -fx-background-color: '#004D40';
+    -fx-background-image: url('img/hom.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: right;
+}
+
+#homeblock{
+    -fx-fill: '#AC00C1';
+    -fx-stroke: "BLACK";
+    -fx-strokeType: "INSIDE";
+}
+
+.button{
+    -fx-background-color: '#E64A19';
+    -fx-text-fill: 'white';
+    -fx-textAlignment: "CENTER";
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-font-size: 20px;
+}
+
+#active, #inactive{
+    -fx-font-size: 20px;
+}
+
+#active{
+    -fx-background-color: '#FFAA33';
+}
+
+#inactive{
+    -fx-background-color: '#888888';
+}
+
+#formsquare{
+    -fx-fill: '#00ACC1';
+    -fx-stroke: "BLACK";
+    -fx-strokeType: "INSIDE";
+}
+
+#formsubmit{
+    -fx-font-size: 25px;
+}
