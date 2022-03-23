@@ -5,21 +5,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <children>
-        <Rectangle fx:id="homeblock" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="60.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-        <Button layoutX="80.0" layoutY="550.0" mnemonicParsing="false" onAction="#ownerlogin" prefHeight="56.0" prefWidth="160.0" text="Log In" textAlignment="CENTER" />
+        <Rectangle fx:id="formsquare" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="60.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
         <Button fx:id="inactive" layoutX="60.0" layoutY="360.0" mnemonicParsing="false" onAction="#studentloginpage" text="Student" />
         <Button fx:id="active" layoutX="175.0" layoutY="360.0" mnemonicParsing="false" text="Owner" />
-        <ImageView fx:id="logo" fitWidth="200.0" layoutX="60.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="img/icon.png" />
-            </image>
-        </ImageView>
-        <PasswordField fx:id="passbox" layoutX="80.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
         <TextField fx:id="userbox" layoutX="80.0" layoutY="450.0" prefHeight="25.0" prefWidth="160.0" promptText="Username" />
+        <PasswordField fx:id="passbox" layoutX="80.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
+        <Button fx:id="formsubmit" layoutX="80.0" layoutY="550.0" mnemonicParsing="false" onAction="#ownerlogin" prefHeight="56.0" prefWidth="160.0" text="Log In" textAlignment="CENTER" />
     </children>
 </AnchorPane>

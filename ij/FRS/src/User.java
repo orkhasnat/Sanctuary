@@ -5,6 +5,8 @@ abstract class User
     protected String name, password, plc, email, bloodgroup;
     protected long nid, phone;
 
+    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+
     protected boolean updateName()
     {
         Scanner scan = new Scanner(System.in);
@@ -12,6 +14,13 @@ abstract class User
         System.out.println();
         System.out.print("Name: ");
         name = scan.nextLine();
+
+        return true;
+    }
+
+    protected boolean updateName(String temp)
+    {
+        name = temp;
 
         return true;
     }
@@ -33,6 +42,14 @@ abstract class User
         return true;
     }
 
+    protected boolean updatePhone(long temp)
+    {
+        // Check if phone number is valid and if it already exists in database
+        phone = temp;
+
+        return true;
+    }
+
     protected boolean updateEmail()
     {
         Scanner scan = new Scanner(System.in);
@@ -42,6 +59,14 @@ abstract class User
         System.out.print("E-mail Address: ");
         temp = scan.next();
 
+        // Check if email is valid and if it already exists in database
+        email = temp;
+
+        return true;
+    }
+
+    protected boolean updateEmail(String temp)
+    {
         // Check if email is valid and if it already exists in database
         email = temp;
 
@@ -63,22 +88,35 @@ abstract class User
         return true;
     }
 
+    protected boolean updateNID(long temp)
+    {
+        // Check if nid number is valid and if it already exists in database
+        nid = temp;
+
+        return true;
+    }
+
     protected boolean updateBloodGroup()
     {
         Scanner scan = new Scanner(System.in);
         int i, choice;
 
-        String[] bg={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
-
         System.out.println();
         System.out.println("Blood Group");
         System.out.println("---------------");
-        for(i=1; i<=9; i++) System.out.println(i + ". " + bg[i%9]);
+        for(i=1; i<=9; i++) System.out.println(i + ". " + bloodglist[i%9]);
         System.out.print("Enter Choice: ");
         choice = scan.nextInt();
         choice %= 9;
 
-        bloodgroup = bg[choice];
+        bloodgroup = bloodglist[choice];
+
+        return  true;
+    }
+
+    protected boolean updateBloodGroup(String temp)
+    {
+        bloodgroup = temp;
 
         return  true;
     }

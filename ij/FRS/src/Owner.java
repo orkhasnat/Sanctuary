@@ -8,6 +8,13 @@ public class Owner extends User
 	String username;
 	ArrayList<Flat> flats = new ArrayList<>();
 
+	Owner(String user, String _name, String _pass, long _nid, long _phone, String _email, String _blg) throws Exception {
+		username = user;
+
+		if(!updateName(_name) || !setPassword(_pass) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
+			throw new Exception("Error!");
+	}
+
 	Owner()
 	{
 		System.out.println("Owner Information");
@@ -20,6 +27,7 @@ public class Owner extends User
 		updateNID();
 		updatePhone();
 		updateEmail();
+		updateBloodGroup();
 
 		// INSERT INTO Owner (Name, Username, Password, PasswordLastChanged, NID, Phone, Email)
 		// VALUES (name, username, password, plc, nid, phone, email);
@@ -72,6 +80,27 @@ public class Owner extends User
 		if(!temp.equals(pass))
 		{
 			Global.notify("PASSWORDS DO NOT MATCH!");
+			return false;
+		}
+
+		try
+		{
+			plc = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS"));
+			password = Global.hash(pass+username+plc+"Home is Where the Start Is!");
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	protected boolean setPassword(String pass)
+	{
+		if(!Global.checkIdentifier(pass) || pass.length() < 6 || pass.length() > 2000)
+		{
+			Global.notify("INVALID PASSWORD!");
 			return false;
 		}
 
@@ -141,6 +170,7 @@ public class Owner extends User
 		System.out.println("Name: " + name);
 		System.out.println("Phone Number: " + phone);
 		System.out.println("E-mail Address: " + email);
+		System.out.println("Blood Group: " + bloodgroup);
 	}
 
 	void display()
@@ -306,7 +336,7 @@ public class Owner extends User
 		Owner p, q;
 		String user, pass;
 
-		System.out.println("");
+		System.out.println();
 		System.out.print("Username: ");
 		user = scan.next();
 		System.out.print("Password: ");
