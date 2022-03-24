@@ -5,7 +5,7 @@ abstract class User
     protected String name, password, plc, email, bloodgroup;
     protected long nid, phone;
 
-    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+    static String[] bloodglist={"Blood Group", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
 
     protected boolean updateName()
     {

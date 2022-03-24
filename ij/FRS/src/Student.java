@@ -7,10 +7,10 @@ public class Student extends User
 	long id;
 	private int FlatID = 0;
 	
-	Student(long user, String _name, String _pass, long _nid, long _phone, String _email, String _blg) throws Exception {
+	Student(long user, String _name, String pass, String _pass, long _nid, long _phone, String _email, String _blg) throws Exception {
 		id = user;
 		
-		if(!updateName(_name) || !setPassword(_pass) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
+		if(!updateName(_name) || !setPassword(pass, _pass) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
 			throw new Exception("Error!");
 	}
 
@@ -89,11 +89,17 @@ public class Student extends User
 		return true;
 	}
 
-	protected boolean setPassword(String pass)
+	protected boolean setPassword(String pass, String _pass)
 	{
 		if(!Global.checkIdentifier(pass) || pass.length() < 6 || pass.length() > 2000)
 		{
 			Global.notify("INVALID PASSWORD!");
+			return false;
+		}
+
+		if(!pass.equals(_pass))
+		{
+			Global.notify("PASSWORDS DO NOT MATCH!");
 			return false;
 		}
 

@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Raleway";
-    src: url('font/Raleway.ttf') format('ttf');
+    src: url('../font/Raleway.ttf') format('ttf');
 }
 
 .root{
-    -fx-background-color: '#004D40';
-    -fx-background-image: url('img/hom.jpg');
+    -fx-background-color: '#4028de';
+    -fx-background-image: url('../img/hom.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
     -fx-background-position: right;

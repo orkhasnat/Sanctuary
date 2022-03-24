@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,12 +21,12 @@ public class MainController implements Initializable
     private Parent root;
 
     @FXML private TextField userbox, namebox, nidbox, phonebox, emailbox;
-    @FXML private PasswordField passbox;
-    @FXML private ChoiceBox<String> blgbox;
+    @FXML private PasswordField passbox, _passbox;
+    @FXML private ComboBox<String> blgbox = new ComboBox<>();
 
     @FXML void studenthome(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("Home-Student.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Home-Student.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -35,7 +36,7 @@ public class MainController implements Initializable
 
     @FXML void ownerhome(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("Home-Owner.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Home-Owner.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -45,7 +46,7 @@ public class MainController implements Initializable
 
     @FXML void studentloginpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("Login-Student.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Login-Student.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -55,7 +56,7 @@ public class MainController implements Initializable
 
     @FXML void ownerloginpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("Login-Owner.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Login-Owner.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -65,7 +66,7 @@ public class MainController implements Initializable
 
     @FXML void studentregpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("Register-Student.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Register-Student.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -75,7 +76,7 @@ public class MainController implements Initializable
 
     @FXML void ownerregpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("Register-Owner.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Register-Owner.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -114,6 +115,7 @@ public class MainController implements Initializable
         String name = namebox.getText();
         long user = Long.parseLong(userbox.getText());
         String pass = passbox.getText();
+        String _pass = _passbox.getText();
         long nid = Long.parseLong(nidbox.getText());
         long phone = Long.parseLong(phonebox.getText());
         String email = emailbox.getText();
@@ -122,7 +124,7 @@ public class MainController implements Initializable
 
         try
         {
-            p = new Student(user, name, pass, nid, phone, email, bloodgroup);
+            p = new Student(user, name, pass, _pass, nid, phone, email, bloodgroup);
             Global.AllStudents.put(p.id, p);
         }
         catch (Exception e)
@@ -139,6 +141,7 @@ public class MainController implements Initializable
         String name = namebox.getText();
         String user = userbox.getText();
         String pass = passbox.getText();
+        String _pass = _passbox.getText();
         long nid = Long.parseLong(nidbox.getText());
         long phone = Long.parseLong(phonebox.getText());
         String email = emailbox.getText();
@@ -147,7 +150,7 @@ public class MainController implements Initializable
 
         try
         {
-            p = new Owner(user, name, pass, nid, phone, email, bloodgroup);
+            p = new Owner(user, name, pass, _pass, nid, phone, email, bloodgroup);
             Global.AllOwners.put(p.username, p);
         }
         catch (Exception e)
@@ -160,7 +163,7 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-//        blgbox.getItems().addAll(User.bloodglist);
-//        blgbox.setOnAction(this::getFood);
+        blgbox.getItems().addAll(User.bloodglist);
+        blgbox.getSelectionModel().selectFirst();
     }
 }
