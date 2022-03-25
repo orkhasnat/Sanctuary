@@ -19,7 +19,7 @@
         <TextField fx:id="nidbox" layoutX="80.0" layoutY="350.0" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
         <TextField fx:id="phonebox" layoutX="80.0" layoutY="400.0" prefHeight="25.0" prefWidth="160.0" promptText="Phone Number" />
         <TextField fx:id="emailbox" layoutX="80.0" layoutY="450.0" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
-        <ComboBox fx:id="blgbox" layoutX="80.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" />
+        <ComboBox fx:id="blgbox" layoutX="80.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5"/>
         <Button fx:id="formsubmit" layoutX="80.0" layoutY="550.0" mnemonicParsing="false" onAction="#studentreg" prefHeight="56.0" prefWidth="160.0" text="Register" textAlignment="CENTER" />
     </children>
 </AnchorPane>

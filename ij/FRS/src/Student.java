@@ -1,3 +1,7 @@
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.stage.Stage;
+
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -170,6 +174,79 @@ public class Student extends User
 			{
 				Flat f;
 				
+				if(Global.AllFlats.containsKey(FlatID))
+				{
+					f = Global.AllFlats.get(FlatID);
+					f.display();
+				}
+
+				else
+				{
+					int temp;
+
+					System.out.println();
+					System.out.print("Flat ID: ");
+					temp = scan.nextInt();
+
+					if(Global.AllFlats.containsKey(temp))
+					{
+						f = Global.AllFlats.get(temp);
+						f.display();
+					}
+					else Global.notify("FLAT NOT FOUND!");
+				}
+			}
+		} while(choice != 0);
+	}
+
+	@FXML void view(Stage _stage) throws Exception
+	{
+		StudentController controller = new StudentController(this);
+		controller.display(_stage);
+
+		Scanner scan = new Scanner(System.in);
+
+		int choice;
+		do
+		{
+			System.out.println();
+			System.out.println("1. Edit Profile.");
+			System.out.println("2. Delete Profile.");
+			System.out.println("3. My Flat/ Display a Flat.");
+			System.out.println("4. Sign Out.");
+			System.out.print("Enter Choice: ");
+			choice = scan.nextInt();
+			choice %= 4;
+
+			if(choice == 1) edit();
+
+			else if(choice == 2)
+			{
+				String pass;
+				System.out.println();
+				System.out.print("Password: ");
+
+				try
+				{
+					pass = scan.next();
+					pass = Global.hash(pass+id+plc+"Home is Where the Start Is!");
+				}
+				catch(Exception e)
+				{
+					pass="";
+				}
+
+				if(password.equals(pass))
+				{
+					delete();
+					return;
+				}
+			}
+
+			else if(choice == 3)
+			{
+				Flat f;
+
 				if(Global.AllFlats.containsKey(FlatID))
 				{
 					f = Global.AllFlats.get(FlatID);

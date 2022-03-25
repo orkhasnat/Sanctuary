@@ -5,7 +5,7 @@ abstract class User
     protected String name, password, plc, email, bloodgroup;
     protected long nid, phone;
 
-    static String[] bloodglist={"Blood Group", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
 
     protected boolean updateName()
     {
@@ -116,6 +116,7 @@ abstract class User
 
     protected boolean updateBloodGroup(String temp)
     {
+        if(temp==null) temp = bloodglist[0];
         bloodgroup = temp;
 
         return  true;
@@ -125,4 +126,34 @@ abstract class User
     abstract void view();
     abstract protected void edit();
     abstract protected void delete();
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getPLC()
+    {
+        return plc;
+    }
+
+    public String getMail()
+    {
+        return email;
+    }
+
+    public String getBloodGroup()
+    {
+        return bloodgroup;
+    }
+
+    public long getNID()
+    {
+        return nid;
+    }
+
+    public long getPhone()
+    {
+        return phone;
+    }
 }

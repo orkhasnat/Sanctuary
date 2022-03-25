@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 public class Main extends Application
 {
-    @Override public void start(Stage _stage) throws Exception
+    @Override public void start(Stage stage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Home-Student.fxml"));
         Scene scene = new Scene(root);
 
-        _stage.getIcons().add(new Image("img/icon.png"));
-        _stage.setTitle("FRS");
+        stage.getIcons().add(new Image("img/icon.png"));
+        stage.setTitle("FRS");
 
-        _stage.setScene(scene);
-        _stage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) { launch(args); }

@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -131,7 +130,12 @@ public class MainController implements Initializable
         {
             p = null;
         }
-        if(p != null) { stage.close(); p.view(); }
+
+        if(p != null)
+        {
+            stage.close();
+            p.view(stage);
+        }
     }
 
     @FXML void ownerreg(ActionEvent event) throws Exception
@@ -157,13 +161,17 @@ public class MainController implements Initializable
         {
             p = null;
         }
-        if(p != null) { stage.close(); p.view(); }
+
+        if(p != null)
+        {
+            stage.close();
+            p.view(event);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         blgbox.getItems().addAll(User.bloodglist);
-        blgbox.getSelectionModel().selectFirst();
     }
 }
