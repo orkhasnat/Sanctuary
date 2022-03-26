@@ -5,9 +5,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class OwnerController implements Initializable
 {
@@ -17,28 +20,65 @@ public class OwnerController implements Initializable
     private Scene scene;
     private Parent root;
 
-    private String name, plc, email, bloodgroup;
-    private long nid, phone;
+    Stack<String> stack = new Stack<>();
 
-    OwnerController(Owner p)
+    @FXML private Label nameLabel, blgLabel;
+    @FXML private TextField namebox, nidbox, phonebox, emailbox;
+    @FXML private PasswordField passbox, _passbox, oldpassbox;
+    @FXML private Button flatbutton = new Button();
+    @FXML private ComboBox<String> blgbox = new ComboBox<>();
+    @FXML private ImageView blgicon;
+
+    void init(Owner p)
     {
         owner = p;
-        name = p.getName();
-        plc = p.getPLC();
-        email = p.getMail();
-        bloodgroup = p.getBloodGroup();
-        nid = p.getNID();
-        phone = p.getPhone();
+        if(owner == null) System.exit(0);
+
+        nameLabel.setText(nameLabel.getText()+p.getName());
+
+        setBloodGroup();
+        stack.push("view");
     }
 
-    @FXML void display(ActionEvent event) throws Exception
+    private void setBloodGroup()
     {
-        System.out.println("Name: " + name);
-        System.out.println("Phone Number: " + phone);
-        System.out.println("E-mail Address: " + email);
-        System.out.println("Blood Group: " + bloodgroup);
+        for(int i=1; i<User.bloodglist.length; i++)
+        {
+            if (owner.getBloodGroup().equals(User.bloodglist[i]))
+            {
+                blgLabel.setText(User.bloodglist[i]);
+                return;
+            }
+        }
 
-        root = FXMLLoader.load(getClass().getResource("fxml/View-Owner.fxml"));
+        blgicon.setVisible(false);
+        blgLabel.setVisible(false);
+    }
+
+    @FXML void back(ActionEvent event) throws Exception
+    {
+        if(stack.isEmpty())
+        {
+            view(event);
+            return;
+        }
+
+        String page = stack.pop();
+        switch(page)
+        {
+            case "view":
+                view(event);
+                break;
+        }
+    }
+
+    @FXML void view(ActionEvent event) throws Exception
+    {
+        stack.push("view");
+        if(owner == null) System.out.println("NULL!");
+
+        root = FXMLLoader.load(getClass().getResource("fxml/Owner/View.fxml"));
+
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -49,6 +89,7 @@ public class OwnerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
+        blgbox.getItems().addAll(User.bloodglist);
+        flatbutton.setVisible(false);
     }
 }

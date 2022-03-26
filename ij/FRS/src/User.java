@@ -26,6 +26,7 @@ abstract class User
     }
 
     abstract protected boolean setPassword();
+    abstract protected boolean matchPassword(String pass);
 
     protected boolean updatePhone()
     {

@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Raleway";
-    src: url('../font/Raleway.ttf') format('ttf');
+    src: url('../font/Raleway-SemiBold.ttf') format('ttf');
 }
 
 .root{
@@ -8,7 +8,7 @@
     -fx-background-image: url('../img/hom.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
-    -fx-background-position: right;
+    -fx-background-position: left;
 }
 
 #homeblock{
@@ -21,7 +21,6 @@
     -fx-background-color: '#E64A19';
     -fx-text-fill: 'white';
     -fx-textAlignment: "CENTER";
-    -fx-font-family: 'Roboto', sans-serif;
     -fx-font-family: 'Raleway', sans-serif;
     -fx-font-size: 20px;
 }

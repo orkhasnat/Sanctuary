@@ -1,6 +1,3 @@
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -126,6 +123,14 @@ public class Owner extends User
 		return true;
 	}
 
+	protected boolean matchPassword(String pass)
+	{
+		try { pass = Global.hash(pass+username+plc+"Home is Where the Start Is!"); }
+		catch(Exception e) { pass = ""; }
+
+		return password.equals(pass);
+	}
+
 	private void addFlat()
 	{
 		System.out.println();
@@ -226,55 +231,6 @@ public class Owner extends User
 				System.out.println();
 				System.out.print("Password: ");
 				
-				try
-				{
-					pass = scan.next();
-					pass = Global.hash(pass+username+plc+"Home is Where the Start Is!");
-				}
-				catch(Exception e)
-				{
-					pass="";
-				}
-
-				if(password.equals(pass))
-				{
-					delete();
-					return;
-				}
-			}
-
-			else if(choice == 3) flatview();
-		} while(choice != 0);
-	}
-
-	@FXML
-	void view(ActionEvent event) throws Exception
-	{
-		OwnerController controller = new OwnerController(this);
-		controller.display(event);
-
-		Scanner scan = new Scanner(System.in);
-
-		int choice;
-		do
-		{
-			System.out.println();
-			System.out.println("1. Edit Profile.");
-			System.out.println("2. Delete Profile.");
-			System.out.println("3. My Flats.");
-			System.out.println("4. Sign Out.");
-			System.out.print("Enter Choice: ");
-			choice = scan.nextInt();
-			choice %= 4;
-
-			if(choice == 1) edit();
-
-			else if(choice == 2)
-			{
-				String pass;
-				System.out.println();
-				System.out.print("Password: ");
-
 				try
 				{
 					pass = scan.next();
@@ -425,16 +381,7 @@ public class Owner extends User
 		if(Global.AllOwners.containsKey(user)) q = Global.AllOwners.get(user);
 		else return null;
 
-		try
-		{
-			pass = Global.hash(pass+user+q.plc+"Home is Where the Start Is!");
-		}
-		catch(Exception e)
-		{
-			return null;
-		}
-
-		if(q.password.equals(pass)) p = q;
+		if(q.matchPassword(pass)) p = q;
 		else return null;
 
 		return p;

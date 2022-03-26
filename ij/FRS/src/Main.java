@@ -10,7 +10,7 @@ public class Main extends Application
 {
     @Override public void start(Stage stage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Home-Student.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/Student/Home.fxml"));
         Scene scene = new Scene(root);
 
         stage.getIcons().add(new Image("img/icon.png"));
@@ -20,7 +20,19 @@ public class Main extends Application
         stage.show();
     }
 
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args)
+    {
+        try
+        {
+            Student p = new Student(190041129, "Md. Jubayer Islam", "000000", "000000", 0, 1829977462, "jubayerislam@iut-dhaka.edu", "AB+");
+            Global.AllStudents.put(p.id, p);
+        }
+        catch (Exception e)
+        {
+            System.exit(0);
+        }
+        launch(args);
+    }
 
     static void search()
     {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentController">
+    <children>
+        <Button layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
+        <Rectangle fx:id="formsquare" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="1020.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+        <TextField fx:id="namebox" layoutX="1040.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
+        <TextField fx:id="nidbox" layoutX="1040.0" layoutY="300.0" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
+        <TextField fx:id="emailbox" layoutX="1040.0" layoutY="350.0" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#DDDDDD" height="25.0" layoutX="1040.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+        <TextField fx:id="phonebox" layoutX="1070.0" layoutY="400.0" prefHeight="25.0" prefWidth="130.0" promptText="Phone Number" />
+        <Label layoutX="1040.0" layoutY="400.0" prefHeight="25.0" prefWidth="30.0" text="+880" />
+        <PasswordField fx:id="passbox" layoutX="1040.0" layoutY="450.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
+        <ComboBox fx:id="blgbox" layoutX="1040.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />
+        <Button fx:id="formsubmit" layoutX="1040.0" layoutY="550.0" mnemonicParsing="false" onAction="#edit" prefHeight="56.0" prefWidth="160.0" text="Confirm" textAlignment="CENTER" />
+    </children>
+</AnchorPane>

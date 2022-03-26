@@ -8,7 +8,7 @@
     -fx-background-image: url('../img/hom.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
-    -fx-background-position: right;
+    -fx-background-position: left;
 }
 
 #homeblock{

@@ -25,7 +25,7 @@ public class MainController implements Initializable
 
     @FXML void studenthome(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Home-Student.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Student/Home.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -35,7 +35,7 @@ public class MainController implements Initializable
 
     @FXML void ownerhome(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Home-Owner.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Owner/Home.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -45,7 +45,7 @@ public class MainController implements Initializable
 
     @FXML void studentloginpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Login-Student.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Student/Login.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -55,7 +55,7 @@ public class MainController implements Initializable
 
     @FXML void ownerloginpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Login-Owner.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Owner/Login.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -65,7 +65,7 @@ public class MainController implements Initializable
 
     @FXML void studentregpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Register-Student.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Student/Register.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -75,7 +75,7 @@ public class MainController implements Initializable
 
     @FXML void ownerregpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Register-Owner.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Owner/Register.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -91,7 +91,18 @@ public class MainController implements Initializable
         String pass = passbox.getText();
 
         Student p = Student.login(user, pass);
-        if(p != null) { stage.close(); p.view(); }
+
+        if(p != null)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Student/View.fxml"));
+            root = loader.load();
+            StudentController controller = loader.getController();
+            controller.init(p);
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
         else Global.notify("LOG IN FAILED!");
     }
 
@@ -133,8 +144,15 @@ public class MainController implements Initializable
 
         if(p != null)
         {
-            stage.close();
-            p.view(stage);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Student/View.fxml"));
+            root = loader.load();
+
+            StudentController controller = loader.getController();
+            controller.init(p);
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
@@ -162,11 +180,14 @@ public class MainController implements Initializable
             p = null;
         }
 
-        if(p != null)
-        {
-            stage.close();
-            p.view(event);
-        }
+        if(p != null) { stage.close(); p.view(); }
+        else Global.notify("LOG IN FAILED!");
+    }
+
+    @FXML void exit(ActionEvent event)
+    {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     @Override
