@@ -25,7 +25,7 @@ abstract class User
         return true;
     }
 
-    abstract protected boolean setPassword();
+    abstract protected boolean setPassword(String pass, String _pass);
     abstract protected boolean matchPassword(String pass);
 
     protected boolean updatePhone()

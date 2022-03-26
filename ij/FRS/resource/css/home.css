@@ -20,7 +20,7 @@
 .button{
     -fx-background-color: '#E64A19';
     -fx-text-fill: 'white';
-    -fx-textAlignment: "CENTER";
+    -fx-text-alignment: "CENTER";
     -fx-font-family: 'Raleway', sans-serif;
     -fx-font-size: 20px;
 }
@@ -35,6 +35,15 @@
 
 #inactive{
     -fx-background-color: '#888888';
+}
+
+#back{
+    -fx-layoutX: 40;
+    -fx-layoutY: 40;
+    -fx-background-color: '#EC1C24';
+    -fx-pref-width: 85;
+    -fx-pref-height: 45;
+    -fx-text-alignment: "RIGHT";
 }
 
 #formsquare{
