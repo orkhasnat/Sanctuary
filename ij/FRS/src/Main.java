@@ -24,7 +24,7 @@ public class Main extends Application
     {
         try
         {
-            Student p = new Student(190041129, "Md. Jubayer Islam", "000000", "000000", 0, 1829977462, "jubayerislam@iut-dhaka.edu", "AB+");
+            Student p = new Student(190041129, "Md. Jubayer Islam", "000000", "000000", "Male", 0, 1829977462, "jubayerislam@iut-dhaka.edu", "AB+");
             Global.AllStudents.put(p.id, p);
         }
         catch (Exception e)

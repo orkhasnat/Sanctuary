@@ -8,7 +8,7 @@ public class Flat
 	private int level;
 
 	private Location location = new Location(23.94538493888004, 90.38274718424901);
-	private boolean lift = false, generator = false, vacant = true;
+	private boolean gender, lift = false, generator = false, vacant = true;
 
 	ArrayList<Room> rooms = new ArrayList<>();
 	int rent;
@@ -30,6 +30,7 @@ public class Flat
 		updateName();
 		updateLocation();
 		updateLevel();
+		setGender("");
 
 		updateLiftInfo();
 		updateGeneratorInfo();
@@ -86,6 +87,21 @@ public class Flat
 		level = scan.nextInt();
 
 		return true;
+	}
+
+	private boolean setGender(String temp)
+	{
+		switch (temp)
+		{
+			case "Male":
+				gender = true;
+				return true;
+			case "Female":
+				gender = false;
+				return true;
+		}
+
+		return false;
 	}
 
 	private boolean updateLiftInfo()
