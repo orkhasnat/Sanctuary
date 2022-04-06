@@ -126,6 +126,7 @@ public class MainController implements Initializable
         long user = Long.parseLong(userbox.getText());
         String pass = passbox.getText();
         String _pass = _passbox.getText();
+        String gender = "Male";
         long nid = Long.parseLong(nidbox.getText());
         long phone = Long.parseLong(phonebox.getText());
         String email = emailbox.getText();
@@ -134,7 +135,7 @@ public class MainController implements Initializable
 
         try
         {
-            p = new Student(user, name, pass, _pass, nid, phone, email, bloodgroup);
+            p = new Student(user, name, pass, _pass, gender, nid, phone, email, bloodgroup);
             Global.AllStudents.put(p.id, p);
         }
         catch (Exception e)
