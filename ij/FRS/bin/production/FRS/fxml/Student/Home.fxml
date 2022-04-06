@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <children>
-        <Button layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+        <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
         <Rectangle fx:id="homeblock" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="1020.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
         <Button layoutX="1040.0" layoutY="450.0" mnemonicParsing="false" onAction="#studentloginpage" prefHeight="56.0" prefWidth="160.0" text="Log In" textAlignment="CENTER" />
         <Button layoutX="1040.0" layoutY="550.0" mnemonicParsing="false" onAction="#studentregpage" prefHeight="56.0" prefWidth="160.0" text="Register" textAlignment="CENTER" />
