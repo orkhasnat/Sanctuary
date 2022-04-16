@@ -5,13 +5,12 @@ import java.time.format.DateTimeFormatter;
 public class Student extends User
 {
 	long id;
-	boolean gender;
 	private int FlatID = 0;
 
 	Student(long user, String _name, String pass, String _pass, String _gender, long _nid, long _phone, String _email, String _blg) throws Exception {
 		id = user;
 
-		if(!updateName(_name) || !setPassword(pass, _pass) || !updateGender(_gender) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
+		if(!updateName(_name) || !setPassword(pass, _pass) || !setGender(_gender) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
 			throw new Exception("Error!");
 	}
 
@@ -50,21 +49,6 @@ public class Student extends User
 
 		id = temp;
 		return true;
-	}
-
-	private boolean updateGender(String temp)
-	{
-		switch (temp)
-		{
-			case "Male":
-				gender = true;
-				return true;
-			case "Female":
-				gender = false;
-				return true;
-		}
-
-		return false;
 	}
 
 	protected boolean setPassword()

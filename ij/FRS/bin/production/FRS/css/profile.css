@@ -46,6 +46,12 @@
     -fx-text-fill: 'white';
 }
 
+#880box{
+    -fx-font-size: 12px;
+    -fx-font-family: 'System';
+    -fx-text-fill: 'black';
+}
+
 #blgLabel{
     -fx-font-family: 'Raleway', sans-serif;
     -fx-font-family: 'Arial Black';

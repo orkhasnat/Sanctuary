@@ -8,10 +8,10 @@ public class Owner extends User
 	String username;
 	ArrayList<Flat> flats = new ArrayList<>();
 
-	Owner(String user, String _name, String pass, String _pass, long _nid, long _phone, String _email, String _blg) throws Exception {
+	Owner(String user, String _name, String pass, String _pass, String _gender, long _nid, long _phone, String _email, String _blg) throws Exception {
 		username = user;
 
-		if(!updateName(_name) || !setPassword(pass, _pass) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
+		if(!updateName(_name) || !setPassword(pass, _pass) || !setGender(_gender) || !updateNID(_nid) || !updatePhone(_phone) || !updateEmail(_email) || !updateBloodGroup(_blg))
 			throw new Exception("Error!");
 	}
 

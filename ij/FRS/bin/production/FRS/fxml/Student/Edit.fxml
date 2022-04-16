@@ -15,7 +15,7 @@
         <TextField fx:id="namebox" layoutX="1040.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#DDDDDD" height="25.0" layoutX="1040.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
         <TextField fx:id="phonebox" layoutX="1070.0" layoutY="300.0" prefHeight="25.0" prefWidth="130.0" promptText="Phone Number" />
-        <Label layoutX="1040.0" layoutY="300.0" prefHeight="25.0" prefWidth="30.0" text="+880" />
+        <Label fx:id="880box" layoutX="1040.0" layoutY="300.0" prefHeight="25.0" prefWidth="30.0" text="+880" />
         <TextField fx:id="emailbox" layoutX="1040.0" layoutY="350.0" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
         <TextField fx:id="nidbox" layoutX="1040.0" layoutY="400.0" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
         <ComboBox fx:id="blgbox" layoutX="1040.0" layoutY="450.0" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />

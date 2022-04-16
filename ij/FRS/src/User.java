@@ -4,8 +4,9 @@ abstract class User
 {
     protected String name, password, plc, email, bloodgroup;
     protected long nid, phone;
+    boolean gender;
 
-    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}, genderlist={"Gender: Male", "Gender: Female"};
 
     protected boolean updateName()
     {
@@ -23,6 +24,23 @@ abstract class User
         name = temp;
 
         return true;
+    }
+
+    protected boolean setGender(String temp)
+    {
+        switch (temp)
+        {
+            case "Male":
+            case "Gender: Male":
+                gender = true;
+                return true;
+            case "Female":
+            case "Gender: Female":
+                gender = false;
+                return true;
+        }
+
+        return false;
     }
 
     abstract protected boolean setPassword(String pass, String _pass);

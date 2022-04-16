@@ -21,7 +21,7 @@ public class MainController implements Initializable
 
     @FXML private TextField userbox, namebox, nidbox, phonebox, emailbox;
     @FXML private PasswordField passbox, _passbox;
-    @FXML private ComboBox<String> blgbox = new ComboBox<>();
+    @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
 
     @FXML void studenthome(ActionEvent event) throws Exception
     {
@@ -114,7 +114,18 @@ public class MainController implements Initializable
         String pass = passbox.getText();
 
         Owner p = Owner.login(user, pass);
-        if(p != null) { stage.close(); p.view(); }
+
+        if(p != null)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/View.fxml"));
+            root = loader.load();
+            OwnerController controller = loader.getController();
+            controller.init(p);
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
         else Global.notify("LOG IN FAILED!");
     }
 
@@ -123,10 +134,11 @@ public class MainController implements Initializable
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         String name = namebox.getText();
+        String gender = genderbox.getValue();
+        if(gender != "Male" && gender != "Female") gender = "Male";
         long user = Long.parseLong(userbox.getText());
         String pass = passbox.getText();
         String _pass = _passbox.getText();
-        String gender = "Male";
         long nid = Long.parseLong(nidbox.getText());
         long phone = Long.parseLong(phonebox.getText());
         String email = emailbox.getText();
@@ -162,6 +174,8 @@ public class MainController implements Initializable
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         String name = namebox.getText();
+        String gender = genderbox.getValue();
+        if(gender != "Male" && gender != "Female") gender = "Male";
         String user = userbox.getText();
         String pass = passbox.getText();
         String _pass = _passbox.getText();
@@ -173,7 +187,7 @@ public class MainController implements Initializable
 
         try
         {
-            p = new Owner(user, name, pass, _pass, nid, phone, email, bloodgroup);
+            p = new Owner(user, name, pass, _pass, gender, nid, phone, email, bloodgroup);
             Global.AllOwners.put(p.username, p);
         }
         catch (Exception e)
@@ -181,8 +195,18 @@ public class MainController implements Initializable
             p = null;
         }
 
-        if(p != null) { stage.close(); p.view(); }
-        else Global.notify("LOG IN FAILED!");
+        if(p != null)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/View.fxml"));
+            root = loader.load();
+
+            OwnerController controller = loader.getController();
+            controller.init(p);
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML void exit(ActionEvent event)
@@ -194,6 +218,8 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        genderbox.getItems().addAll(User.genderlist);
+        genderbox.getSelectionModel().selectFirst();
         blgbox.getItems().addAll(User.bloodglist);
     }
 }

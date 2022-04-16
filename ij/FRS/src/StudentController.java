@@ -27,7 +27,7 @@ public class StudentController implements Initializable
     @FXML private TextField namebox, nidbox, phonebox, emailbox;
     @FXML private PasswordField passbox, _passbox, oldpassbox;
     @FXML private Button flatbutton = new Button();
-    @FXML private ComboBox<String> blgbox = new ComboBox<>();
+    @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
     @FXML private ImageView blgicon;
 
     void init(Student p)
@@ -241,6 +241,7 @@ public class StudentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        genderbox.getItems().addAll(User.genderlist);
         blgbox.getItems().addAll(User.bloodglist);
         flatbutton.setVisible(false);
     }
