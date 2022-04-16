@@ -33,6 +33,18 @@
     -fx-text-alignment: "RIGHT";
 }
 
+#menubutton{
+    -fx-background-color: '#E64A19';
+}
+
+.menuitem{
+    -fx
+}
+
+#plus{
+    -fx-background-color: '#2E856E';
+}
+
 #formsquare{
     -fx-background-color: '00ACC1';
     -fx-border-color: 'BLACK';

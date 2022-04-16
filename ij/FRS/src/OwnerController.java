@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -27,9 +29,9 @@ public class OwnerController implements Initializable
     @FXML private Label nameLabel, blgLabel, roomcountlabel;
     @FXML private TextField namebox, nidbox, phonebox, emailbox, xbox, ybox;
     @FXML private PasswordField passbox, _passbox, oldpassbox;
-    @FXML private Button flatbutton = new Button();
     @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
     @FXML private ComboBox<Integer> levelbox = new ComboBox<>();
+    @FXML private MenuButton menubutton;
     @FXML private CheckBox liftbox, generatorbox;
     @FXML private ImageView blgicon;
 
@@ -40,8 +42,8 @@ public class OwnerController implements Initializable
 
         nameLabel.setText(nameLabel.getText()+p.getName());
 
+        for(Flat flat: owner.flats) menubutton.getItems().add(new MenuItem(flat.name));
         setBloodGroup();
-        setFlat();
         stack.push("view");
     }
 
@@ -60,11 +62,6 @@ public class OwnerController implements Initializable
         blgLabel.setVisible(false);
     }
 
-    private void setFlat()
-    {
-        if(owner.flats.size()>0) flatbutton.setVisible(false);
-    }
-
     @FXML void back(ActionEvent event) throws Exception
     {
         if(stack.isEmpty())
@@ -81,6 +78,9 @@ public class OwnerController implements Initializable
                 break;
             case "set":
                 settingspage(event);
+                break;
+            case "myflats":
+                myflatpage(event);
                 break;
         }
     }
@@ -133,14 +133,16 @@ public class OwnerController implements Initializable
 
     public void myflatpage(ActionEvent event) throws Exception
     {
+        stack.push("myflats");
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void newflatpage(ActionEvent event) throws Exception
     {
-        roomcountlabel = new Label();
-        roomcountlabel.setText("0");
-
         root = FXMLLoader.load(getClass().getResource("fxml/Flat/Register.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -285,7 +287,6 @@ public class OwnerController implements Initializable
     {
         genderbox.getItems().addAll(User.genderlist);
         blgbox.getItems().addAll(User.bloodglist);
-        levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1, 25).toArray()).boxed().toArray(Integer[]::new));
-        flatbutton.setVisible(false);
+        levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1,25).toArray()).boxed().toArray(Integer[]::new));
     }
 }

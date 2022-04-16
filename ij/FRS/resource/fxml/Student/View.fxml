@@ -5,25 +5,35 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentController">
     <children>
         <Rectangle fx:id="homeblock" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="350.0" layoutX="61.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-        <Button fx:id="flatbutton" layoutX="860.0" layoutY="40.0" mnemonicParsing="false" onAction="#myflatpage" prefWidth="100.0" text="My Flat" />
-        <Button layoutX="1000.0" layoutY="40.0" mnemonicParsing="false" onAction="#discoverpage" text="Discover" />
-        <Button layoutX="1140.0" layoutY="40.0" mnemonicParsing="false" onAction="#logout" prefWidth="100.0" text="Log Out" />
         <Label fx:id="nameLabel" layoutX="71.0" layoutY="245.0" prefHeight="45.0" prefWidth="480.0" text="Name: " />
         <Label fx:id="batchLabel" layoutX="71.0" layoutY="305.0" prefHeight="45.0" prefWidth="200.0" text="Batch: " />
         <Label fx:id="deptLabel" layoutX="71.0" layoutY="365.0" prefHeight="45.0" prefWidth="480.0" text="Department: " />
         <Label fx:id="sectionLabel" layoutX="71.0" layoutY="425.0" prefHeight="45.0" prefWidth="480.0" text="Section: " />
         <Button layoutX="88.0" layoutY="500.0" mnemonicParsing="false" onAction="#editpage" text="Edit" />
         <Button layoutX="435.0" layoutY="500.0" mnemonicParsing="false" onAction="#settingspage" text="Settings" />
-        <ImageView fx:id="blgicon" fitHeight="60.0" layoutX="455.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../img/blg.png" />
-            </image>
-        </ImageView>
-        <Label fx:id="blgLabel" layoutX="470.0" layoutY="330.0" prefHeight="25.0" prefWidth="30.0" />
+        <StackPane layoutX="455.0" layoutY="305.0">
+            <children>
+                <ImageView fx:id="blgicon" fitHeight="60.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../img/blg.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="blgLabel" prefHeight="25.0" prefWidth="30.0" />
+            </children>
+        </StackPane>
+        <HBox layoutX="900.0" layoutY="40.0" spacing="20.0">
+            <children>
+                <Button fx:id="flatbutton" mnemonicParsing="false" onAction="#myflatpage" prefHeight="45.0" prefWidth="95.0" text="My Flat" />
+                <Button mnemonicParsing="false" onAction="#discoverpage" prefHeight="45.0" prefWidth="105.0" text="Discover" />
+                <Button mnemonicParsing="false" onAction="#logout" prefHeight="45.0" prefWidth="100.0" text="Log Out" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>
