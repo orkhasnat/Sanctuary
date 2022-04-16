@@ -12,6 +12,9 @@
 }
 
 #homeblock{
+    -fx-background-color: '#AC00C1';
+    -fx-border-color: 'BLACK';
+    -fx-border-width: 1px;
     -fx-fill: '#AC00C1';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";
@@ -37,16 +40,24 @@
     -fx-background-color: '#888888';
 }
 
+#xy{
+    -fx-font-family: 'System';
+    -fx-background-color: '#CC9966';
+    -fx-font-size: 12px;
+}
+
 #back{
     -fx-layoutX: 40;
     -fx-layoutY: 40;
     -fx-background-color: '#EC1C24';
     -fx-pref-width: 85;
     -fx-pref-height: 45;
-    -fx-text-alignment: "RIGHT";
 }
 
 #formsquare{
+    -fx-background-color: '#00ACC1';
+    -fx-border-color: 'BLACK';
+    -fx-border-width: 1px;
     -fx-fill: '#00ACC1';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";

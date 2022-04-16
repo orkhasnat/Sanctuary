@@ -6,7 +6,7 @@ abstract class User
     protected long nid, phone;
     boolean gender;
 
-    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}, genderlist={"Gender: Male", "Gender: Female"};
+    static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}, genderlist={"Male", "Female"};
 
     protected boolean updateName()
     {
@@ -31,11 +31,9 @@ abstract class User
         switch (temp)
         {
             case "Male":
-            case "Gender: Male":
                 gender = true;
                 return true;
             case "Female":
-            case "Gender: Female":
                 gender = false;
                 return true;
         }

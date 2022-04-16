@@ -11,7 +11,7 @@
     <children>
         <Rectangle fx:id="homeblock" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="350.0" layoutX="61.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
         <Button fx:id="flatbutton" layoutX="860.0" layoutY="40.0" mnemonicParsing="false" onAction="#myflatpage" prefWidth="100.0" text="My Flats" />
-        <Button layoutX="1000.0" layoutY="40.0" mnemonicParsing="false" onAction="#newflatpage" prefWidth="100.0" text="Add Flat" />
+        <Button layoutX="1000.0" layoutY="40.0" mnemonicParsing="false" onAction="#newflatpage" text="New Flat" />
         <Button layoutX="1140.0" layoutY="40.0" mnemonicParsing="false" onAction="#logout" prefWidth="100.0" text="Log Out" />
         <Label fx:id="nameLabel" layoutX="71.0" layoutY="245.0" prefHeight="45.0" prefWidth="480.0" text="Name: " />
         <Button layoutX="88.0" layoutY="500.0" mnemonicParsing="false" onAction="#editpage" text="Edit" />

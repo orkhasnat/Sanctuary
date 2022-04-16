@@ -1,14 +1,23 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class Flat
 {
+	public class Base
+	{
+		static String name, gender;
+		static double x, y;
+		static int level;
+		static boolean lift, generator;
+	}
+
 	int id;
-	String name;
+	String name, gender;
 	private int level;
 
 	private Location location = new Location(23.94538493888004, 90.38274718424901);
-	private boolean gender, lift = false, generator = false, vacant = true;
+	private boolean lift = false, generator = false, vacant = true;
 
 	ArrayList<Room> rooms = new ArrayList<>();
 	int rent;
@@ -17,6 +26,20 @@ public class Flat
 	static double[] coff = new double[Global.FACTORS];
 
 	double[] value = new double[Global.FACTORS];
+
+	Flat(String owner, Base base)
+	{
+		id = Global.random(0, 99999);
+		id += 1000000;
+
+		updateName(base.name);
+		updateLocation(base.x, base.y);
+		updateLevel(base.level);
+		updateGender(base.gender);
+
+		lift = base.lift;
+		generator = base.generator;
+	}
 
 	Flat(String owner)
 	{
@@ -30,7 +53,7 @@ public class Flat
 		updateName();
 		updateLocation();
 		updateLevel();
-		setGender("");
+		updateGender("");
 
 		updateLiftInfo();
 		updateGeneratorInfo();
@@ -68,12 +91,26 @@ public class Flat
 		return true;
 	}
 
+	private boolean updateName(String temp)
+	{
+		name = temp;
+
+		return true;
+	}
+
 	private boolean updateLocation()
 	{
 		System.out.println();
 		System.out.println("Flat Location");
 		System.out.println("---------------");
 		location.update();
+
+		return true;
+	}
+
+	private boolean updateLocation(double x, double y)
+	{
+		location = new Location(x, y);
 
 		return true;
 	}
@@ -89,15 +126,26 @@ public class Flat
 		return true;
 	}
 
-	private boolean setGender(String temp)
+	private boolean updateLevel(int temp)
+	{
+		level = temp;
+
+		return true;
+	}
+
+	private boolean updateGender(String temp)
 	{
 		switch (temp)
 		{
 			case "Male":
-				gender = true;
+				gender = temp;
 				return true;
 			case "Female":
-				gender = false;
+				gender = temp;
+				return true;
+			case "Not Determined":
+			case "":
+				gender = temp;
 				return true;
 		}
 

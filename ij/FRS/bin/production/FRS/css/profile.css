@@ -8,6 +8,9 @@
 }
 
 #homeblock{
+    -fx-background-color: '#AC00C1';
+    -fx-border-color: 'BLACK';
+    -fx-border-width: 1px;
     -fx-fill: '#AC00C1';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";
@@ -31,6 +34,9 @@
 }
 
 #formsquare{
+    -fx-background-color: '00ACC1';
+    -fx-border-color: 'BLACK';
+    -fx-border-width: 1px;
     -fx-fill: '#00ACC1';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";

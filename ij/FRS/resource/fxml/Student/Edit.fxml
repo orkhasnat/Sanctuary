@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
-        <Rectangle fx:id="formsquare" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="1020.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-        <TextField fx:id="namebox" layoutX="1040.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#DDDDDD" height="25.0" layoutX="1040.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-        <TextField fx:id="phonebox" layoutX="1070.0" layoutY="300.0" prefHeight="25.0" prefWidth="130.0" promptText="Phone Number" />
-        <Label fx:id="880box" layoutX="1040.0" layoutY="300.0" prefHeight="25.0" prefWidth="30.0" text="+880" />
-        <TextField fx:id="emailbox" layoutX="1040.0" layoutY="350.0" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
-        <TextField fx:id="nidbox" layoutX="1040.0" layoutY="400.0" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
-        <ComboBox fx:id="blgbox" layoutX="1040.0" layoutY="450.0" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />
-        <PasswordField fx:id="passbox" layoutX="1040.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
-        <Button fx:id="formsubmit" layoutX="1040.0" layoutY="550.0" mnemonicParsing="false" onAction="#edit" prefHeight="56.0" prefWidth="160.0" text="Confirm" textAlignment="CENTER" />
+        <VBox fx:id="formsquare" layoutX="1020.0" layoutY="200.0" prefWidth="200.0" spacing="25.0">
+            <children>
+                <TextField fx:id="namebox" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
+                <TextField fx:id="nidbox" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
+                <HBox prefWidth="160.0">
+                    <children>
+                        <StackPane>
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                                <Label fx:id="880box" prefHeight="25.0" prefWidth="30.0" text="+880" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="phonebox" prefHeight="25.0" prefWidth="130.0" promptText="Phone Number" />
+                    </children>
+                </HBox>
+                <TextField fx:id="emailbox" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
+                <ComboBox fx:id="blgbox" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />
+                <PasswordField fx:id="passbox" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
+                <Button fx:id="formsubmit" mnemonicParsing="false" onAction="#edit" prefHeight="56.0" prefWidth="160.0" text="Confirm" textAlignment="CENTER" />
+            </children>
+         <padding>
+            <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+         </padding>
+        </VBox>
     </children>
 </AnchorPane>

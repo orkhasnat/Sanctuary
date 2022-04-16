@@ -1,30 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#studenthome" text="Back" />
-        <Rectangle fx:id="formsquare" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="550.0" layoutX="1020.0" layoutY="130.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-        <Button fx:id="active" layoutX="1020.0" layoutY="50.0" mnemonicParsing="false" text="Student" />
-        <Button fx:id="inactive" layoutX="1135.0" layoutY="50.0" mnemonicParsing="false" onAction="#ownerregpage" text="Owner" />
-        <TextField fx:id="namebox" layoutX="1040.0" layoutY="150.0" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
-        <ComboBox fx:id="genderbox" layoutX="1040.0" layoutY="200.0" prefHeight="25.0" prefWidth="160.0" promptText="Gender" />
-        <TextField fx:id="userbox" layoutX="1040.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" promptText="Student ID" />
-        <PasswordField fx:id="passbox" layoutX="1040.0" layoutY="300.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
-        <PasswordField fx:id="_passbox" layoutX="1040.0" layoutY="350.0" prefHeight="25.0" prefWidth="160.0" promptText="Confirm Password" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#DDDDDD" height="25.0" layoutX="1040.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-        <TextField fx:id="phonebox" layoutX="1070.0" layoutY="400.0" prefHeight="25.0" prefWidth="130.0" promptText="Phone Number" />
-        <Label layoutX="1040.0" layoutY="400.0" prefHeight="25.0" prefWidth="30.0" text="+880" />
-        <TextField fx:id="emailbox" layoutX="1040.0" layoutY="450.0" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
-        <TextField fx:id="nidbox" layoutX="1040.0" layoutY="500.0" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
-        <ComboBox fx:id="blgbox" layoutX="1040.0" layoutY="550.0" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />
-        <Button fx:id="formsubmit" layoutX="1040.0" layoutY="600.0" mnemonicParsing="false" onAction="#studentreg" prefHeight="56.0" prefWidth="160.0" text="Register" textAlignment="CENTER" />
+        <HBox layoutX="1020.0" layoutY="50.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Button fx:id="active" mnemonicParsing="false" text="Student" />
+                <Button fx:id="inactive" mnemonicParsing="false" onAction="#ownerregpage" text="Owner" />
+            </children>
+        </HBox>
+        <VBox fx:id="formsquare" layoutX="1020.0" layoutY="120.0" prefWidth="200.0" spacing="25.0">
+            <children>
+                <TextField fx:id="namebox" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
+                <HBox prefHeight="25.0" prefWidth="160.0">
+                    <children>
+                        <Label prefHeight="25.0" prefWidth="50.0" text="Gender:" textAlignment="CENTER" />
+                        <ComboBox fx:id="genderbox" prefWidth="110.0" />
+                    </children>
+                </HBox>
+                <TextField fx:id="userbox" prefHeight="25.0" prefWidth="160.0" promptText="Student ID" />
+                <PasswordField fx:id="passbox" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
+                <PasswordField fx:id="_passbox" prefHeight="25.0" prefWidth="160.0" promptText="Confirm Password" />
+                <HBox prefWidth="160.0">
+                    <children>
+                        <StackPane>
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                                <Label fx:id="880box" prefHeight="25.0" prefWidth="30.0" text="+880" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="phonebox" prefHeight="25.0" prefWidth="130.0" promptText="Phone Number" />
+                    </children>
+                </HBox>
+                <TextField fx:id="emailbox" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
+                <TextField fx:id="nidbox" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
+                <ComboBox fx:id="blgbox" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />
+                <Button fx:id="formsubmit" mnemonicParsing="false" onAction="#studentreg" prefHeight="55.0" prefWidth="160.0" text="Register" textAlignment="CENTER" />
+            </children>
+         <padding>
+            <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+         </padding>
+        </VBox>
     </children>
 </AnchorPane>
