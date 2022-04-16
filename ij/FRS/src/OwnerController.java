@@ -11,10 +11,12 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class OwnerController implements Initializable
 {
     Owner owner;
+    Flat.Base flatbase;
 
     private Stage stage;
     private Scene scene;
@@ -22,11 +24,13 @@ public class OwnerController implements Initializable
 
     Stack<String> stack = new Stack<>();
 
-    @FXML private Label nameLabel, blgLabel;
-    @FXML private TextField namebox, nidbox, phonebox, emailbox;
+    @FXML private Label nameLabel, blgLabel, roomcountlabel;
+    @FXML private TextField namebox, nidbox, phonebox, emailbox, xbox, ybox;
     @FXML private PasswordField passbox, _passbox, oldpassbox;
     @FXML private Button flatbutton = new Button();
     @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
+    @FXML private ComboBox<Integer> levelbox = new ComboBox<>();
+    @FXML private CheckBox liftbox, generatorbox;
     @FXML private ImageView blgicon;
 
     void init(Owner p)
@@ -134,7 +138,54 @@ public class OwnerController implements Initializable
 
     public void newflatpage(ActionEvent event) throws Exception
     {
+        roomcountlabel = new Label();
+        roomcountlabel.setText("0");
 
+        root = FXMLLoader.load(getClass().getResource("fxml/Flat/Register.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML public void addflat(ActionEvent event) throws Exception
+    {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        flatbase.name = namebox.getText();
+        flatbase.gender = genderbox.getValue();
+        flatbase.x = Double.parseDouble(xbox.getText());
+        flatbase.y = Double.parseDouble(ybox.getText());
+        flatbase.level = levelbox.getValue();
+        flatbase.lift = liftbox.isSelected();
+        flatbase.generator = generatorbox.isSelected();
+        Flat f;
+
+        try
+        {
+            owner = Owner.login("ork", "000000");
+            f = new Flat(owner.username, flatbase);
+            owner.flats.add(f);
+            Global.AllFlats.put(f.id, f);
+        }
+        catch (Exception e)
+        {
+            f = null;
+        }
+
+        if(f != null)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Flat/AddRoom.fxml"));
+            root = loader.load();
+            FlatController controller = loader.getController();
+            controller.init(f);
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else Global.notify("TASK FAILED!");
     }
 
     public void passpage(ActionEvent event) throws Exception
@@ -234,6 +285,7 @@ public class OwnerController implements Initializable
     {
         genderbox.getItems().addAll(User.genderlist);
         blgbox.getItems().addAll(User.bloodglist);
+        levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1, 25).toArray()).boxed().toArray(Integer[]::new));
         flatbutton.setVisible(false);
     }
 }
