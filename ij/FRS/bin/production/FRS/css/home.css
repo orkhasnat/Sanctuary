@@ -4,7 +4,7 @@
 }
 
 .root{
-    -fx-background-color: '#4028de';
+    -fx-background-color: '#28252E';
     -fx-background-image: url('../img/hom.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
@@ -12,7 +12,7 @@
 }
 
 #homeblock{
-    -fx-background-color: '#AC00C1';
+    -fx-background-color: '#FAFAD2';
     -fx-border-color: 'BLACK';
     -fx-border-width: 1px;
     -fx-fill: '#AC00C1';

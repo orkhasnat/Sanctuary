@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
 
 public class OwnerController implements Initializable
 {
-    Owner owner;
+    Owner owner = Owner.login("ork", "000000");
     Flat.Base flatbase;
 
     private Stage stage;
@@ -35,7 +35,7 @@ public class OwnerController implements Initializable
     static Stack<String> stack = new Stack<>();
 
     @FXML Label nameLabel, blgLabel;
-    @FXML TextField namebox, nidbox, phonebox, emailbox, xbox, ybox;
+    @FXML TextField namebox = new TextField(), nidbox, phonebox, emailbox, xbox, ybox;
     @FXML PasswordField passbox, _passbox, oldpassbox;
     @FXML ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>(), flatgenderbox = new ComboBox<>();
     @FXML ComboBox<Integer> levelbox = new ComboBox<>();
@@ -118,9 +118,9 @@ public class OwnerController implements Initializable
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         namebox.setText(owner.getName());
-        nidbox.setText(String.valueOf(owner.getNID()));
+        /*nidbox.setText(String.valueOf(owner.getNID()));
         phonebox.setText(String.valueOf(owner.getPhone()));
-        emailbox.setText(owner.getMail());
+        emailbox.setText(owner.getMail());*/
 
         System.out.println(nameLabel.getText());
         System.out.println("Name: " + namebox.getText());

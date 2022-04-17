@@ -4,8 +4,8 @@
 }
 
 .root{
-    -fx-background-color: '#4028de';
-    -fx-background-image: url('../img/hom.jpg');
+    -fx-background-color: '#28252E';
+    -fx-background-image: url('../img/cottage.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
     -fx-background-position: left;
@@ -31,8 +31,8 @@
 }
 
 .button{
-    -fx-background-color: '#E64A19';
-    -fx-text-fill: 'white';
+    -fx-background-color: '#FAFAD2';
+    -fx-text-fill: 'BLACK';
     -fx-text-alignment: "CENTER";
     -fx-font-family: 'Raleway', sans-serif;
     -fx-font-size: 20px;
@@ -40,6 +40,7 @@
 
 #active, #inactive{
     -fx-font-size: 20px;
+    -fx-text-fill: 'white';
 }
 
 #active{
@@ -47,7 +48,7 @@
 }
 
 #inactive{
-    -fx-background-color: '#888888';
+    -fx-background-color: '#AAAAAA';
 }
 
 #back{

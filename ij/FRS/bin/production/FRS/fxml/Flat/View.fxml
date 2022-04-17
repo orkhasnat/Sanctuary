@@ -41,10 +41,10 @@
             </rowConstraints>
             <children>
                 <Label fx:id="nameLabel" text="Name" GridPane.columnSpan="2" />
-                <Label fx:id="levelLabel" text="Level" GridPane.rowIndex="1" />
+                <Label fx:id="levelLabel" text="Level" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <CheckBox fx:id="liftbox" mnemonicParsing="false" text="Lift" GridPane.rowIndex="2" />
                 <CheckBox fx:id="generatorbox" mnemonicParsing="false" text="Generator" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Hyperlink fx:id="locationbutton" text="Location" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Hyperlink fx:id="locationbutton" text="Location" GridPane.rowIndex="1" />
             <MenuButton mnemonicParsing="false" text="Settings" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#editpage" text="Edit Info" />
