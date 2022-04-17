@@ -33,16 +33,13 @@
     -fx-text-alignment: "RIGHT";
 }
 
-#menubutton{
+#menubutton, #roomlist{
     -fx-background-color: '#E64A19';
 }
 
-.menuitem{
-    -fx
-}
-
-#plus{
-    -fx-background-color: '#2E856E';
+#rentbutton{
+    -fx-background-color: 'yellow';
+    -fx-text-fill: 'red';
 }
 
 #formsquare{
@@ -64,6 +61,15 @@
     -fx-text-fill: 'white';
 }
 
+.hyperlink{
+    -fx-background-color: '00ACC1';
+    -fx-border-color: 'BLACK';
+    -fx-border-width: 1px;
+    -fx-font-size: 20px;
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-text-fill: 'white';
+}
+
 #880box{
     -fx-font-size: 12px;
     -fx-font-family: 'System';
@@ -77,4 +83,10 @@
     -fx-text-fill: 'white';
     -fx-alignment: center;
     -fx-text-alignment: "CENTER";
+}
+
+#headerlabel
+{
+    -fx-font-size: 40px;
+    -fx-alignment: "CENTER";
 }

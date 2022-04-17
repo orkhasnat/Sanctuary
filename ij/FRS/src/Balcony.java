@@ -2,13 +2,26 @@ import java.util.Scanner;
 
 public class Balcony extends Room
 {
+	Balcony(int FlatID, String _name, double _area, String _tiles)
+	{
+		id = Global.random(0, 99999);
+		id += 600000;
+
+		updateName(_name);
+		updateArea(_area);
+		updateTiles(_tiles);
+
+		// INSERT INTO Balcony (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 6, area, tiles, FlatID);
+	}
+
 	Balcony(int FlatID)
 	{
 		id = Global.random(0, 99999);
 		id += 600000;
 		name = "Balcony";
 		updateName();
-		setArea();
+		updateArea();
 		updateTiles();
 
 		// INSERT INTO Balcony (RoomID, Name, Type, Area, Tiles, FlatID)
@@ -42,7 +55,7 @@ public class Balcony extends Room
 		
 		else if(choice == 2)
 		{
-			setArea();
+			updateArea();
 
 			// UPDATE Balcony
 			// SET Area = area

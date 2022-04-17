@@ -1,4 +1,6 @@
+import com.sun.javafx.menu.MenuItemBase;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -6,10 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -24,16 +32,17 @@ public class OwnerController implements Initializable
     private Scene scene;
     private Parent root;
 
-    Stack<String> stack = new Stack<>();
+    static Stack<String> stack = new Stack<>();
 
-    @FXML private Label nameLabel, blgLabel, roomcountlabel;
-    @FXML private TextField namebox, nidbox, phonebox, emailbox, xbox, ybox;
-    @FXML private PasswordField passbox, _passbox, oldpassbox;
-    @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
-    @FXML private ComboBox<Integer> levelbox = new ComboBox<>();
-    @FXML private MenuButton menubutton;
-    @FXML private CheckBox liftbox, generatorbox;
-    @FXML private ImageView blgicon;
+    @FXML Label nameLabel, blgLabel, roomcountlabel;
+    @FXML TextField namebox, nidbox, phonebox, emailbox, xbox, ybox;
+    @FXML PasswordField passbox, _passbox, oldpassbox;
+    @FXML ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
+    @FXML ComboBox<Integer> levelbox = new ComboBox<>();
+    @FXML MenuButton menubutton;
+    @FXML CheckBox liftbox, generatorbox;
+    @FXML ImageView blgicon;
+    @FXML Hyperlink locationbutton = new Hyperlink();
 
     void init(Owner p)
     {
@@ -44,6 +53,8 @@ public class OwnerController implements Initializable
 
         for(Flat flat: owner.flats) menubutton.getItems().add(new MenuItem(flat.name));
         setBloodGroup();
+
+        stack.clear();
         stack.push("view");
     }
 
@@ -87,6 +98,7 @@ public class OwnerController implements Initializable
 
     @FXML void view(ActionEvent event) throws Exception
     {
+        stack.clear();
         stack.push("view");
         if(owner == null) System.out.println("NULL!");
 
@@ -134,11 +146,11 @@ public class OwnerController implements Initializable
     public void myflatpage(ActionEvent event) throws Exception
     {
         stack.push("myflats");
-        scene = new Scene(root);
+        /*scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
     }
 
     public void newflatpage(ActionEvent event) throws Exception
@@ -151,7 +163,7 @@ public class OwnerController implements Initializable
         stage.show();
     }
 
-    @FXML public void addflat(ActionEvent event) throws Exception
+    @FXML void addflat(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -182,6 +194,7 @@ public class OwnerController implements Initializable
             root = loader.load();
             FlatController controller = loader.getController();
             controller.init(f);
+            controller.stack.push("addroom");
 
             scene = new Scene(root);
             stage.setScene(scene);
@@ -288,5 +301,19 @@ public class OwnerController implements Initializable
         genderbox.getItems().addAll(User.genderlist);
         blgbox.getItems().addAll(User.bloodglist);
         levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1,25).toArray()).boxed().toArray(Integer[]::new));
+
+        locationbutton.setOnAction(new EventHandler<ActionEvent>()
+                                   {
+                                       @Override public void handle(ActionEvent e) {
+                                           try {
+                                               Desktop.getDesktop().browse(new URI("https://www.google.com/maps/search/?api=1&query="+23.94538493888004+"%2C"+90.38274718424901));
+                                           } catch (IOException e1) {
+                                               e1.printStackTrace();
+                                           } catch (URISyntaxException e1) {
+                                               e1.printStackTrace();
+                                           }
+                                       }
+                                   }
+        );
     }
 }

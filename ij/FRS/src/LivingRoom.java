@@ -4,13 +4,28 @@ public class LivingRoom extends Room
 {
 	private boolean lightsource;
 
+	LivingRoom(int FlatID, String _name, double _area, String _tiles, boolean _lightsource)
+	{
+		id = Global.random(0, 99999);
+		id += 300000;
+
+		updateName(_name);
+		updateArea(_area);
+		updateTiles(_tiles);
+
+		lightsource = _lightsource;
+
+		// INSERT INTO LivingRoom (RoomID, Name, Type, Area, Tiles, FlatID, LightSource)
+		// VALUES (id, name, 3, area, tiles, FlatID, lightsource);
+	}
+
 	LivingRoom(int FlatID)
 	{
 		id = Global.random(0, 99999);
 		id += 300000;
 		name = "Living Room";
 		updateName();
-		setArea();
+		updateArea();
 		updateTiles();
 
 		lightsource = getAns("Open Light Source:");
@@ -55,7 +70,7 @@ public class LivingRoom extends Room
 		
 		else if(choice == 2)
 		{
-			setArea();
+			updateArea();
 
 			// UPDATE LivingRoom
 			// SET Area = area

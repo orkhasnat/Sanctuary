@@ -6,12 +6,21 @@ abstract class Room
     protected String name;
     private double area, tiles;
 
-    protected boolean setArea()
+    static String[] tileslist={"Tiles", "Mosaic", "Plain"};
+
+    protected boolean updateArea()
     {
         Scanner scan = new Scanner(System.in);
 
         System.out.print("Area in square feet: ");
         area = scan.nextDouble();
+
+        return true;
+    }
+
+    protected boolean updateArea(double temp)
+    {
+        area = temp;
 
         return true;
     }
@@ -22,6 +31,13 @@ abstract class Room
 
         System.out.print("Name: ");
         name = scan.nextLine();
+
+        return true;
+    }
+
+    protected boolean updateName(String temp)
+    {
+        name = temp;
 
         return true;
     }
@@ -46,6 +62,23 @@ abstract class Room
         else tiles = 1;
 
         return true;
+    }
+
+    protected boolean updateTiles(String temp)
+    {
+        tiles = 1;
+
+        switch (temp)
+        {
+            case "Tiles":
+                tiles = 1.15;
+                break;
+            case "Mosaic":
+                tiles = 1.05;
+                break;
+        }
+
+        return false;
     }
 
     double value()

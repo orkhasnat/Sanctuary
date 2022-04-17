@@ -546,6 +546,11 @@ public class Flat
 
 	}
 
+	public String getLocation()
+	{
+		return location.getLink();
+	}
+
 	void findOutliers()
 	{
 

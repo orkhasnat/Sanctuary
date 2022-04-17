@@ -2,20 +2,33 @@ import java.util.Scanner;
 
 public class DiningRoom extends Room
 {
+	DiningRoom(int FlatID, String _name, double _area, String _tiles)
+	{
+		id = Global.random(0, 99999);
+		id += 200000;
+
+		updateName(_name);
+		updateArea(_area);
+		updateTiles(_tiles);
+
+		// INSERT INTO DiningRoom (RoomID, Name, Type, Area, Tiles, FlatID)
+		// VALUES (id, name, 2, area, tiles, FlatID);
+	}
+
 	DiningRoom(int FlatID)
 	{
 		id = Global.random(0, 99999);
 		id += 200000;
 		name = "Dining Room";
 		updateName();
-		setArea();
+		updateArea();
 		updateTiles();
 
 		// INSERT INTO DiningRoom (RoomID, Name, Type, Area, Tiles, FlatID)
 		// VALUES (id, name, 2, area, tiles, FlatID);
 	}
 
-	protected void edit()
+    protected void edit()
 	{
 		Scanner scan = new Scanner(System.in);
 		int choice;
@@ -42,7 +55,7 @@ public class DiningRoom extends Room
 		
 		else if(choice == 2)
 		{
-			setArea();
+			updateArea();
 
 			// UPDATE DiningRoom
 			// SET Area = area

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -19,9 +20,10 @@ public class MainController implements Initializable
     private Scene scene;
     private Parent root;
 
-    @FXML private TextField userbox, namebox, nidbox, phonebox, emailbox;
-    @FXML private PasswordField passbox, _passbox;
-    @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
+    @FXML TextField userbox, namebox, nidbox, phonebox, emailbox;
+    @FXML PasswordField passbox, _passbox;
+    @FXML ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
+
 
     @FXML void studenthome(ActionEvent event) throws Exception
     {

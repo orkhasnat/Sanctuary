@@ -2,24 +2,45 @@ import java.util.Scanner;
 
 public class Bathroom extends Room
 {
-	private boolean shower, sink, tseat, tpan, spraywasher, geaser, bathtub;
+	private boolean shower, sink, tseat, tpan, spray, geaser, bathtub;
+
+	Bathroom(int FlatID, String _name, double _area, String _tiles, boolean _shower, boolean _sink, boolean _tseat, boolean _tpan, boolean _spray, boolean _geaser, boolean _bathtub)
+	{
+		id = Global.random(0, 99999);
+		id += 500000;
+
+		updateName(_name);
+		updateArea(_area);
+		updateTiles(_tiles);
+
+		shower = _shower;
+		sink = _sink;
+		tseat = _tseat;
+		tpan = _tpan;
+		spray = _spray;
+		geaser = _geaser;
+		bathtub = _bathtub;
+
+		// INSERT INTO Bathroom (RoomID, Name, Type, Area, Tiles, FlatID, Shower, Sink, Tseat, Tpan, SprayWasher, Geaser, Bathtub)
+		// VALUES (id, name, 5, area, tiles, FlatID, shower, sink, tseat, tpan, spray, geaser, bathtub);
+	}
 
 	Bathroom(int FlatID)
 	{
 		id = Global.random(0, 99999);
 		id += 500000;
-		name = "Bathroom";
+		this.name = "Bathroom";
 		updateName();
-		setArea();
+		updateArea();
 		updateTiles();
 
-		shower = getAns("Shower:");
-		sink = getAns("Sink:");
-		tseat = getAns("Toilet Seat:");
-		tpan = getAns("Toilet Pan:");
-		spraywasher = getAns("Spray Washer:");
-		geaser = getAns("Geaser:");
-		bathtub = getAns("Bathtub:");
+		this.shower = getAns("Shower:");
+		this.sink = getAns("Sink:");
+		this.tseat = getAns("Toilet Seat:");
+		this.tpan = getAns("Toilet Pan:");
+		this.spray = getAns("Spray Washer:");
+		this.geaser = getAns("Geaser:");
+		this.bathtub = getAns("Bathtub:");
 
 		// INSERT INTO Bathroom (RoomID, Name, Type, Area, Tiles, FlatID, Shower, Sink, Tseat, Tpan, SprayWasher, Geaser, Bathtub)
 		// VALUES (id, name, 5, area, tiles, FlatID, shower, sink, tseat, tpan, spraywasher, geaser, bathtub);
@@ -32,7 +53,7 @@ public class Bathroom extends Room
 		if(sink) temp *= 1.02;
 		if(tseat) temp *= 1.05;
 		if(tpan) temp *= 1.01;
-		if(spraywasher) temp *= 1.01;
+		if(spray) temp *= 1.01;
 		if(geaser) temp *= 1.04;
 		if(bathtub) temp *= 1.07;
 
@@ -47,7 +68,7 @@ public class Bathroom extends Room
 		System.out.print("Sink: "); if(sink) System.out.println('o'); else System.out.println('x');
 		System.out.print("Toilet Seat: "); if(tseat) System.out.println('o'); else System.out.println('x');
 		System.out.print("Toilet Pan: "); if(tpan) System.out.println('o'); else System.out.println('x');
-		System.out.print("Spraywasher:"); if(spraywasher) System.out.println('o'); else System.out.println('x');
+		System.out.print("Spraywasher:"); if(spray) System.out.println('o'); else System.out.println('x');
 		System.out.print("Geaser: "); if(geaser) System.out.println('o'); else System.out.println('x');
 		System.out.print("Bathtub: "); if(bathtub) System.out.println('o'); else System.out.println('x');
 	}
@@ -86,7 +107,7 @@ public class Bathroom extends Room
 		
 		else if(choice == 2)
 		{
-			setArea();
+			updateArea();
 
 			// UPDATE Bathroom
 			// SET Area = area
@@ -140,7 +161,7 @@ public class Bathroom extends Room
 		
 		else if(choice == 8)
 		{
-			spraywasher = getAns("Spray Washer:");
+			spray = getAns("Spray Washer:");
 
 			// UPDATE Bathroom
 			// SET SprayWasher = spraywasher

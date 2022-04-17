@@ -19,4 +19,9 @@ public class Location
 		System.out.print("Longitude:\t");
 		y = scan.nextDouble();
 	}
+
+	String getLink()
+	{
+		return "https://www.google.com/maps/search/?api=1&query="+x+"%2C"+y;
+	}
 }

@@ -5,24 +5,44 @@ public class Kitchen extends Room
 	private int stove;
 	private boolean sink, cupboard, ventilator, gas;
 
+	Kitchen(int FlatID, String _name, double _area, String _tiles, int _stove, boolean _sink, boolean _cupboard, boolean _gas, boolean _ventilator)
+	{
+		id = Global.random(0, 99999);
+		id += 400000;
+
+		updateName(_name);
+		updateArea(_area);
+		updateTiles(_tiles);
+
+		stove = _stove;
+
+		sink = _sink;
+		cupboard = _cupboard;
+		ventilator = _ventilator;
+		gas = _gas;
+
+		// INSERT INTO Kitchen (RoomID, Name, Type, Area, Tiles, FlatID, Stove, Sink, Cupboard, Ventilator, Gas)
+		// VALUES (id, name, 4, area, tiles, FlatID, stove, sink, cupboard, ventilator, gas);
+	}
+
 	Kitchen(int FlatID)
 	{
 		id = Global.random(0, 99999);
 		id += 400000;
-		name = "Kitchen";
+		this.name = "Kitchen";
 		updateName();
-		setArea();
+		updateArea();
 		updateTiles();
 
 		Scanner scan = new Scanner(System.in);
 
 		System.out.print("Number of stove: ");
-		stove = scan.nextInt();
+		this.stove = scan.nextInt();
 
-		sink = getAns("Sink:");
-		cupboard = getAns("Cupboard:");
-		ventilator = getAns("Ventilator:");
-		gas = getAns("Gas Supply:");
+		this.sink = getAns("Sink:");
+		this.cupboard = getAns("Cupboard:");
+		this.ventilator = getAns("Ventilator:");
+		this.gas = getAns("Gas Supply:");
 
 		// INSERT INTO Kitchen (RoomID, Name, Type, Area, Tiles, FlatID, Stove, Sink, Cupboard, Ventilator, Gas)
 		// VALUES (id, name, 4, area, tiles, FlatID, stove, sink, cupboard, ventilator, gas);
@@ -82,7 +102,7 @@ public class Kitchen extends Room
 		
 		else if(choice == 2)
 		{
-			setArea();
+			updateArea();
 
 			// UPDATE Kitchen
 			// SET Area = area
