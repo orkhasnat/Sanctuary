@@ -38,5 +38,12 @@
             </children>
         </StackPane>
         <Button layoutX="1075.0" layoutY="100.0" mnemonicParsing="false" onAction="#newflatpage" prefHeight="45.0" prefWidth="45.0" text="+" />
+      <MenuButton layoutX="235.0" layoutY="500.0" mnemonicParsing="false" text="Settings">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#editpage" text="Edit Profile" />
+          <MenuItem mnemonicParsing="false" onAction="#passpage" text="Change Password" />
+            <MenuItem mnemonicParsing="false" onAction="#deletepage" text="Delete Account" />
+        </items>
+      </MenuButton>
     </children>
 </AnchorPane>

@@ -6,8 +6,7 @@ public class Bathroom extends Room
 
 	Bathroom(int FlatID, String _name, double _area, String _tiles, boolean _shower, boolean _sink, boolean _tseat, boolean _tpan, boolean _spray, boolean _geaser, boolean _bathtub)
 	{
-		id = Global.random(0, 99999);
-		id += 500000;
+		id = getnewID();
 
 		updateName(_name);
 		updateArea(_area);
@@ -23,6 +22,13 @@ public class Bathroom extends Room
 
 		// INSERT INTO Bathroom (RoomID, Name, Type, Area, Tiles, FlatID, Shower, Sink, Tseat, Tpan, SprayWasher, Geaser, Bathtub)
 		// VALUES (id, name, 5, area, tiles, FlatID, shower, sink, tseat, tpan, spray, geaser, bathtub);
+	}
+
+	protected int getnewID()
+	{
+		int id = 500000;
+		while(Global.AllRooms.containsKey(id)) id++;
+		return id;
 	}
 
 	Bathroom(int FlatID)

@@ -6,9 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -20,10 +20,9 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
-public class FlatController implements Initializable
+public class RoomController implements Initializable
 {
-    static Flat flat;
-    Flat.Base flatbase;
+    static Room room;
 
     private Stage stage;
     private Scene scene;
@@ -31,31 +30,22 @@ public class FlatController implements Initializable
 
     static Stack<String> stack = new Stack<>();
 
-    @FXML Label nameLabel, levelLabel, roomcountLabel;
     @FXML TextField namebox, areabox;
-    @FXML ComboBox<String> floorbox = new ComboBox<>(), flatgenderbox = new ComboBox<>();
     @FXML CheckBox lightbox, almirahbox, sinkbox, cupboardbox, gasbox, ventilatorbox, showerbox, tseatbox, tpanbox, spraybox, geaserbox, bathtubbox;
+    @FXML ComboBox<String> floorbox = new ComboBox<>();
     @FXML ComboBox<Integer> stovebox = new ComboBox<>();
-    @FXML Hyperlink locationbutton = new Hyperlink();
 
-    void init(Flat f)
+    void init(Room r)
     {
-        flat = f;
-        if(flat == null) System.exit(0);
-
-        countrooms();
+        room = r;
+        if(room == null) System.exit(0);
 
         stack.clear();
     }
 
-    void countrooms()
-    {
-        roomcountLabel.setText("Room Count: "+flat.rooms.size());
-    }
-
     @FXML void back(ActionEvent event) throws Exception
     {
-        if(stack.isEmpty())
+        /*if(stack.isEmpty())
         {
             view(event);
             return;
@@ -67,29 +57,12 @@ public class FlatController implements Initializable
             case "view":
                 view(event);
                 break;
-            case "addroom":
-                addroompage(event);
-                break;
-            /*case "set":
-                settingspage(event);
-                break;
-            case "myflats":
-                myflatpage(event);
-                break;*/
-        }
+        }*/
     }
 
-    @FXML void view(ActionEvent event) throws Exception
+    @FXML void viewbedroompage(ActionEvent event) throws Exception
     {
-        stack.clear();
-        stack.push("view");
-        if(flat == null) flat = Flat.open(1000000);
-        if(flat == null) System.out.println("NULL!");
-
-
-
-        root = FXMLLoader.load(getClass().getResource("fxml/Flat/View.fxml"));
-
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Bed/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -97,13 +70,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addroompage(ActionEvent event) throws Exception
+    @FXML void viewdiningroompage(ActionEvent event) throws Exception
     {
-        stack.push("addroom");
-        if(flat == null) flat = Flat.open(1000000);
-        if(flat == null) System.out.println("NULL!");
-
-        root = FXMLLoader.load(getClass().getResource("fxml/Flat/AddRoom.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Din/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -111,9 +80,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addbedroompage(ActionEvent event) throws Exception
+    @FXML void viewlivingroompage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Bed/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Liv/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -121,9 +90,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void adddiningroompage(ActionEvent event) throws Exception
+    @FXML void viewkitchenpage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Din/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Kit/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -131,9 +100,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addlivingroompage(ActionEvent event) throws Exception
+    @FXML void viewbathroompage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Liv/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Bath/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -141,9 +110,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addkitchenpage(ActionEvent event) throws Exception
+    @FXML void viewbalconypage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Kit/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Balk/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -151,9 +120,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addbathroompage(ActionEvent event) throws Exception
+    @FXML void viewstoreroompage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Bath/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Strm/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -161,9 +130,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addbalconypage(ActionEvent event) throws Exception
+    @FXML void viewxtraroompage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Balk/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Xtra/View.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -171,9 +140,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addstoreroompage(ActionEvent event) throws Exception
+    @FXML void editbedroompage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Strm/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Bed/Edit.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -181,9 +150,9 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addxtraroompage(ActionEvent event) throws Exception
+    @FXML void editdiningroompage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Room/Xtra/Register.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Din/Edit.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -191,7 +160,67 @@ public class FlatController implements Initializable
         stage.show();
     }
 
-    @FXML void addbedroom(ActionEvent event) throws Exception
+    @FXML void editlivingroompage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Liv/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void editkitchenpage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Kit/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void editbathroompage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Bath/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void editbalconypage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Balk/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void editstoreroompage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Strm/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void editxtraroompage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Xtra/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void editbedroom(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -202,10 +231,10 @@ public class FlatController implements Initializable
         boolean almirah = almirahbox.isSelected();
         Room r;
 
-        try
+        /*try
         {
-            r = new Bedroom(flat.id, name, area, tiles, lightsource, almirah);
-            flat.rooms.add(r);
+            r = new Bedroom(room.id, name, area, tiles, lightsource, almirah);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -214,10 +243,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void adddiningroom(ActionEvent event) throws Exception
+    @FXML void editdiningroom(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -226,10 +255,10 @@ public class FlatController implements Initializable
         String tiles = floorbox.getValue();
         Room r;
 
-        try
+        /*try
         {
-            r = new DiningRoom(flat.id, name, area, tiles);
-            flat.rooms.add(r);
+            r = new DiningRoom(room.id, name, area, tiles);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -238,10 +267,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void addlivingroom(ActionEvent event) throws Exception
+    @FXML void editlivingroom(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -251,10 +280,10 @@ public class FlatController implements Initializable
         boolean lightsource = lightbox.isSelected();
         Room r;
 
-        try
+        /*try
         {
-            r = new LivingRoom(flat.id, name, area, tiles, lightsource);
-            flat.rooms.add(r);
+            r = new LivingRoom(room.id, name, area, tiles, lightsource);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -263,10 +292,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void addkitchen(ActionEvent event) throws Exception
+    @FXML void editkitchen(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -280,10 +309,10 @@ public class FlatController implements Initializable
         boolean ventilator = ventilatorbox.isSelected();
         Room r;
 
-        try
+        /*try
         {
-            r = new Kitchen(flat.id, name, area, tiles, stove, sink, cupboard, gas, ventilator);
-            flat.rooms.add(r);
+            r = new Kitchen(room.id, name, area, tiles, stove, sink, cupboard, gas, ventilator);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -292,10 +321,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void addbathroom(ActionEvent event) throws Exception
+    @FXML void editbathroom(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -311,10 +340,10 @@ public class FlatController implements Initializable
         boolean bathtub = bathtubbox.isSelected();
         Room r;
 
-        try
+        /*try
         {
-            r = new Bathroom(flat.id, name, area, tiles, shower, sink, tseat, tpan, spray, geaser, bathtub);
-            flat.rooms.add(r);
+            r = new Bathroom(room.id, name, area, tiles, shower, sink, tseat, tpan, spray, geaser, bathtub);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -323,10 +352,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void addbalcony(ActionEvent event) throws Exception
+    @FXML void editbalcony(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -335,10 +364,10 @@ public class FlatController implements Initializable
         String tiles = floorbox.getValue();
         Room r;
 
-        try
+        /*try
         {
-            r = new Balcony(flat.id, name, area, tiles);
-            flat.rooms.add(r);
+            r = new Balcony(room.id, name, area, tiles);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -347,10 +376,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void addstoreroom(ActionEvent event) throws Exception
+    @FXML void editstoreroom(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -359,10 +388,10 @@ public class FlatController implements Initializable
         String tiles = floorbox.getValue();
         Room r;
 
-        try
+        /*try
         {
-            r = new StoreRoom(flat.id, name, area, tiles);
-            flat.rooms.add(r);
+            r = new StoreRoom(room.id, name, area, tiles);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -371,10 +400,10 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
+        addroompage(event);*/
     }
 
-    @FXML void addxtraroom(ActionEvent event) throws Exception
+    @FXML void editxtraroom(ActionEvent event) throws Exception
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -383,10 +412,10 @@ public class FlatController implements Initializable
         String tiles = floorbox.getValue();
         Room r;
 
-        try
+        /*try
         {
-            r = new XtraRoom(flat.id, name, area, tiles);
-            flat.rooms.add(r);
+            r = new XtraRoom(room.id, name, area, tiles);
+            room.rooms.add(r);
             Global.AllRooms.put(r.id, r);
             countrooms();
         }
@@ -395,54 +424,12 @@ public class FlatController implements Initializable
             r = null;
         }
 
-        addroompage(event);
-    }
-
-    @FXML void editpage(ActionEvent event) throws Exception
-    {
-        root = FXMLLoader.load(getClass().getResource("fxml/Flat/Edit.fxml"));
-        scene = new Scene(root);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        /*namebox.setText(owner.getName());
-        nidbox.setText(String.valueOf(owner.getNID()));
-        phonebox.setText(String.valueOf(owner.getPhone()));
-        emailbox.setText(owner.getMail());
-
-        System.out.println(nameLabel.getText());
-        System.out.println("Name: " + namebox.getText());
-        System.out.println("NID Number: " + owner.getNID());
-        System.out.println("Phone Number: " + "+880" + owner.getPhone());
-        System.out.println("E-mail Address: " + owner.getMail());*/
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML void edit(ActionEvent event) throws Exception
-    {
-
-    }
-
-    @FXML void rentpage(ActionEvent event) throws Exception
-    {
-        stack.push("set");
-        root = FXMLLoader.load(getClass().getResource("fxml/Flat/Rent.fxml"));
-        scene = new Scene(root);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML void setrent(ActionEvent event) throws Exception
-    {
-
+        addroompage(event);*/
     }
 
     @FXML void deletepage(ActionEvent event) throws Exception
     {
-        root = FXMLLoader.load(getClass().getResource("fxml/Flat/Delete.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/Room/Delete.fxml"));
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -463,23 +450,6 @@ public class FlatController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        flatgenderbox.getItems().addAll(Flat.genderlist);
-        flatgenderbox.getSelectionModel().selectFirst();
-        floorbox.getItems().addAll(Room.tileslist);
         stovebox.getItems().addAll(IntStream.of(IntStream.rangeClosed(0,5).toArray()).boxed().toArray(Integer[]::new));
-
-        locationbutton.setOnAction(new EventHandler<ActionEvent>()
-                           {
-                               @Override public void handle(ActionEvent e) {
-                                   try {
-                                       Desktop.getDesktop().browse(new URI(flat.getLocation()));
-                                   } catch (IOException e1) {
-                                       e1.printStackTrace();
-                                   } catch (URISyntaxException e1) {
-                                       e1.printStackTrace();
-                                   }
-                               }
-                           }
-        );
     }
 }

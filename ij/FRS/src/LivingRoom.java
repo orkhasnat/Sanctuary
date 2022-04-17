@@ -6,8 +6,7 @@ public class LivingRoom extends Room
 
 	LivingRoom(int FlatID, String _name, double _area, String _tiles, boolean _lightsource)
 	{
-		id = Global.random(0, 99999);
-		id += 300000;
+		id = getnewID();
 
 		updateName(_name);
 		updateArea(_area);
@@ -17,6 +16,13 @@ public class LivingRoom extends Room
 
 		// INSERT INTO LivingRoom (RoomID, Name, Type, Area, Tiles, FlatID, LightSource)
 		// VALUES (id, name, 3, area, tiles, FlatID, lightsource);
+	}
+
+	protected int getnewID()
+	{
+		int id = 300000;
+		while(Global.AllRooms.containsKey(id)) id++;
+		return id;
 	}
 
 	LivingRoom(int FlatID)

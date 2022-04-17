@@ -4,8 +4,7 @@ public class Balcony extends Room
 {
 	Balcony(int FlatID, String _name, double _area, String _tiles)
 	{
-		id = Global.random(0, 99999);
-		id += 600000;
+		id = getnewID();
 
 		updateName(_name);
 		updateArea(_area);
@@ -13,6 +12,13 @@ public class Balcony extends Room
 
 		// INSERT INTO Balcony (RoomID, Name, Type, Area, Tiles, FlatID)
 		// VALUES (id, name, 6, area, tiles, FlatID);
+	}
+
+	protected int getnewID()
+	{
+		int id = 600000;
+		while(Global.AllRooms.containsKey(id)) id++;
+		return id;
 	}
 
 	Balcony(int FlatID)

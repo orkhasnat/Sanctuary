@@ -8,6 +8,8 @@ abstract class Room
 
     static String[] tileslist={"Tiles", "Mosaic", "Plain"};
 
+    abstract protected int getnewID();
+
     protected boolean updateArea()
     {
         Scanner scan = new Scanner(System.in);
@@ -90,7 +92,7 @@ abstract class Room
     {
         System.out.println();
         System.out.println("Name: " + name);
-        // Display Flat Info
+        // Display room Info
         System.out.println("Area " + area);
         System.out.print("Floor: "); if(tiles == 1) System.out.println("Plain"); else if(tiles == 1.05) System.out.println("Mosaic"); else System.out.println("Tiles");
     }
@@ -131,5 +133,11 @@ abstract class Room
         // WHERE RoomID = id;
 
         name = "Deleted Room";
+    }
+
+    static Room open(int id)
+    {
+        if(Global.AllRooms.containsKey(id)) return Global.AllRooms.get(id);
+        else return null;
     }
 }

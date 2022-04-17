@@ -4,8 +4,7 @@ public class XtraRoom extends Room
 {
 	XtraRoom(int FlatID, String _name, double _area, String _tiles)
 	{
-		id = Global.random(0, 99999);
-		id += 800000;
+		id = getnewID();
 
 		updateName(_name);
 		updateArea(_area);
@@ -13,6 +12,13 @@ public class XtraRoom extends Room
 
 		// INSERT INTO XtraRoom (RoomID, Name, Type, Area, Tiles, FlatID)
 		// VALUES (id, name, 8, area, tiles, FlatID);
+	}
+
+	protected int getnewID()
+	{
+		int id = 800000;
+		while(Global.AllRooms.containsKey(id)) id++;
+		return id;
 	}
 
 	XtraRoom(int FlatID)

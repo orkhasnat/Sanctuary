@@ -17,7 +17,7 @@
     <children>
         <HBox layoutX="830.0" layoutY="40.0" spacing="20.0">
             <children>
-                <Button fx:id="rentbutton" mnemonicParsing="false" onAction="#setrentpage" prefHeight="45.0" prefWidth="150.0" text="Rent" />
+                <Button fx:id="rentbutton" mnemonicParsing="false" onAction="#rentpage" prefHeight="45.0" prefWidth="150.0" text="Rent" />
                 <MenuButton fx:id="roomlist" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="Rooms">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#addroompage" text="Add New" />
@@ -44,13 +44,20 @@
                 <Label fx:id="levelLabel" text="Level" GridPane.rowIndex="1" />
                 <CheckBox fx:id="liftbox" mnemonicParsing="false" text="Lift" GridPane.rowIndex="2" />
                 <CheckBox fx:id="generatorbox" mnemonicParsing="false" text="Generator" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Button mnemonicParsing="false" onAction="#editpage" text="Edit" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                <Button mnemonicParsing="false" onAction="#settingspage" text="Settings" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
                 <Hyperlink fx:id="locationbutton" text="Location" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <MenuButton mnemonicParsing="false" text="Settings" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#editpage" text="Edit Info" />
+                  <MenuItem mnemonicParsing="false" onAction="#rentpage" text="Edit Rent" />
+                <MenuItem mnemonicParsing="false" onAction="#deletepage" text="Delete" />
+              </items>
+            </MenuButton>
             </children>
             <padding>
                 <Insets left="10.0" right="10.0" top="10.0" />
             </padding>
         </GridPane>
+          <Button layoutX="465.0" layoutY="627.0" mnemonicParsing="false" text="Settings" />
+          <Button layoutX="83.0" layoutY="627.0" mnemonicParsing="false" onAction="#editpage" text="Edit" />
     </children>
 </AnchorPane>

@@ -7,8 +7,7 @@ public class Kitchen extends Room
 
 	Kitchen(int FlatID, String _name, double _area, String _tiles, int _stove, boolean _sink, boolean _cupboard, boolean _gas, boolean _ventilator)
 	{
-		id = Global.random(0, 99999);
-		id += 400000;
+		id = getnewID();
 
 		updateName(_name);
 		updateArea(_area);
@@ -23,6 +22,13 @@ public class Kitchen extends Room
 
 		// INSERT INTO Kitchen (RoomID, Name, Type, Area, Tiles, FlatID, Stove, Sink, Cupboard, Ventilator, Gas)
 		// VALUES (id, name, 4, area, tiles, FlatID, stove, sink, cupboard, ventilator, gas);
+	}
+
+	protected int getnewID()
+	{
+		int id = 400000;
+		while(Global.AllRooms.containsKey(id)) id++;
+		return id;
 	}
 
 	Kitchen(int FlatID)
