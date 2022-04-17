@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
         <VBox fx:id="formsquare" layoutX="1020.0" layoutY="200.0" prefWidth="200.0" spacing="25.0">
@@ -31,7 +31,12 @@
                     </children>
                 </HBox>
                 <TextField fx:id="emailbox" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
-                <ComboBox fx:id="blgbox" prefHeight="25.0" prefWidth="160.0" promptText="Blood Group" visibleRowCount="5" />
+                <HBox>
+                    <children>
+                        <Label fx:id="blgtitlelabel" prefHeight="25.0" prefWidth="75.0" text="Blood Group: " textAlignment="CENTER" />
+                        <ComboBox fx:id="blgbox" prefHeight="25.0" prefWidth="85.0" visibleRowCount="5" />
+                    </children>
+                </HBox>
                 <PasswordField fx:id="passbox" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
                 <Button fx:id="formsubmit" mnemonicParsing="false" onAction="#edit" prefHeight="56.0" prefWidth="160.0" text="Confirm" textAlignment="CENTER" />
             </children>
