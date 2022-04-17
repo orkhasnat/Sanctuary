@@ -4,13 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
         <VBox fx:id="formsquare" layoutX="1020.0" layoutY="200.0" prefWidth="200.0" spacing="25.0">
@@ -18,7 +19,7 @@
                 <TextField fx:id="namebox" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
                 <VBox prefWidth="160.0" spacing="5.0">
                     <children>
-                        <Button mnemonicParsing="false" prefWidth="160.0" text="Location" fx:id="xy" />
+                  <Hyperlink fx:id="locationbutton" prefWidth="160.0" text="Location" />
                         <HBox prefHeight="25.0" prefWidth="160.0" spacing="10.0">
                             <children>
                                 <TextField alignment="TOP_LEFT" prefWidth="75.0" promptText="Latitude" text="23.94538493888004" fx:id="xbox" />
@@ -27,11 +28,16 @@
                         </HBox>
                     </children>
                 </VBox>
-                <ComboBox fx:id="levelbox" prefHeight="25.0" prefWidth="160.0" promptText="Level" visibleRowCount="5" />
+                <HBox>
+                    <children>
+                        <Label prefHeight="25.0" prefWidth="40.0" text="Level:" textAlignment="CENTER" />
+                        <ComboBox fx:id="levelbox" prefHeight="25.0" prefWidth="120.0" visibleRowCount="5" />
+                    </children>
+                </HBox>
                 <HBox prefHeight="25.0" prefWidth="160.0">
                     <children>
                         <Label prefHeight="25.0" prefWidth="50.0" text="Gender:" textAlignment="CENTER" />
-                        <ComboBox fx:id="genderbox" prefWidth="110.0" />
+                        <ComboBox fx:id="flatgenderbox" prefWidth="110.0" />
                     </children>
                 </HBox>
                 <HBox spacing="30.0">

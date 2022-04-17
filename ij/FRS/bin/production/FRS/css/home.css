@@ -20,6 +20,16 @@
     -fx-strokeType: "INSIDE";
 }
 
+.hyperlink{
+    -fx-background-color: '#98FF98';
+    -fx-border-color: 'BLACK';
+    -fx-border-width: 1px;
+    -fx-font-size: 20px;
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-text-fill: 'blue';
+    -fx-alignment: "CENTER";
+}
+
 .button{
     -fx-background-color: '#E64A19';
     -fx-text-fill: 'white';
@@ -38,12 +48,6 @@
 
 #inactive{
     -fx-background-color: '#888888';
-}
-
-#xy{
-    -fx-font-family: 'System';
-    -fx-background-color: '#CC9966';
-    -fx-font-size: 12px;
 }
 
 #back{

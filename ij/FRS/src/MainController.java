@@ -223,5 +223,6 @@ public class MainController implements Initializable
         genderbox.getItems().addAll(User.genderlist);
         genderbox.getSelectionModel().selectFirst();
         blgbox.getItems().addAll(User.bloodglist);
+        blgbox.getSelectionModel().selectFirst();
     }
 }

@@ -34,10 +34,10 @@ public class OwnerController implements Initializable
 
     static Stack<String> stack = new Stack<>();
 
-    @FXML Label nameLabel, blgLabel, roomcountlabel;
+    @FXML Label nameLabel, blgLabel;
     @FXML TextField namebox, nidbox, phonebox, emailbox, xbox, ybox;
     @FXML PasswordField passbox, _passbox, oldpassbox;
-    @FXML ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
+    @FXML ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>(), flatgenderbox = new ComboBox<>();
     @FXML ComboBox<Integer> levelbox = new ComboBox<>();
     @FXML MenuButton menubutton;
     @FXML CheckBox liftbox, generatorbox;
@@ -117,7 +117,7 @@ public class OwnerController implements Initializable
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        /*namebox.setText(owner.getName());
+        namebox.setText(owner.getName());
         nidbox.setText(String.valueOf(owner.getNID()));
         phonebox.setText(String.valueOf(owner.getPhone()));
         emailbox.setText(owner.getMail());
@@ -126,7 +126,7 @@ public class OwnerController implements Initializable
         System.out.println("Name: " + namebox.getText());
         System.out.println("NID Number: " + owner.getNID());
         System.out.println("Phone Number: " + "+880" + owner.getPhone());
-        System.out.println("E-mail Address: " + owner.getMail());*/
+        System.out.println("E-mail Address: " + owner.getMail());
 
         stage.setScene(scene);
         stage.show();
@@ -299,6 +299,9 @@ public class OwnerController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         genderbox.getItems().addAll(User.genderlist);
+        genderbox.getSelectionModel().selectFirst();
+        flatgenderbox.getItems().addAll(Flat.genderlist);
+        flatgenderbox.getSelectionModel().selectFirst();
         blgbox.getItems().addAll(User.bloodglist);
         levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1,25).toArray()).boxed().toArray(Integer[]::new));
 
@@ -306,7 +309,7 @@ public class OwnerController implements Initializable
                                    {
                                        @Override public void handle(ActionEvent e) {
                                            try {
-                                               Desktop.getDesktop().browse(new URI("https://www.google.com/maps/search/?api=1&query="+23.94538493888004+"%2C"+90.38274718424901));
+                                               Desktop.getDesktop().browse(new URI("https://www.google.com/maps"));
                                            } catch (IOException e1) {
                                                e1.printStackTrace();
                                            } catch (URISyntaxException e1) {

@@ -31,9 +31,9 @@ public class FlatController implements Initializable
 
     static Stack<String> stack = new Stack<>();
 
-    @FXML Label roomcountLabel;
+    @FXML Label nameLabel, levelLabel, roomcountLabel;
     @FXML TextField namebox, areabox;
-    @FXML ComboBox<String> floorbox = new ComboBox<>();
+    @FXML ComboBox<String> floorbox = new ComboBox<>(), flatgenderbox = new ComboBox<>();
     @FXML CheckBox lightbox, almirahbox, sinkbox, cupboardbox, gasbox, ventilatorbox, showerbox, tseatbox, tpanbox, spraybox, geaserbox, bathtubbox;
     @FXML ComboBox<Integer> stovebox = new ComboBox<>();
     @FXML Hyperlink locationbutton = new Hyperlink();
@@ -83,6 +83,7 @@ public class FlatController implements Initializable
     {
         stack.clear();
         stack.push("view");
+        if(flat == null) flat = Flat.open(1000000);
         if(flat == null) System.out.println("NULL!");
 
 
@@ -99,6 +100,8 @@ public class FlatController implements Initializable
     @FXML void addroompage(ActionEvent event) throws Exception
     {
         stack.push("addroom");
+        if(flat == null) flat = Flat.open(1000000);
+        if(flat == null) System.out.println("NULL!");
 
         root = FXMLLoader.load(getClass().getResource("fxml/Flat/AddRoom.fxml"));
         scene = new Scene(root);
@@ -395,9 +398,64 @@ public class FlatController implements Initializable
         addroompage(event);
     }
 
+    @FXML void editpage(ActionEvent event) throws Exception
+    {
+        root = FXMLLoader.load(getClass().getResource("fxml/Flat/Edit.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        /*namebox.setText(owner.getName());
+        nidbox.setText(String.valueOf(owner.getNID()));
+        phonebox.setText(String.valueOf(owner.getPhone()));
+        emailbox.setText(owner.getMail());
+
+        System.out.println(nameLabel.getText());
+        System.out.println("Name: " + namebox.getText());
+        System.out.println("NID Number: " + owner.getNID());
+        System.out.println("Phone Number: " + "+880" + owner.getPhone());
+        System.out.println("E-mail Address: " + owner.getMail());*/
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void edit(ActionEvent event) throws Exception
+    {
+
+    }
+
+    @FXML void settingspage(ActionEvent event) throws Exception
+    {
+        stack.push("set");
+        root = FXMLLoader.load(getClass().getResource("fxml/Flat/Settings.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void setrentpage(ActionEvent event) throws Exception
+    {
+        stack.push("set");
+        root = FXMLLoader.load(getClass().getResource("fxml/Flat/SetRent.fxml"));
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML void home(ActionEvent event) throws Exception
+    {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        flatgenderbox.getItems().addAll(Flat.genderlist);
+        flatgenderbox.getSelectionModel().selectFirst();
         floorbox.getItems().addAll(Room.tileslist);
         stovebox.getItems().addAll(IntStream.of(IntStream.rangeClosed(0,5).toArray()).boxed().toArray(Integer[]::new));
 

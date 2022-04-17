@@ -24,6 +24,7 @@ public class Flat
 
 	static boolean initialized = false;
 	static double[] coff = new double[Global.FACTORS];
+	static String[] genderlist={"Any", "Male", "Female"};
 
 	double[] value = new double[Global.FACTORS];
 
@@ -48,8 +49,7 @@ public class Flat
 		System.out.println("Flat Information");
 		System.out.println("---------------");
 
-		id = Global.random(0, 99999);
-		id += 1000000;
+		id = getnewID();
 		updateName();
 		updateLocation();
 		updateLevel();
@@ -78,6 +78,13 @@ public class Flat
 
 		// INSERT INTO Rent_Table (FlatID, Value, Rent)
 		// VALUES (id, value, rent);
+	}
+
+	private int getnewID()
+	{
+		int id = 1000000;
+		while(Global.AllFlats.containsKey(id)) id++;
+		return id;
 	}
 
 	private boolean updateName()
@@ -554,5 +561,11 @@ public class Flat
 	void findOutliers()
 	{
 
+	}
+
+	static Flat open(int id)
+	{
+		if(Global.AllFlats.containsKey(id)) return Global.AllFlats.get(id);
+		else return null;
 	}
 }
