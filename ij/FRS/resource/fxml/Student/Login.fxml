@@ -5,18 +5,35 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#studenthome" text="Back" />
-        <HBox layoutX="1020.0" layoutY="360.0" prefWidth="200.0" spacing="20.0">
-            <children>
-                <Button fx:id="active" mnemonicParsing="false" text="Student" />
-                <Button fx:id="inactive" mnemonicParsing="false" onAction="#ownerloginpage" text="Owner" />
-            </children>
-        </HBox>
+      <GridPane layoutX="1020.0" layoutY="360.0" prefWidth="200.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+                <Button fx:id="active" mnemonicParsing="false" text="Student" GridPane.halignment="LEFT">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Button>
+                <Button fx:id="inactive" mnemonicParsing="false" onAction="#ownerloginpage" text="Owner" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
         <VBox fx:id="formsquare" layoutX="1020.0" layoutY="425.0" prefWidth="200.0" spacing="25.0">
             <children>
                 <TextField fx:id="userbox" prefHeight="25.0" prefWidth="160.0" promptText="Username" text="190041129" />
