@@ -60,10 +60,10 @@
 }
 
 #formsquare{
-    -fx-background-color: '#00ACC1';
+    -fx-background-color: '#6699CC';
     -fx-border-color: 'BLACK';
     -fx-border-width: 1px;
-    -fx-fill: '#00ACC1';
+    -fx-fill: '#6699CC';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";
 }

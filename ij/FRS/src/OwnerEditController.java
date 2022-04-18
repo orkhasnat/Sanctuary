@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
-public class OwnerController implements Initializable
+public class OwnerEditController implements Initializable
 {
     Owner owner = Owner.login("ork", "000000");
     Flat.Base flatbase;
@@ -49,13 +49,13 @@ public class OwnerController implements Initializable
         owner = p;
         if(owner == null) System.exit(0);
 
-        nameLabel.setText(nameLabel.getText()+p.getName());
+        /*nameLabel.setText(nameLabel.getText()+p.getName());
 
         for(Flat flat: owner.flats) menubutton.getItems().add(new MenuItem(flat.name));
         setBloodGroup();
 
         stack.clear();
-        stack.push("view");
+        stack.push("view");*/
     }
 
     private void setBloodGroup()
@@ -113,21 +113,14 @@ public class OwnerController implements Initializable
 
     @FXML void editpage(ActionEvent event) throws Exception
     {
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/Edit.fxml"));
-        root = loader.load();
-
-        OwnerEditController controller = loader.getController();
-        controller.init(owner);
-
+        root = FXMLLoader.load(getClass().getResource("fxml/Owner/Edit.fxml"));
         scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        /*namebox.setText(owner.getName());
-        nidbox.setText(String.valueOf(owner.getNID()));
+        namebox.setText(owner.getName());
+        /*nidbox.setText(String.valueOf(owner.getNID()));
         phonebox.setText(String.valueOf(owner.getPhone()));
-        emailbox.setText(owner.getMail());
+        emailbox.setText(owner.getMail());*/
 
         System.out.println(nameLabel.getText());
         System.out.println("Name: " + namebox.getText());
@@ -136,7 +129,7 @@ public class OwnerController implements Initializable
         System.out.println("E-mail Address: " + owner.getMail());
 
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
     }
 
     @FXML void settingspage(ActionEvent event) throws Exception
@@ -305,6 +298,11 @@ public class OwnerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        namebox.setText(owner.getName());
+        nidbox.setText(String.valueOf(owner.getNID()));
+        phonebox.setText(String.valueOf(owner.getPhone()));
+        emailbox.setText(owner.getMail());
+
         genderbox.getItems().addAll(User.genderlist);
         genderbox.getSelectionModel().selectFirst();
         flatgenderbox.getItems().addAll(Flat.genderlist);
