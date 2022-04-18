@@ -30,7 +30,7 @@ public class StudentController implements Initializable
     @FXML private ComboBox<String> blgbox = new ComboBox<>(), genderbox = new ComboBox<>();
     @FXML private ImageView blgicon;
 
-    void init(Student p)
+    void init(Student p) throws Exception
     {
         student = p;
         if(student == null) System.exit(0);
@@ -45,7 +45,7 @@ public class StudentController implements Initializable
         stack.push("view");
     }
 
-    private void setBloodGroup()
+    private void setBloodGroup() throws Exception
     {
         for(int i=1; i<User.bloodglist.length; i++)
         {
@@ -60,9 +60,9 @@ public class StudentController implements Initializable
         blgLabel.setVisible(false);
     }
 
-    private void setFlat()
+    private void setFlat() throws Exception
     {
-        if(student.checkFlat()) flatbutton.setVisible(false);
+        if(student.getFlat() == null) flatbutton.setVisible(false);
     }
 
     @FXML void back(ActionEvent event) throws Exception
@@ -183,14 +183,14 @@ public class StudentController implements Initializable
             String _name = student.getName(), _email = student.getMail(), _bloodgroup = student.getBloodGroup();
             long _nid = student.getNID(), _phone = student.getPhone();
 
-            if(!student.updateName(namebox.getText()) || !student.updateNID(Long.parseLong(nidbox.getText())) || !student.updateEmail(emailbox.getText()) || !student.updatePhone(Long.parseLong(phonebox.getText())) || !student.updateBloodGroup(blgbox.getValue()))
+            /*if(!student.updateName(namebox.getText()) || !student.updateNID(Long.parseLong(nidbox.getText())) || !student.updateEmail(emailbox.getText()) || !student.updatePhone(Long.parseLong(phonebox.getText())) || !student.updateBloodGroup(blgbox.getValue()))
             {
                 student.updateName(_name);
                 student.updateNID(_nid);
                 student.updateEmail(_email);
                 student.updatePhone(_phone);
                 student.updateBloodGroup(_bloodgroup);
-            }
+            }*/
         }
 
         back(event);

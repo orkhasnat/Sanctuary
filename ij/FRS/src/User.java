@@ -4,11 +4,11 @@ abstract class User
 {
     protected String name, password, plc, email, bloodgroup;
     protected long nid, phone;
-    boolean gender;
+    String gender;
 
     static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}, genderlist={"Male", "Female"};
 
-    protected boolean updateName()
+    /*protected boolean updateName()
     {
         Scanner scan = new Scanner(System.in);
 
@@ -24,27 +24,25 @@ abstract class User
         name = temp;
 
         return true;
-    }
+    }*/
 
     protected boolean setGender(String temp)
     {
         switch (temp)
         {
             case "Male":
-                gender = true;
-                return true;
             case "Female":
-                gender = false;
+                gender = temp;
                 return true;
         }
 
         return false;
     }
 
-    abstract protected boolean setPassword(String pass, String _pass);
+    abstract protected void setPassword(String pass, String _pass) throws Exception;
     abstract protected boolean matchPassword(String pass);
 
-    protected boolean updatePhone()
+    /*protected boolean updatePhone()
     {
         Scanner scan = new Scanner(System.in);
         long temp;
@@ -129,7 +127,7 @@ abstract class User
         bloodgroup = bloodglist[choice];
 
         return  true;
-    }
+    }*/
 
     protected boolean updateBloodGroup(String temp)
     {
@@ -139,38 +137,15 @@ abstract class User
         return  true;
     }
 
-    abstract void display();
-    abstract void view();
-    abstract protected void edit();
-    abstract protected void delete();
+    /*abstract void display() throws Exception;
+    abstract void view() throws Exception;
+    abstract protected void edit();*/
+    abstract protected void delete() throws Exception;
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public String getPLC()
-    {
-        return plc;
-    }
-
-    public String getMail()
-    {
-        return email;
-    }
-
-    public String getBloodGroup()
-    {
-        return bloodgroup;
-    }
-
-    public long getNID()
-    {
-        return nid;
-    }
-
-    public long getPhone()
-    {
-        return phone;
-    }
+    abstract String getName() throws Exception;
+    abstract String getGender() throws Exception;
+    abstract String getBloodGroup() throws Exception;
+    abstract long getNID() throws Exception;
+    abstract long getPhone() throws Exception;
+    abstract String getMail() throws Exception;
 }

@@ -468,18 +468,23 @@ public class FlatController implements Initializable
         floorbox.getItems().addAll(Room.tileslist);
         stovebox.getItems().addAll(IntStream.of(IntStream.rangeClosed(0,5).toArray()).boxed().toArray(Integer[]::new));
 
-        locationbutton.setOnAction(new EventHandler<ActionEvent>()
-                           {
-                               @Override public void handle(ActionEvent e) {
-                                   try {
-                                       Desktop.getDesktop().browse(new URI(flat.getLocation()));
-                                   } catch (IOException e1) {
-                                       e1.printStackTrace();
-                                   } catch (URISyntaxException e1) {
-                                       e1.printStackTrace();
+        locationbutton.setOnAction(new EventHandler<ActionEvent>() {
+                                       @Override
+                                       public void handle(ActionEvent e) {
+                                           try {
+                                               Desktop.getDesktop().browse(new URI(flat.getLocation()));
+                                           } catch (IOException e1) {
+                                               e1.printStackTrace();
+                                           } catch (URISyntaxException e1) {
+                                               e1.printStackTrace();
+                                           } catch (Exception ex) {
+                                               ex.printStackTrace();
+                                               Alert alert = new Alert(Alert.AlertType.ERROR);
+                                               alert.setContentText(ex.getMessage());
+                                               alert.show();
+                                           }
+                                       }
                                    }
-                               }
-                           }
         );
     }
 }

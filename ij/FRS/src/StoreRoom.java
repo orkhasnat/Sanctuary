@@ -23,8 +23,7 @@ public class StoreRoom extends Room
 
 	StoreRoom(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 700000;
+		id = getnewID();
 		name = "Store Room";
 		updateName();
 		updateArea();

@@ -1,4 +1,3 @@
-import java.lang.Math;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.nio.charset.StandardCharsets;
@@ -14,12 +13,6 @@ public class Global
 	static HashMap<Long, Student> AllStudents = new HashMap<>();
 	static HashMap<Integer, Flat> AllFlats = new HashMap<>();
 	static HashMap<Integer, Room> AllRooms = new HashMap<>();
-
-	static int random(int min, int max)
-	{
-		max++;
-		return (int)Math.floor(Math.random()*(max-min)+min);
-	}
 
 	static String hash(String text) throws NoSuchAlgorithmException
 	{
@@ -43,32 +36,22 @@ public class Global
         return new String(hexChars);
     }
 
-	static boolean checkIdentifier(String str, String xtra_sym)
+	static void checkIdentifier(String str, String field) throws Exception
 	{
-		if(str.length() == 0) return false;
+		if(str.length() == 0) throw new Exception(field + " can't be empty!");
 
 		HashSet<Character> symbols = new HashSet<>();
 		for(char c: SYMBOLS) symbols.add(c);
 
-		char[] ch = xtra_sym.toCharArray();
-		for(char c: ch) symbols.add(c);
-
-		ch = str.toCharArray();
+		char[] ch = str.toCharArray();
 		for(char c: ch)
 		{
 			if(c >= 'a' && c <= 'z');
 			else if(c >= 'A' && c <= 'Z');
 			else if(c >= '0' && c <= '9');
 			else if(symbols.contains(c));
-			else return false;
+			else throw new Exception(field + " can only contain English letters(a-z, A-Z), numbers(0-9), or selected characters (_, #)!");
 		}
-
-		return true;
-	}
-
-	static boolean checkIdentifier(String str)
-	{
-		return checkIdentifier(str, "");
 	}
 
 	static void notify(String msg)

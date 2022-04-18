@@ -1,4 +1,3 @@
-import com.sun.javafx.menu.MenuItemBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -25,8 +23,7 @@ import java.util.stream.IntStream;
 
 public class OwnerController implements Initializable
 {
-    Owner owner = Owner.login("ork", "000000");
-    Flat.Base flatbase;
+    Owner owner;
 
     private Stage stage;
     private Scene scene;
@@ -44,21 +41,21 @@ public class OwnerController implements Initializable
     @FXML ImageView blgicon;
     @FXML Hyperlink locationbutton = new Hyperlink();
 
-    void init(Owner p)
+    void init(Owner p) throws Exception
     {
         owner = p;
         if(owner == null) System.exit(0);
 
         nameLabel.setText(nameLabel.getText()+p.getName());
 
-        for(Flat flat: owner.flats) menubutton.getItems().add(new MenuItem(flat.name));
+        for(Flat flat: owner.flats()) menubutton.getItems().add(new MenuItem(flat.getName()));
         setBloodGroup();
 
         stack.clear();
         stack.push("view");
     }
 
-    private void setBloodGroup()
+    private void setBloodGroup() throws Exception
     {
         for(int i=1; i<User.bloodglist.length; i++)
         {
@@ -174,29 +171,17 @@ public class OwnerController implements Initializable
     {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        flatbase.name = namebox.getText();
-        flatbase.gender = genderbox.getValue();
-        flatbase.x = Double.parseDouble(xbox.getText());
-        flatbase.y = Double.parseDouble(ybox.getText());
-        flatbase.level = levelbox.getValue();
-        flatbase.lift = liftbox.isSelected();
-        flatbase.generator = generatorbox.isSelected();
+        String name = namebox.getText(), gender = genderbox.getValue();
+        double x = Double.parseDouble(xbox.getText()), y = Double.parseDouble(ybox.getText());
+        int level = levelbox.getValue();
+        boolean lift = liftbox.isSelected(), generator = generatorbox.isSelected();
         Flat f;
 
         try
         {
             owner = Owner.login("ork", "000000");
-            f = new Flat(owner.username, flatbase);
-            owner.flats.add(f);
-            Global.AllFlats.put(f.id, f);
-        }
-        catch (Exception e)
-        {
-            f = null;
-        }
+            f = new Flat(owner.username, name, gender, x, y, level, lift, generator);
 
-        if(f != null)
-        {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Flat/AddRoom.fxml"));
             root = loader.load();
             FlatController controller = loader.getController();
@@ -207,7 +192,12 @@ public class OwnerController implements Initializable
             stage.setScene(scene);
             stage.show();
         }
-        else Global.notify("TASK FAILED!");
+        catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
     }
 
     public void passpage(ActionEvent event) throws Exception
@@ -247,14 +237,14 @@ public class OwnerController implements Initializable
             String _name = owner.getName(), _email = owner.getMail(), _bloodgroup = owner.getBloodGroup();
             long _nid = owner.getNID(), _phone = owner.getPhone();
 
-            if(!owner.updateName(namebox.getText()) || !owner.updateNID(Long.parseLong(nidbox.getText())) || !owner.updateEmail(emailbox.getText()) || !owner.updatePhone(Long.parseLong(phonebox.getText())) || !owner.updateBloodGroup(blgbox.getValue()))
+            /*if(!owner.updateName(namebox.getText()) || !owner.updateNID(Long.parseLong(nidbox.getText())) || !owner.updateEmail(emailbox.getText()) || !owner.updatePhone(Long.parseLong(phonebox.getText())) || !owner.updateBloodGroup(blgbox.getValue()))
             {
                 owner.updateName(_name);
                 owner.updateNID(_nid);
                 owner.updateEmail(_email);
                 owner.updatePhone(_phone);
                 owner.updateBloodGroup(_bloodgroup);
-            }
+            }*/
         }
 
         back(event);

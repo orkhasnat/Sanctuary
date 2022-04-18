@@ -28,8 +28,7 @@ public class Bedroom extends Room
 
 	Bedroom(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 100000;
+		id = getnewID();
 		name = "Bedroom";
 		updateName();
 		updateArea();

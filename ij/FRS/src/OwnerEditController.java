@@ -25,8 +25,7 @@ import java.util.stream.IntStream;
 
 public class OwnerEditController implements Initializable
 {
-    Owner owner = Owner.login("ork", "000000");
-    Flat.Base flatbase;
+    Owner owner;
 
     private Stage stage;
     private Scene scene;
@@ -44,33 +43,16 @@ public class OwnerEditController implements Initializable
     @FXML ImageView blgicon;
     @FXML Hyperlink locationbutton = new Hyperlink();
 
-    void init(Owner p)
+    void init(Owner p) throws Exception
     {
         owner = p;
         if(owner == null) System.exit(0);
 
-        /*nameLabel.setText(nameLabel.getText()+p.getName());
-
-        for(Flat flat: owner.flats) menubutton.getItems().add(new MenuItem(flat.name));
-        setBloodGroup();
-
-        stack.clear();
-        stack.push("view");*/
-    }
-
-    private void setBloodGroup()
-    {
-        for(int i=1; i<User.bloodglist.length; i++)
-        {
-            if (owner.getBloodGroup().equals(User.bloodglist[i]))
-            {
-                blgLabel.setText(User.bloodglist[i]);
-                return;
-            }
-        }
-
-        blgicon.setVisible(false);
-        blgLabel.setVisible(false);
+        namebox.setText(owner.getName());
+        nidbox.setText(String.valueOf(owner.getNID()));
+        phonebox.setText(String.valueOf(owner.getPhone()));
+        emailbox.setText(owner.getMail());
+        blgbox.setValue(owner.getBloodGroup());
     }
 
     @FXML void back(ActionEvent event) throws Exception
@@ -117,8 +99,8 @@ public class OwnerEditController implements Initializable
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        namebox.setText(owner.getName());
-        /*nidbox.setText(String.valueOf(owner.getNID()));
+        /*namebox.setText(owner.getName());
+        nidbox.setText(String.valueOf(owner.getNID()));
         phonebox.setText(String.valueOf(owner.getPhone()));
         emailbox.setText(owner.getMail());*/
 
@@ -163,46 +145,6 @@ public class OwnerEditController implements Initializable
         stage.show();
     }
 
-    @FXML void addflat(ActionEvent event) throws Exception
-    {
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        flatbase.name = namebox.getText();
-        flatbase.gender = genderbox.getValue();
-        flatbase.x = Double.parseDouble(xbox.getText());
-        flatbase.y = Double.parseDouble(ybox.getText());
-        flatbase.level = levelbox.getValue();
-        flatbase.lift = liftbox.isSelected();
-        flatbase.generator = generatorbox.isSelected();
-        Flat f;
-
-        try
-        {
-            owner = Owner.login("ork", "000000");
-            f = new Flat(owner.username, flatbase);
-            owner.flats.add(f);
-            Global.AllFlats.put(f.id, f);
-        }
-        catch (Exception e)
-        {
-            f = null;
-        }
-
-        if(f != null)
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Flat/AddRoom.fxml"));
-            root = loader.load();
-            FlatController controller = loader.getController();
-            controller.init(f);
-            controller.stack.push("addroom");
-
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else Global.notify("TASK FAILED!");
-    }
-
     public void passpage(ActionEvent event) throws Exception
     {
         root = FXMLLoader.load(getClass().getResource("fxml/Owner/Password.fxml"));
@@ -240,14 +182,14 @@ public class OwnerEditController implements Initializable
             String _name = owner.getName(), _email = owner.getMail(), _bloodgroup = owner.getBloodGroup();
             long _nid = owner.getNID(), _phone = owner.getPhone();
 
-            if(!owner.updateName(namebox.getText()) || !owner.updateNID(Long.parseLong(nidbox.getText())) || !owner.updateEmail(emailbox.getText()) || !owner.updatePhone(Long.parseLong(phonebox.getText())) || !owner.updateBloodGroup(blgbox.getValue()))
+            /*if(!owner.updateName(namebox.getText()) || !owner.updateNID(Long.parseLong(nidbox.getText())) || !owner.updateEmail(emailbox.getText()) || !owner.updatePhone(Long.parseLong(phonebox.getText())) || !owner.updateBloodGroup(blgbox.getValue()))
             {
                 owner.updateName(_name);
                 owner.updateNID(_nid);
                 owner.updateEmail(_email);
                 owner.updatePhone(_phone);
                 owner.updateBloodGroup(_bloodgroup);
-            }
+            }*/
         }
 
         back(event);
@@ -298,21 +240,16 @@ public class OwnerEditController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        namebox.setText(owner.getName());
-        nidbox.setText(String.valueOf(owner.getNID()));
-        phonebox.setText(String.valueOf(owner.getPhone()));
-        emailbox.setText(owner.getMail());
-
         genderbox.getItems().addAll(User.genderlist);
         genderbox.getSelectionModel().selectFirst();
         flatgenderbox.getItems().addAll(Flat.genderlist);
         flatgenderbox.getSelectionModel().selectFirst();
         blgbox.getItems().addAll(User.bloodglist);
-        levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1,25).toArray()).boxed().toArray(Integer[]::new));
+        levelbox.getItems().addAll(IntStream.of(IntStream.rangeClosed(1, 25).toArray()).boxed().toArray(Integer[]::new));
 
-        locationbutton.setOnAction(new EventHandler<ActionEvent>()
-                                   {
-                                       @Override public void handle(ActionEvent e) {
+        locationbutton.setOnAction(new EventHandler<ActionEvent>() {
+                                       @Override
+                                       public void handle(ActionEvent e) {
                                            try {
                                                Desktop.getDesktop().browse(new URI("https://www.google.com/maps"));
                                            } catch (IOException e1) {

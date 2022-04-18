@@ -23,8 +23,7 @@ public class Balcony extends Room
 
 	Balcony(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 600000;
+		id = getnewID();
 		name = "Balcony";
 		updateName();
 		updateArea();

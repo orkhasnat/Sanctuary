@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -92,10 +93,9 @@ public class MainController implements Initializable
         long user = Long.parseLong(userbox.getText());
         String pass = passbox.getText();
 
-        Student p = Student.login(user, pass);
-
-        if(p != null)
+        try
         {
+            Student p = Student.login(user, pass);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Student/View.fxml"));
             root = loader.load();
             StudentController controller = loader.getController();
@@ -105,7 +105,13 @@ public class MainController implements Initializable
             stage.setScene(scene);
             stage.show();
         }
-        else Global.notify("LOG IN FAILED!");
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
     }
 
     @FXML void ownerlogin(ActionEvent event) throws Exception
@@ -115,10 +121,10 @@ public class MainController implements Initializable
         String user = userbox.getText();
         String pass = passbox.getText();
 
-        Owner p = Owner.login(user, pass);
-
-        if(p != null)
+        try
         {
+            Owner p = Owner.login(user, pass);
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/View.fxml"));
             root = loader.load();
             OwnerController controller = loader.getController();
@@ -128,7 +134,13 @@ public class MainController implements Initializable
             stage.setScene(scene);
             stage.show();
         }
-        else Global.notify("LOG IN FAILED!");
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
     }
 
     @FXML void studentreg(ActionEvent event) throws Exception
@@ -150,15 +162,7 @@ public class MainController implements Initializable
         try
         {
             p = new Student(user, name, pass, _pass, gender, nid, phone, email, bloodgroup);
-            Global.AllStudents.put(p.id, p);
-        }
-        catch (Exception e)
-        {
-            p = null;
-        }
 
-        if(p != null)
-        {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Student/View.fxml"));
             root = loader.load();
 
@@ -168,6 +172,13 @@ public class MainController implements Initializable
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
+            alert.show();
         }
     }
 
@@ -190,15 +201,7 @@ public class MainController implements Initializable
         try
         {
             p = new Owner(user, name, pass, _pass, gender, nid, phone, email, bloodgroup);
-            Global.AllOwners.put(p.username, p);
-        }
-        catch (Exception e)
-        {
-            p = null;
-        }
 
-        if(p != null)
-        {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/View.fxml"));
             root = loader.load();
 
@@ -208,6 +211,13 @@ public class MainController implements Initializable
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
+            alert.show();
         }
     }
 

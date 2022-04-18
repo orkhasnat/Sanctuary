@@ -40,15 +40,16 @@
 
 #active, #inactive{
     -fx-font-size: 18px;
-    -fx-text-fill: 'white';
 }
 
 #active{
     -fx-background-color: '#FFAA33';
+    -fx-text-fill: 'black';
 }
 
 #inactive{
     -fx-background-color: '#AAAAAA';
+    -fx-text-fill: 'white';
 }
 
 #back{

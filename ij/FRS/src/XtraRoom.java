@@ -23,8 +23,7 @@ public class XtraRoom extends Room
 
 	XtraRoom(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 800000;
+		id = getnewID();
 		name = "Extra Room";
 		updateName();
 		updateArea();

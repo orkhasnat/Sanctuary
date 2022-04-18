@@ -33,8 +33,7 @@ public class Kitchen extends Room
 
 	Kitchen(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 400000;
+		id = getnewID();
 		this.name = "Kitchen";
 		updateName();
 		updateArea();

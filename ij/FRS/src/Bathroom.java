@@ -33,8 +33,7 @@ public class Bathroom extends Room
 
 	Bathroom(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 500000;
+		id = getnewID();
 		this.name = "Bathroom";
 		updateName();
 		updateArea();

@@ -1,3 +1,5 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -13,11 +15,11 @@ public class Flat
 	}
 
 	int id;
-	String name, gender;
+	private String name, gender;
 	private int level;
 
 	private Location location = new Location(23.94538493888004, 90.38274718424901);
-	private boolean lift = false, generator = false, vacant = true;
+	private boolean lift = false, generator = false;
 
 	ArrayList<Room> rooms = new ArrayList<>();
 	int rent;
@@ -28,66 +30,68 @@ public class Flat
 
 	double[] value = new double[Global.FACTORS];
 
-	Flat(String owner, Base base)
+	Flat(String owner, String _name, String _gender, double x, double y, int _level, boolean _lift, boolean _generator) throws Exception
 	{
-		id = Global.random(0, 99999);
-		id += 1000000;
+		id = getnewID();
 
-		updateName(base.name);
-		updateLocation(base.x, base.y);
-		updateLevel(base.level);
-		updateGender(base.gender);
+		name = _name;
+		updateGender(_gender);
+		location = new Location(x, y);
+		level = _level;
 
-		lift = base.lift;
-		generator = base.generator;
+		lift = _lift;
+		generator = _generator;
+
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"FlatID", "Name", "Gender", "X", "Y", "Level", "Owner", "Lift", "Generator"};
+			Object[] params = {id, name, gender, location.x, location.y, level, owner, lift, generator};
+			database.insert("flat", columns, params);
+			System.out.println("REGISTRATION SUCCESSFUL!");
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+
+		// INSERT INTO Flat (FlatID, Name, Gender, X, Y, Level, Owner, Lift, Generator)
+		// VALUES (id, name, gender, location.x, location.y, level, owner, lift, generator);
 	}
 
-	Flat(String owner)
+	Flat(int _id, String _name, String _gender, double x, double y, int _level, boolean _lift, boolean _generator)
 	{
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("Flat Information");
-		System.out.println("---------------");
-
-		id = getnewID();
-		updateName();
-		updateLocation();
-		updateLevel();
-		updateGender("");
-
-		updateLiftInfo();
-		updateGeneratorInfo();
-
-        // INSERT INTO Flat (FlatID, Name, X, Y, Level, Owner, Lift, Generator)
-		// VALUES (id, name, location.x, location.y, level, owner, lift, generator);
-
-		int choice;
-		do
-		{
-			System.out.println();
-			System.out.println("1. Add a Room.");
-			System.out.println("2. Done.");
-			System.out.print("Enter Choice: ");
-			choice = scan.nextInt();
-			choice %= 2;
-
-			if(choice == 1) addRoom();
-		} while(choice != 0);
-
-		setRent();
-
-		// INSERT INTO Rent_Table (FlatID, Value, Rent)
-		// VALUES (id, value, rent);
+		id = _id;
+		name = _name;
+		gender = _gender;
+		location = new Location(x, y);
+		level = _level;
+		lift = _lift;
+		generator = _generator;
 	}
 
 	private int getnewID()
 	{
-		int id = 1000000;
-		while(Global.AllFlats.containsKey(id)) id++;
-		return id;
+		int flatid = 1000000;
+
+		try
+		{
+			while(true)
+			{
+				Flat.open(flatid);
+				flatid++;
+			}
+		}
+		catch (Exception e)
+		{
+			if(e.getMessage().equals("FLAT NOT FOUND IN THE DATABASE!")) return flatid;
+		}
+
+		return flatid;
 	}
 
-	private boolean updateName()
+	/*private boolean updateName()
 	{
 		Scanner scan = new Scanner(System.in);
 
@@ -138,20 +142,15 @@ public class Flat
 		level = temp;
 
 		return true;
-	}
+	}*/
 
 	private boolean updateGender(String temp)
 	{
-		switch (temp)
+		switch(temp)
 		{
 			case "Male":
-				gender = temp;
-				return true;
 			case "Female":
-				gender = temp;
-				return true;
-			case "Not Determined":
-			case "":
+			case "Any":
 				gender = temp;
 				return true;
 		}
@@ -159,7 +158,7 @@ public class Flat
 		return false;
 	}
 
-	private boolean updateLiftInfo()
+	/*private boolean updateLiftInfo()
 	{
 		Scanner scan = new Scanner(System.in);
 		int temp;
@@ -336,7 +335,7 @@ public class Flat
 		choice %= rooms.size()+1;
 
 		if(choice != 0) rooms.get(choice-1).view();
-	}
+	}*/
 
 	private boolean setRent()
 	{
@@ -379,9 +378,12 @@ public class Flat
 		System.out.println();
 
 		return true;
+
+		// INSERT INTO Rent_Table (FlatID, Value, Rent)
+		// VALUES (id, value, rent);
 	}
 
-	private void info()
+	/*private void info()
 	{
 		System.out.println();
 		System.out.println("Name: " + name);
@@ -528,16 +530,290 @@ public class Flat
 			// SET Rent = rent
 			// WHERE FlatID = id;
 		}
-	}
+	}*/
 
-	private void delete()
+	private void delete() throws Exception
 	{
-		Global.AllFlats.remove(id);
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			Object[] params = {id};
+			database.delete("flat", "FlatID = ?", params);
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
 
 		// DELETE FROM Flat
 		// WHERE FlatID = id;
+	}
 
-		name = "Deleted Flat";
+	static Flat open(int id) throws Exception
+	{
+		if(id == 0) return null;
+
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"FlatID", "Name", "Gender", "X", "Y", "Level", "Owner", "Lift", "Generator"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) throw new Exception("FLAT NOT FOUND IN THE DATABASE!");
+
+			rs.next();
+			int _id = rs.getInt("FlatID"), _level = rs.getInt("Level");
+			String _name = rs.getString("Name"), _gender = rs.getString("Gender");
+			double _x = rs.getDouble("X"), _y = rs.getDouble("Y");
+			boolean _lift = rs.getBoolean("Lift"), _generator = rs.getBoolean("Generator");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("FLAT NOT FOUND IN THE DATABASE!");
+
+			return new Flat(_id, _name, _gender, _x, _y, _level, _lift, _generator);
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	String getName() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Name"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return null;
+
+			rs.next();
+			name = rs.getString("Name");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return name;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	String getGender() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Gender"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return null;
+
+			rs.next();
+			gender = rs.getString("Gender");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return gender;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	int getLevel() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Level"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return -1;
+
+			rs.next();
+			level = rs.getInt("Level");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return level;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	boolean getLift() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Lift"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return false;
+
+			rs.next();
+			lift = rs.getBoolean("Lift");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return lift;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	boolean getGenerator() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Generator"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return false;
+
+			rs.next();
+			generator = rs.getBoolean("Generator");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return generator;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	String getLocation() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"X", "Y"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return "https://www.google.com/maps";
+
+			rs.next();
+			double x = rs.getDouble("X");
+			double y = rs.getDouble("Y");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return new Location(x, y).getLink();
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	int getStudent() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"StudentID"};
+			Object[] params = {id};
+			ResultSet rs = database.select("student", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return -1;
+
+			rs.next();
+			int studentID = rs.getInt("StudentID");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return studentID;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	String getOwner() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Owner"};
+			Object[] params = {id};
+			ResultSet rs = database.select("flat", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return null;
+
+			rs.next();
+			String username = rs.getString("Owner");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return username;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	int getRent() throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Rent"};
+			Object[] params = {id};
+			ResultSet rs = database.select("rent_table", columns, "FlatID = ?", params);
+
+			if(!rs.isBeforeFirst()) return -1;
+
+			rs.next();
+			rent = rs.getInt("Rent");
+
+			rs.next();
+			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
+
+			return rent;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	private void init()
@@ -553,19 +829,8 @@ public class Flat
 
 	}
 
-	public String getLocation()
-	{
-		return location.getLink();
-	}
-
 	void findOutliers()
 	{
 
-	}
-
-	static Flat open(int id)
-	{
-		if(Global.AllFlats.containsKey(id)) return Global.AllFlats.get(id);
-		else return null;
 	}
 }

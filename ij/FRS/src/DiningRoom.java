@@ -23,8 +23,7 @@ public class DiningRoom extends Room
 
 	DiningRoom(int FlatID)
 	{
-		id = Global.random(0, 99999);
-		id += 200000;
+		id = getnewID();
 		name = "Dining Room";
 		updateName();
 		updateArea();

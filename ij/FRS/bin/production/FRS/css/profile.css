@@ -17,8 +17,8 @@
 }
 
 .button{
-    -fx-background-color: '#E64A19';
-    -fx-text-fill: 'white';
+    -fx-background-color: '#FAFAD2';
+    -fx-text-fill: 'black';
     -fx-text-alignment: center;
     -fx-font-family: 'Raleway', sans-serif;
     -fx-font-size: 20px;

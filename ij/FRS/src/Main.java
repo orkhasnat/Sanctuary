@@ -22,22 +22,10 @@ public class Main extends Application
 
     public static void main(String[] args)
     {
-        try
-        {
-            Student p = new Student(190041129, "Md. Jubayer Islam", "000000", "000000", "Male", 0, 1829977462, "jubayerislam@iut-dhaka.edu", "AB+");
-            Global.AllStudents.put(p.id, p);
-
-            Owner q = new Owner("ork", "Ork the Bariola", "000000", "000000", "Male", 0, 1731969827, "tasnimulhasnat@iut-dhaka.edu", "O-");
-            Global.AllOwners.put(q.username, q);
-        }
-        catch (Exception e)
-        {
-            System.exit(0);
-        }
         launch(args);
     }
 
-    static void search()
+    /*static void search()
     {
         Scanner scan = new Scanner(System.in);
         int choice;
@@ -85,5 +73,5 @@ public class Main extends Application
             }
             else Global.notify("FLAT NOT FOUND!");
         }
-    }
+    }*/
 }
