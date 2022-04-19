@@ -96,6 +96,9 @@ public class MainController implements Initializable
         try
         {
             Student p = Student.login(user, pass);
+            Global.id = user;
+            Global.pass = pass;
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Student/View.fxml"));
             root = loader.load();
             StudentController controller = loader.getController();
@@ -124,6 +127,8 @@ public class MainController implements Initializable
         try
         {
             Owner p = Owner.login(user, pass);
+            Global.user = user;
+            Global.pass = pass;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/View.fxml"));
             root = loader.load();
@@ -162,6 +167,8 @@ public class MainController implements Initializable
         try
         {
             p = new Student(user, name, pass, _pass, gender, nid, phone, email, bloodgroup);
+            Global.id = user;
+            Global.pass = pass;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Student/View.fxml"));
             root = loader.load();
@@ -200,7 +207,9 @@ public class MainController implements Initializable
 
         try
         {
-            p = new Owner(user, name, pass, _pass, gender, nid, phone, email, bloodgroup);
+            p = new Owner(user, name, pass, _pass, nid, phone, email);
+            Global.user = user;
+            Global.pass = pass;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Owner/View.fxml"));
             root = loader.load();

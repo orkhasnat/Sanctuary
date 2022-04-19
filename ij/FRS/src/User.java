@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 abstract class User
 {
-    protected String name, password, plc, email, bloodgroup;
+    protected String name, password, plc, email;
     protected long nid, phone;
-    String gender;
 
     static String[] bloodglist={"I don't know", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}, genderlist={"Male", "Female"};
 
@@ -26,21 +25,9 @@ abstract class User
         return true;
     }*/
 
-    protected boolean setGender(String temp)
-    {
-        switch (temp)
-        {
-            case "Male":
-            case "Female":
-                gender = temp;
-                return true;
-        }
-
-        return false;
-    }
-
     abstract protected void setPassword(String pass, String _pass) throws Exception;
     abstract protected boolean matchPassword(String pass);
+    abstract void changePassword(String pass, String _pass) throws Exception;
 
     /*protected boolean updatePhone()
     {
@@ -129,22 +116,12 @@ abstract class User
         return  true;
     }*/
 
-    protected boolean updateBloodGroup(String temp)
-    {
-        if(temp==null) temp = bloodglist[0];
-        bloodgroup = temp;
-
-        return  true;
-    }
-
     /*abstract void display() throws Exception;
     abstract void view() throws Exception;
     abstract protected void edit();*/
     abstract protected void delete() throws Exception;
 
     abstract String getName() throws Exception;
-    abstract String getGender() throws Exception;
-    abstract String getBloodGroup() throws Exception;
     abstract long getNID() throws Exception;
     abstract long getPhone() throws Exception;
     abstract String getMail() throws Exception;

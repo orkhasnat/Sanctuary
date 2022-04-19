@@ -8,10 +8,10 @@
 }
 
 #homeblock{
-    -fx-background-color: '#AC00C1';
+    -fx-background-color: '#FFAA33';
     -fx-border-color: 'BLACK';
     -fx-border-width: 1px;
-    -fx-fill: '#AC00C1';
+    -fx-fill: '#FFAA33';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";
 }
@@ -33,20 +33,16 @@
     -fx-text-alignment: "RIGHT";
 }
 
-#menubutton, #roomlist{
-    -fx-background-color: '#E64A19';
-}
-
 #rentbutton{
     -fx-background-color: 'yellow';
     -fx-text-fill: 'red';
 }
 
 #formsquare{
-    -fx-background-color: '00ACC1';
+    -fx-background-color: '#6699CC';
     -fx-border-color: 'BLACK';
     -fx-border-width: 1px;
-    -fx-fill: '#00ACC1';
+    -fx-fill: '#6699CC';
     -fx-stroke: "BLACK";
     -fx-strokeType: "INSIDE";
 }
@@ -58,7 +54,7 @@
 .label{
     -fx-font-size: 20px;
     -fx-font-family: 'Raleway', sans-serif;
-    -fx-text-fill: 'white';
+    -fx-text-fill: 'black';
 }
 
 .hyperlink{

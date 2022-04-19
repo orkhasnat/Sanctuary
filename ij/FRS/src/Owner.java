@@ -11,7 +11,7 @@ public class Owner extends User
 {
 	String username;
 
-	Owner(String user, String _name, String pass, String _pass, String _gender, long _nid, long _phone, String _email, String _blg) throws Exception
+	Owner(String user, String _name, String pass, String _pass, long _nid, long _phone, String _email) throws Exception
 	{
 		Global.checkIdentifier(user, "Username");
 		setPassword(pass, _pass);
@@ -20,14 +20,11 @@ public class Owner extends User
 		phone = _phone;
 		email = _email;
 
-		if(!setGender(_gender) || !updateBloodGroup(_blg))
-			throw new Exception("Error!");
-
 		try
 		{
 			Database database = new Database("sanctuary", "root", "");
-			String[] columns = {"Name", "Username", "Password", "PasswordLastChanged", "Gender", "NID", "Phone", "Email", "BloodGroup"};
-			Object[] params = {name, username, password, plc, gender, nid, phone, email, bloodgroup};
+			String[] columns = {"Name", "Username", "Password", "PasswordLastChanged", "NID", "Phone", "Email"};
+			Object[] params = {name, username, password, plc, nid, phone, email};
 			database.insert("owner", columns, params);
 			System.out.println("REGISTRATION SUCCESSFUL!");
 		}
@@ -41,17 +38,15 @@ public class Owner extends User
 		// VALUES (name, username, password, plc, nid, gender, phone, email);
 	}
 
-	Owner(String user, String _name, String pass, String _gender, long _nid, long _phone, String _email, String _blg, String _plc) throws Exception
+	Owner(String user, String _name, String pass, long _nid, long _phone, String _email, String _plc) throws Exception
 	{
 		username = user;
 		password = pass;
 		plc = _plc;
 		name = _name;
-		gender = _gender;
 		nid = _nid;
 		phone = _phone;
 		email = _email;
-		bloodgroup = _blg;
 	}
 
 	protected void setPassword(String pass, String _pass) throws Exception
@@ -73,6 +68,40 @@ public class Owner extends User
 		catch(Exception e) { pass = ""; }
 
 		return password.equals(pass);
+	}
+
+	void changePassword(String pass, String _pass) throws Exception
+	{
+		setPassword(pass, _pass);
+
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Password", "PasswordLastChanged"};
+			Object[] params = {password, plc, username};
+			database.update("owner", columns, "Username = ?", params);
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	void update(long phone, String email) throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Phone", "Email"};
+			Object[] params = {phone, email, username};
+			database.update("owner", columns, "Username = ?", params);
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	/*private void flatlist() throws Exception
@@ -297,20 +326,20 @@ public class Owner extends User
 		try
 		{
 			Database database = new Database("sanctuary", "root", "");
-			String[] columns = {"Name", "Username", "Password", "PasswordLastChanged", "Gender", "NID", "Phone", "Email", "BloodGroup"};
+			String[] columns = {"Name", "Username", "Password", "PasswordLastChanged", "NID", "Phone", "Email"};
 			Object[] params = {user};
 			ResultSet rs = database.select("owner", columns, "Username = ?", params);
 
 			if(!rs.isBeforeFirst()) throw new Exception("USER NOT FOUND IN THE DATABASE!");
 
 			rs.next();
-			String _name = rs.getString("Name"), _user = rs.getString("Username"), _pass = rs.getString("Password"), _plc = rs.getString("PasswordLastChanged"), _gender = rs.getString("Gender"), _email = rs.getString("Email"), _blg = rs.getString("BloodGroup");
+			String _name = rs.getString("Name"), _user = rs.getString("Username"), _pass = rs.getString("Password"), _plc = rs.getString("PasswordLastChanged"),  _email = rs.getString("Email");
 			long _nid = rs.getLong("NID"), _phone = rs.getLong("Phone");
 
 			rs.next();
 			if(!rs.isAfterLast()) throw new Exception("USER NOT FOUND IN THE DATABASE!");
 
-			q = new Owner(_user, _name, _pass, _gender, _nid, _phone, _email, _blg, _plc);
+			q = new Owner(_user, _name, _pass, _nid, _phone, _email, _plc);
 			if(q.matchPassword(pass)) p = q;
 			else throw new Exception("WRONG PASSWORD!");
 
@@ -349,32 +378,6 @@ public class Owner extends User
 		}
 	}
 
-	String getGender() throws Exception
-	{
-		try
-		{
-			Database database = new Database("sanctuary", "root", "");
-			String[] columns = {"Gender"};
-			Object[] params = {username};
-			ResultSet rs = database.select("owner", columns, "Username = ?", params);
-
-			if(!rs.isBeforeFirst()) return null;
-
-			rs.next();
-			gender = rs.getString("Gender");
-
-			rs.next();
-			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
-
-			return gender;
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
 	String getMail() throws Exception
 	{
 		try
@@ -393,32 +396,6 @@ public class Owner extends User
 			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
 
 			return email;
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	String getBloodGroup() throws Exception
-	{
-		try
-		{
-			Database database = new Database("sanctuary", "root", "");
-			String[] columns = {"BloodGroup"};
-			Object[] params = {username};
-			ResultSet rs = database.select("owner", columns, "Username = ?", params);
-
-			if(!rs.isBeforeFirst()) return null;
-
-			rs.next();
-			bloodgroup = rs.getString("BloodGroup");
-
-			rs.next();
-			if(!rs.isAfterLast()) throw new Exception("DATABASE ERROR!");
-
-			return bloodgroup;
 		}
 		catch (ClassNotFoundException e)
 		{

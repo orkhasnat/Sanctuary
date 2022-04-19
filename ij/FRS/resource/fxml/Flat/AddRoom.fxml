@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlatFormController">
     <children>
-        <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#view" text="Done" />
+        <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Done" />
         <VBox layoutX="190.0" layoutY="120.0">
             <children>
                 <Label fx:id="headerlabel" alignment="CENTER" prefHeight="60.0" prefWidth="900.0" text="Add Room" />

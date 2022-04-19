@@ -207,7 +207,7 @@ public class StudentController implements Initializable
             pass = passbox.getText();
             _pass = _passbox.getText();
 
-            student.setPassword(pass, _pass);
+            student.changePassword(pass, _pass);
         }
 
         back(event);

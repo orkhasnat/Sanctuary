@@ -7,6 +7,7 @@ import java.sql.*;
 public class Student extends User
 {
 	long id;
+	private String bloodgroup, gender;
 
 	Student(long user, String _name, String pass, String _pass, String _gender, long _nid, long _phone, String _email, String _blg) throws Exception
 	{
@@ -70,6 +71,61 @@ public class Student extends User
 		catch(Exception e) { pass = ""; }
 
 		return password.equals(pass);
+	}
+
+	void changePassword(String pass, String _pass) throws Exception
+	{
+		setPassword(pass, _pass);
+
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Password", "PasswordLastChanged"};
+			Object[] params = {password, plc, id};
+			database.update("student", columns, "StudentID = ?", params);
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	void update(long phone, String email, String bloodgroup) throws Exception
+	{
+		try
+		{
+			Database database = new Database("sanctuary", "root", "");
+			String[] columns = {"Phone", "Email", "BloodGroup"};
+			Object[] params = {phone, email, bloodgroup, id};
+			database.update("student", columns, "StudentID = ?", params);
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	private boolean updateBloodGroup(String temp)
+	{
+		if(temp==null) temp = bloodglist[0];
+		bloodgroup = temp;
+
+		return  true;
+	}
+
+	protected boolean setGender(String temp)
+	{
+		switch (temp)
+		{
+			case "Male":
+			case "Female":
+				gender = temp;
+				return true;
+		}
+
+		return false;
 	}
 
 	/*void display() throws Exception

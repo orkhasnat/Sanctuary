@@ -5,7 +5,7 @@
 
 .root{
     -fx-background-color: '#28252E';
-    -fx-background-image: url('../img/cottage.jpg');
+    //-fx-background-image: url('../img/hom.png');
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
     -fx-background-position: left;

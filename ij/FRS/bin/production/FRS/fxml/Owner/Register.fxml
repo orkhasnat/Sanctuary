@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#ownerhome" text="Back" />
         <VBox fx:id="formsquare" layoutX="1020.0" layoutY="120.0" prefWidth="200.0" spacing="25.0">
@@ -34,7 +34,7 @@
                     <children>
                         <StackPane>
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0" />
                                 <Label fx:id="880box" prefHeight="25.0" prefWidth="30.0" text="+880" />
                             </children>
                         </StackPane>

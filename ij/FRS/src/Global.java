@@ -9,6 +9,9 @@ public class Global
 	static final int FACTORS = 10;
 	static final char[] SYMBOLS = ("_#").toCharArray();
 
+	static String user, pass;
+	static long id;
+
 	static HashMap<String, Owner> AllOwners = new HashMap<>();
 	static HashMap<Long, Student> AllStudents = new HashMap<>();
 	static HashMap<Integer, Flat> AllFlats = new HashMap<>();

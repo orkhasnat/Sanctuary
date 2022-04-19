@@ -12,18 +12,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerFormController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
         <VBox fx:id="formsquare" layoutX="1020.0" layoutY="200.0" prefWidth="200.0" spacing="25.0">
             <children>
-                <TextField fx:id="namebox" prefHeight="25.0" prefWidth="160.0" promptText="Name" />
-                <TextField fx:id="nidbox" prefHeight="25.0" prefWidth="160.0" promptText="NID Card Number" />
                 <HBox prefWidth="160.0">
                     <children>
                         <StackPane>
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0" />
                                 <Label fx:id="880box" prefHeight="25.0" prefWidth="30.0" text="+880" />
                             </children>
                         </StackPane>
@@ -31,18 +29,18 @@
                     </children>
                 </HBox>
                 <TextField fx:id="emailbox" prefHeight="25.0" prefWidth="160.0" promptText="E-mail Address" />
-                <HBox>
-                    <children>
-                        <Label fx:id="blgtitlelabel" prefHeight="25.0" prefWidth="75.0" text="Blood Group: " textAlignment="CENTER" />
-                        <ComboBox fx:id="blgbox" prefHeight="25.0" prefWidth="85.0" visibleRowCount="5" />
-                    </children>
-                </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="blgtitlelabel" prefHeight="25.0" prefWidth="75.0" text="Blood Group: " textAlignment="CENTER" />
+                  <ComboBox fx:id="blgbox" prefHeight="25.0" prefWidth="85.0" visibleRowCount="5" />
+               </children>
+            </HBox>
                 <PasswordField fx:id="passbox" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
                 <Button fx:id="formsubmit" mnemonicParsing="false" onAction="#edit" prefHeight="56.0" prefWidth="160.0" text="Confirm" textAlignment="CENTER" />
             </children>
-         <padding>
-            <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
-         </padding>
+            <padding>
+                <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+            </padding>
         </VBox>
     </children>
 </AnchorPane>

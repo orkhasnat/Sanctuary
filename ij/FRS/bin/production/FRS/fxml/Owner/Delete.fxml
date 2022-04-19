@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerFormController">
     <children>
         <Button fx:id="back" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
         <Rectangle fx:id="formsquare" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="1000.0" layoutY="480.0" stroke="BLACK" strokeType="INSIDE" width="240.0" />
+        <PasswordField fx:id="passbox" layoutX="1040.0" layoutY="500.0" prefWidth="160.0" promptText="Password" />
         <Button fx:id="formsubmit" layoutX="1010.0" layoutY="550.0" mnemonicParsing="false" onAction="#delete" prefHeight="56.0" prefWidth="220.0" text="Delete Account" textAlignment="CENTER" />
-        <PasswordField layoutX="1040.0" layoutY="500.0" prefWidth="160.0" promptText="Password" />
     </children>
 </AnchorPane>

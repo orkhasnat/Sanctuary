@@ -4,45 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OwnerController">
     <children>
-        <Rectangle fx:id="homeblock" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="350.0" layoutX="61.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+        <Rectangle fx:id="homeblock" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="350.0" layoutX="361.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
         <HBox layoutX="1000.0" layoutY="40.0" spacing="20.0">
             <children>
-                <MenuButton fx:id="menubutton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="My Flats">
+                <MenuButton fx:id="flatlist" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="My Flats">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#newflatpage" text="Add New" />
+                        <MenuItem fx:id="addflatbutton" mnemonicParsing="false" text="Add New" />
                     </items>
                 </MenuButton>
                 <Button mnemonicParsing="false" onAction="#logout" prefHeight="45.0" prefWidth="100.0" text="Log Out" />
             </children>
         </HBox>
-        <Label fx:id="nameLabel" layoutX="71.0" layoutY="245.0" prefHeight="45.0" prefWidth="480.0" text="Name: " />
-        <Button layoutX="88.0" layoutY="500.0" mnemonicParsing="false" onAction="#editpage" text="Edit" />
-        <Button layoutX="435.0" layoutY="500.0" mnemonicParsing="false" onAction="#settingspage" text="Settings" />
-        <StackPane layoutX="455.0" layoutY="305.0">
-            <children>
-                <ImageView fx:id="blgicon" fitHeight="60.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../img/blg.png" />
-                    </image>
-                </ImageView>
-                <Label fx:id="blgLabel" prefHeight="25.0" prefWidth="30.0" />
-            </children>
-        </StackPane>
-        <Button layoutX="1075.0" layoutY="100.0" mnemonicParsing="false" onAction="#newflatpage" prefHeight="45.0" prefWidth="45.0" text="+" />
-      <MenuButton layoutX="235.0" layoutY="500.0" mnemonicParsing="false" text="Settings">
+        <Label fx:id="nameLabel" layoutX="371.0" layoutY="245.0" prefHeight="45.0" prefWidth="480.0" text="Name: " />
+      <MenuButton layoutX="720.0" layoutY="520.0" mnemonicParsing="false" text="Settings">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#editpage" text="Edit Profile" />
-          <MenuItem mnemonicParsing="false" onAction="#passpage" text="Change Password" />
-            <MenuItem mnemonicParsing="false" onAction="#deletepage" text="Delete Account" />
+          <MenuItem fx:id="editbutton" mnemonicParsing="false" text="Edit Contact Info" />
+          <MenuItem fx:id="passbutton" mnemonicParsing="false" text="Change Password" />
+            <MenuItem fx:id="deletebutton" mnemonicParsing="false" text="Delete Account" />
         </items>
       </MenuButton>
     </children>

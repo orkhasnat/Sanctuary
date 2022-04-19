@@ -792,6 +792,8 @@ public class Flat
 
 	int getRent() throws Exception
 	{
+		if(1 == 1) return -1;
+
 		try
 		{
 			Database database = new Database("sanctuary", "root", "");
